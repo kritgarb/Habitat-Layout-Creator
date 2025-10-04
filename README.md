@@ -4,6 +4,23 @@
 
 Modern, interactive tool for designing and validating space habitat layouts with real NASA standards.
 
+## 📚 Scientific Foundation
+
+This application is based on official NASA technical documents and research:
+
+1. **Defining the Net Habitable Volume for Long Duration Exploration Missions** - Minimum volume requirements
+2. **Moon to Mars Architecture Definition Document** - Launch envelope and architecture requirements
+3. **Deep Space Habitability Design Guidelines** (NASA NextSTEP Phase 2) - Ergonomic and environmental standards
+4. **Internal Layout Assessment of a Lunar Surface Habitat** - Functional zoning strategies
+5. **NASA's M2M Transit Habitat Refinement Point of Departure Design** - Transit habitat design
+6. **Review of Habitable Softgoods Inflatable Design** - Rigid vs inflatable structures
+7. **Overview of NASA's MMPACT** - Autonomous construction on lunar surface
+8. **A Tool for Automated Design and Evaluation of Habitat Interior Layouts** - Layout efficiency metrics
+9. **Multi-functionality in Space** - Multi-functional space optimization
+10. **Food Production on the Moon and in Remote Areas** - Food production and ECLSS integration
+
+📖 **Complete references documentation**: [`docs/REFERENCES.md`](docs/REFERENCES.md)
+
 ## Features
 
 ### Modern Interface
@@ -108,6 +125,52 @@ Or use Docker Compose:
 ```powershell
 docker-compose up
 ```
+
+## 🚀 Deploy to Google Cloud Run
+
+### Quick Deploy
+
+```powershell
+# Windows PowerShell
+.\deploy.ps1
+
+# Linux/Mac Bash
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### Prerequisites
+
+1. **Install Google Cloud CLI**: https://cloud.google.com/sdk/docs/install
+2. **Authenticate**:
+   ```bash
+   gcloud auth login
+   gcloud config set project oxesites-435903
+   ```
+3. **Enable Billing**: See [`BILLING_SETUP.md`](BILLING_SETUP.md) for details
+
+### Manual Deploy
+
+```bash
+# 1. Build and push Docker image
+gcloud builds submit --tag southamerica-east1-docker.pkg.dev/oxesites-435903/habitat-repo/habitat:latest
+
+# 2. Deploy to Cloud Run
+gcloud run deploy habitat \
+  --image southamerica-east1-docker.pkg.dev/oxesites-435903/habitat-repo/habitat:latest \
+  --platform managed \
+  --region southamerica-east1 \
+  --allow-unauthenticated \
+  --port 8501 \
+  --cpu 1 \
+  --memory 1Gi \
+  --min-instances 0 \
+  --max-instances 5 \
+  --concurrency 50 \
+  --set-env-vars MODE=prod
+```
+
+📖 **Complete deploy guide**: [`DEPLOY.md`](DEPLOY.md)
 
 ## How to Use
 

@@ -1,5 +1,24 @@
 # 📐 Habitat Layout Creator - Documentação Técnica
 
+> **Nota**: Para uma lista completa de referências NASA utilizadas neste projeto, consulte [`docs/REFERENCES.md`](../docs/REFERENCES.md)
+
+## 📚 Base Científica
+
+Esta aplicação é fundamentada em documentos técnicos oficiais da NASA:
+
+1. **Defining the Net Habitable Volume** - Volume mínimo necessário (≥25 m³/pessoa)
+2. **Moon to Mars Architecture Definition Document** - Requisitos de envelope e arquitetura
+3. **Deep Space Habitability Design Guidelines** - Padrões ergonômicos e ambientais
+4. **Internal Layout Assessment of a Lunar Surface Habitat** - Zonamento funcional
+5. **NASA's M2M Transit Habitat Refinement** - Design para habitats de trânsito
+6. **Review of Habitable Softgoods Inflatable Design** - Estruturas rígidas vs infláveis
+7. **Overview of NASA's MMPACT** - Construção autônoma em solo lunar
+8. **A Tool for Automated Design and Evaluation** - Métricas de eficiência de layout
+9. **Multi-functionality in Space** - Otimização de espaços multi-funcionais
+10. **Food Production on the Moon** - Produção de alimentos e integração com ECLSS
+
+---
+
 ## 🧮 Fundamentos Matemáticos
 
 ### Cálculo de Volume
@@ -640,6 +659,199 @@ def thermal_simulation(habitat, environment):
 
 ---
 
+## 📊 Métricas Avançadas de Avaliação
+
+### Eficiência de Espaço
+```python
+Space_Efficiency = (Área_Utilizável / Área_Total) × 100%
+```
+**Meta**: ≥ 75%
+
+### Índice de Circulação
+```python
+Circulation_Index = (Área_Circulação / Área_Total) × 100%
+```
+**Meta**: 15-25% (equilíbrio entre acesso e desperdício)
+
+### Índice de Privacidade
+```python
+Privacy_Index = (Zonas_Privadas / Total_Tripulantes) × 100%
+```
+**Meta**: 100% (cada tripulante com espaço privado)
+
+### Pontuação de Adjacência
+Avalia o quão bem as zonas relacionadas estão posicionadas:
+```python
+Adjacency_Score = Σ(Peso_Relação × Proximidade) / Total_Relações
+```
+
+**Adjacências Recomendadas** (alta prioridade):
+- � Sleep ↔ Hygiene (peso: 0.9) - Acesso rápido após despertar
+- 🟢 Kitchen ↔ Dining (peso: 0.8) - Servir refeições
+- 🟢 Work ↔ Communication (peso: 0.7) - Colaboração
+
+**Adjacências Incompatíveis** (evitar):
+- 🔴 Sleep ↔ Exercise (peso: -0.9) - Ruído e vibração
+- 🔴 Sleep ↔ Kitchen (peso: -0.7) - Odores e atividade
+- 🔴 Sleep ↔ Hygiene (peso: -0.6) - Ruído de água
+
+---
+
+## 🌱 Produção de Alimentos (Módulo Futuro)
+
+### Hidroponia
+- **Área necessária**: 6 m²/pessoa
+- **Altura**: 2.0m (crescimento de plantas)
+- **Água**: 8 L/dia/pessoa (irrigação + consumo)
+- **Energia**: 200 W/m² (iluminação LED)
+- **Produção de O₂**: 0.5 kg/dia/pessoa (fotossíntese)
+- **Rendimento**: 0.3 kg/dia/pessoa (vegetais frescos)
+
+### Tipos de Cultivo
+| Cultura | Dias até Colheita | Rendimento (kg/m²) |
+|---------|-------------------|-------------------|
+| Alface/Espinafre | 30-45 | 25 |
+| Tomate | 90 | 40 |
+| Batata | 70 | 30 |
+| Morango | 120 | 15 |
+
+### Benefícios
+- **Psicológicos**: Conexão com natureza, atividade terapêutica
+- **Nutricionais**: Vegetais frescos, variedade na dieta
+- **Suporte à Vida**: Produção de O₂, consumo de CO₂, reciclagem de água
+
+---
+
+## 🏗️ Tipos de Estrutura de Habitat
+
+### Estrutura Rígida
+- **Material**: Alumínio/Compósito
+- **Eficiência de Volume**: 1.0× (base)
+- **Massa**: 150 kg/m³
+- **Vantagens**: Rigidez, proteção MMOD, montagem de equipamentos
+- **Desvantagens**: Volume limitado, peso elevado
+
+### Estrutura Inflável (Softgoods)
+- **Material**: Tecidos multi-camadas
+- **Eficiência de Volume**: 3.5× (3-4× maior que rígido)
+- **Massa**: 40 kg/m³
+- **Vantagens**: Grande volume, peso reduzido, empacotamento compacto
+- **Desvantagens**: Complexidade de vedação, rigidez limitada
+
+---
+
+## 🎯 Tipos de Missão
+
+### Habitat de Trânsito (Terra-Marte)
+- **Duração**: 180-300 dias
+- **NHV Mínimo**: 27 m³/pessoa (maior que superfície)
+- **Gravidade**: Zero ou artificial
+- **Crítico**: Exercício (microgravidade), áreas privadas, janelas/visores
+
+### Habitat de Superfície Lunar
+- **Duração**: 30-365 dias
+- **NHV Mínimo**: 25 m³/pessoa
+- **Gravidade**: 1/6 da Terra
+- **Proteção**: Regolito ≥2m (radiação)
+
+### Habitat de Superfície Marciana
+- **Duração**: 500-900 dias
+- **NHV Mínimo**: 25 m³/pessoa
+- **Gravidade**: 3/8 da Terra
+- **Proteção**: Regolito ou estrutura
+
+---
+
+## 🔬 Padrões Ambientais Detalhados
+
+### Temperatura
+- **Mínima**: 18°C
+- **Máxima**: 27°C
+- **Ótima**: 22°C
+
+### Umidade Relativa
+- **Mínima**: 30%
+- **Máxima**: 70%
+- **Ótima**: 50%
+
+### Qualidade do Ar
+- **CO₂ Máximo**: 5.3 mmHg (0.7 kPa)
+- **CO₂ Ótimo**: <3.0 mmHg
+- **Velocidade do Ar**: 0.05-0.25 m/s
+
+### Acústica
+- **Área de Sono**: ≤60 dB
+- **Área de Trabalho**: ≤70 dB
+- **Ótimo**: ≤50 dB
+
+### Iluminação Circadiana
+- **Intensidade**: 200-500 lux
+- **Temperatura de Cor**:
+  - Dia: 6500K (luz fria)
+  - Tarde: 4000K
+  - Noite: 2700K (luz quente)
+
+---
+
+## �📐 Dimensões Ergonômicas
+
+### Espaços Gerais
+| Elemento | Mínimo | Ótimo | Unidade |
+|----------|---------|-------|---------|
+| Altura do teto | 2.1 | 2.4 | metros |
+| Largura de corredor | 0.8 | 1.2 | metros |
+| Largura de porta | 0.7 | 0.9 | metros |
+| Altura de porta | 1.9 | 2.0 | metros |
+
+### Áreas Funcionais
+| Área | Mínimo por Pessoa | Unidade |
+|------|-------------------|---------|
+| Estação de trabalho | 1.5 | m² |
+| Quarto (privado) | 5.0 | m³ |
+| Área de exercício | 2.5 | m² |
+| Área de higiene | 2.0 | m² |
+
+---
+
+## 🔄 Multi-funcionalidade
+
+### Conceito
+Espaços que servem múltiplas funções através de:
+- Móveis transformáveis
+- Cronograma de uso por turnos
+- Equipamentos retráteis/dobráveis
+
+### Exemplos de Espaços Multi-funcionais
+
+#### Jantar + Reuniões + Recreação
+- **Funções**: Jantar, reuniões, recreação, socialização
+- **Área**: 2.0 m²/pessoa (economiza 67% vs áreas separadas)
+- **Equipamento**: Mesa dobrável, cadeiras empilháveis, tela retrátil
+
+#### Exercício + Médico
+- **Funções**: Exercício físico, exames médicos
+- **Área**: 3.0 m²/pessoa
+- **Equipamento**: Esteira dobrável, bicicleta, maca retrátil
+
+#### Armazenamento + Utilidade
+- **Funções**: Armazenamento, manutenção, processamento de resíduos
+- **Área**: 3.5 m²/pessoa
+- **Equipamento**: Prateleiras modulares, bancada de manutenção
+
+---
+
+## 📋 Referências Completas
+
+Para documentação completa de todas as referências NASA utilizadas, incluindo:
+- Aplicações específicas no código
+- Valores de constantes e sua origem
+- Funcionalidades planejadas para implementação futura
+
+**Consulte**: [`docs/REFERENCES.md`](../docs/REFERENCES.md)
+
+---
+
 **📐 Documentação mantida por: Benjamin**  
 **🔄 Última atualização: 4 de outubro de 2025**  
 **📧 Dúvidas técnicas: GitHub Issues**
+

@@ -60,6 +60,7 @@ def create_habitat_data_dict(config: dict, total_volume: float, floor_area: floa
         },
         "habitat": {
             "shape": config["shape"],
+            "structure_type": config.get("structure_type", "rigid"),
             "dimensions": config["dimensions"],
             "volume_m3": round(total_volume, 2),
             "floor_area_m2": round(floor_area, 2),
@@ -69,7 +70,7 @@ def create_habitat_data_dict(config: dict, total_volume: float, floor_area: floa
         "mission": {
             "crew_size": config["crew_size"],
             "duration_days": config["mission_duration"],
-            "destination": config["destination"],
+            "gravity_environment": config.get("gravity_env", "microgravity"),
             "total_water_liters": round(total_water, 2)
         },
         "zones": {zone: round(area, 2) for zone, area in zones.items()},
