@@ -1,0 +1,5 @@
+streamlit
+cairosvg
+pillow
+plotly
+numpy
