@@ -26,7 +26,7 @@ Referências detalhadas: veja `docs_archive/TECHNICAL.md`
 - Fundo espacial estático com estrelas e nebulosas
 - Menu principal com botões responsivos e favicon personalizado
 - Logo da equipe e foto do time na página “Sobre”
-- Rodapé com logos da ENTERPRISE, TIC, NSA e NS
+- Rodapé com logos da ENTERPRISE, TIC, NSA 
 
 ### Núcleo da Aplicação
 - Criação de habitats cilíndricos ou retangulares

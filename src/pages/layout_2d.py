@@ -21,33 +21,26 @@ def render_layout_2d_page():
     # 2D visualization explanation
     st.markdown("""
     <div style='background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(56, 178, 172, 0.1)); 
-                padding: 1.5rem; border-radius: 10px; border-left: 4px solid #48bb78; margin-bottom: 2rem;'>
+                padding: 1.5rem; border-radius: 10px; border-left: 4px solid #48bb78; margin-bottom: 1.5rem;'>
         <h3 style='color: #48bb78; margin-top: 0;'>What is the 2D Floor Plan?</h3>
         <p style='color: #E2E8F0; line-height: 1.8;'>
             The 2D visualization shows the <strong>floor plan</strong> of your habitat - a top view that 
             reveals how the <strong>functional zones</strong> are distributed in the available space.
         </p>
-        <ul style='color: #E2E8F0; line-height: 1.8;'>
-            <li><strong>Cylindrical Habitats:</strong> Zones are displayed as circular sectors (pizza slices), 
-            proportional to their areas. The central circle represents the common corridor.</li>
-            <li><strong>Rectangular Habitats:</strong> Zones are organized in an automatically optimized grid, 
-            with grid lines for spatial reference.</li>
-            <li><strong>Colors:</strong> Each zone has a unique color for easy identification. Hover over 
-            any zone to see details (name, area, percentage).</li>
-        </ul>
     </div>
     """, unsafe_allow_html=True)
     
-    # Configuration panel
-    with st.expander("Configure Habitat", expanded=True):
+    # Create two columns: configuration panel (left) and visualization (right)
+    config_col, viz_col = st.columns([1, 2])
+    
+    with config_col:
+        st.markdown("### Configuration")
         config = render_config_panel()
     
     # Validate if zones are selected
     if not config["zone_areas"]:
-        st.warning("Please select at least one functional zone in the configuration above.")
+        st.warning("Please select at least one functional zone in the configuration.")
         st.stop()
-    
-    st.markdown("---")
     
     # Calculate metrics
     if config["shape"] == "Cylinder":
@@ -79,41 +72,41 @@ def render_layout_2d_page():
     zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
     total_zone_area = sum(zones.values())
     
-    # Quick summary
-    st.markdown("### Design Summary")
-    metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
-    
-    with metric_col1:
-        shape_translated = "Cylindrical" if config['shape'] == 'Cylinder' else "Rectangular"
-        st.metric("Shape", shape_translated)
-    
-    with metric_col2:
-        st.metric("Floor Area", f"{floor_area:.1f} m²")
-        delta_floor = floor_area_per_person - MIN_FLOOR_AREA_PER_PERSON
-        st.caption(f"{floor_area_per_person:.1f} m²/person")
-    
-    with metric_col3:
-        st.metric("Zones", f"{len(zones)}")
-        st.caption(f"{total_zone_area:.1f} m² total")
-    
-    with metric_col4:
-        st.metric("Crew", f"{config['crew_size']} people")
-        st.caption(f"{config['mission_duration']} mission days")
+    with viz_col:
+        st.markdown("### Floor Plan Visualization")
+        
+        # Quick summary metrics above visualization
+        metric_col1, metric_col2, metric_col3 = st.columns(3)
+        
+        with metric_col1:
+            shape_translated = "Cylindrical" if config['shape'] == 'Cylinder' else "Rectangular"
+            st.metric("Shape", shape_translated)
+        
+        with metric_col2:
+            st.metric("Floor Area", f"{floor_area:.1f} m²")
+            st.caption(f"{floor_area_per_person:.1f} m²/person")
+        
+        with metric_col3:
+            st.metric("Zones", f"{len(zones)}")
+            st.caption(f"{total_zone_area:.1f} m² allocated")
+        
+        # 2D Visualization
+        fig_2d = create_2d_layout_plotly(
+            zones, floor_area, config["shape"], config["dimensions"],
+            ZONE_COLORS, ZONE_NAMES
+        )
+        st.plotly_chart(fig_2d, use_container_width=True, config={"displayModeBar": True, "responsive": True})
+        
+        # Validation
+        if floor_area_per_person < MIN_FLOOR_AREA_PER_PERSON:
+            st.error(f"Floor area per person ({floor_area_per_person:.1f} m²) is below NASA minimum ({MIN_FLOOR_AREA_PER_PERSON} m²)")
+        else:
+            st.success(f"Floor area per person ({floor_area_per_person:.1f} m²) meets NASA standard")
     
     st.markdown("---")
     
-    # 2D Visualization
-    st.markdown("### Interactive Floor Plan")
-    
-    fig_2d = create_2d_layout_plotly(
-        zones, floor_area, config["shape"], config["dimensions"],
-        ZONE_COLORS, ZONE_NAMES
-    )
-    st.plotly_chart(fig_2d, config={"displayModeBar": True, "responsive": True})
-    
-    # Legend and zone explanation
-    st.markdown("---")
-    st.markdown("### Zone Legend")
+    # Zone Legend below (full width)
+    st.markdown("### Zone Distribution Details")
     
     legend_cols = st.columns(3)
     for idx, (zone_id, area) in enumerate(zones.items()):
@@ -136,7 +129,7 @@ def render_layout_2d_page():
     
     # Interpretation tips
     st.markdown("---")
-    st.markdown("### How to Interpret the Floor Plan")
+    st.markdown("### Design Insights")
     
     tip_col1, tip_col2 = st.columns(2)
     
@@ -144,22 +137,17 @@ def render_layout_2d_page():
         st.markdown("""
         **Spatial Analysis:**
         - Larger zones = more area allocated for that function
-        - Balanced distribution indicates balanced design
+        - Balanced distribution indicates well-designed habitat
         - Check if there's enough space for each activity
-        - Compare with NASA references (10 m²/person minimum)
+        - Compare with NASA minimum (10 m²/person)
         """)
     
     with tip_col2:
         st.markdown("""
-        **Important Considerations:**
-        - Incompatible zones (e.g. sleep + exercise) should be separated
-        - Hygiene should be close to sleeping quarters
-        - Kitchen should be central for easy access
-        - Storage should be strategically distributed
+        **Design Considerations:**
+        - Separate incompatible zones (sleep vs exercise)
+        - Place hygiene near sleeping quarters
+        - Keep kitchen centrally accessible
+        - Distribute storage strategically
         """)
-    
-    # Basic validation
-    if floor_area_per_person < MIN_FLOOR_AREA_PER_PERSON:
-        st.error(f"Floor area per person ({floor_area_per_person:.1f} m²) is below NASA minimum ({MIN_FLOOR_AREA_PER_PERSON} m²)")
-    else:
-        st.success(f"Floor area per person ({floor_area_per_person:.1f} m²) meets NASA standard")
+

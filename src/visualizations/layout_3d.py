@@ -104,6 +104,10 @@ def _create_cylinder_3d(dimensions: dict, zones: dict, zone_colors: dict,
     z_offset = 0
     
     for zone, area in zones.items():
+        # Skip zone if not in zone_colors (defensive programming)
+        if zone not in zone_colors:
+            continue
+            
         proportion = area / total_zone_area
         zone_height = height * proportion
         
@@ -116,8 +120,8 @@ def _create_cylinder_3d(dimensions: dict, zones: dict, zone_colors: dict,
             x=x_plane, y=y_plane, z=[z_plane]*len(theta),
             mode='lines',
             line=dict(color=zone_colors[zone], width=5),
-            name=zone_names[zone],
-            hovertext=f"{zone_names[zone]}<br>{area:.1f} m²",
+            name=zone_names.get(zone, zone),
+            hovertext=f"{zone_names.get(zone, zone)}<br>{area:.1f} m²",
             showlegend=True
         ))
         
@@ -170,6 +174,10 @@ def _create_box_3d(dimensions: dict, zones: dict, zone_colors: dict,
     z_offset = 0
     
     for zone, area in zones.items():
+        # Skip zone if not in zone_colors (defensive programming)
+        if zone not in zone_colors:
+            continue
+            
         proportion = area / total_zone_area
         zone_height = height * proportion
         
@@ -187,8 +195,8 @@ def _create_box_3d(dimensions: dict, zones: dict, zone_colors: dict,
             z=z_plane_list,
             mode='lines',
             line=dict(color=zone_colors[zone], width=5),
-            name=zone_names[zone],
-            hovertext=f"{zone_names[zone]}<br>{area:.1f} m²",
+            name=zone_names.get(zone, zone),
+            hovertext=f"{zone_names.get(zone, zone)}<br>{area:.1f} m²",
             showlegend=True
         ))
         

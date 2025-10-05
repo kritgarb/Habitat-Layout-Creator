@@ -292,20 +292,17 @@ def render_about_page():
     # Contact and support
     st.markdown("### Contact and Support")
     
-    contact_col1, contact_col2 = st.columns(2)
+    st.markdown("""
+    **Project Repository:**
+    - GitHub: [Habitat-Layout-Creator](https://github.com/kritgarb/Habitat-Layout-Creator)
     
-    with contact_col1:
-        st.markdown("""
-        **Project Repository:**
-        - GitHub: [Habitat-Layout-Creator](https://github.com/kritgarb/Habitat-Layout-Creator)
-        """)
-    
-    with contact_col2:
-        st.markdown("""
-        **Social Networks:**
-        - LinkedIn: [Benjamin Vieira](https://www.linkedin.com/in/garbkrit/)
-        - LinkedIn: [Alice Araujo](https://www.linkedin.com/in/alice-araujo-892258238)
-        """)
+    **Social Networks:**
+    - LinkedIn: [Benjamin Vieira](https://www.linkedin.com/in/garbkrit/)
+    - LinkedIn: [Alice Araujo](https://www.linkedin.com/in/alice-araujo-892258238)
+    - LinkedIn: [Gabryel Batista](https://br.linkedin.com/in/gabryel-batista-1101ba237)
+    - LinkedIn: [Vitória Ferreira](https://www.linkedin.com/in/pferreiravit)
+    - LinkedIn: [Caio Chagas](http://www.linkedin.com/in/caio-henrique-chagas-948397253)
+    """)
     
     st.markdown("---")
     

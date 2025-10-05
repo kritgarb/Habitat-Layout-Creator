@@ -98,509 +98,507 @@ def render_documentation_page():
         - More integrated equipment = lower usability factor (70-80%)
         - Example: ISS, Skylab
         
-        **Inflável (Inflatable):**
-        - Estrutura de tecidos avançados (Kevlar, Vectran)
-        - Compacta durante lançamento, expande no espaço
-        - Maior fator de usabilidade (85-90%)
-        - Exemplo: Bigelow BEAM, Sierra Space LIFE
+        **Inflatable:**
+        - Advanced fabric structure (Kevlar, Vectran)
+        - Compact during launch, expands in space
+        - Higher usability factor (85-90%)
+        - Example: Bigelow BEAM, Sierra Space LIFE
         
-        #### Ambientes Gravitacionais
+        #### Gravitational Environments
         
-        **Microgravidade (0g):**
-        - ISS, órbita terrestre
-        - Todas as superfícies são utilizáveis
-        - Volume 3D é mais crítico que área de piso
+        **Microgravity (0g):**
+        - ISS, Earth orbit
+        - All surfaces are usable
+        - 3D volume is more critical than floor area
         
-        **Gravidade Lunar (0.165g):**
-        - Superfície da Lua
+        **Lunar Gravity (0.165g):**
+        - Moon surface
         - Movement still "floating" but with orientation
-        - Equilíbrio entre volume e área de piso
+        - Balance between volume and floor area
         
-        **Gravidade Marciana (0.38g):**
-        - Superfície de Marte
-        - Mais próximo de design terrestre
-        - Área de piso é primária
+        **Martian Gravity (0.38g):**
+        - Mars surface
+        - Closer to terrestrial design
+        - Floor area is primary
         
         #### Functional Zones
         
         Habitat divisions by function:
-        - **Dormir (Sleep):** Privacidade, descanso
-        - **Trabalho (Work):** Laboratórios, controles
-        - **Higiene (Hygiene):** Banheiro, chuveiro
+        - **Sleep:** Privacy, rest
+        - **Work:** Laboratories, controls
+        - **Hygiene:** Bathroom, shower
         - **Food:** Kitchen, meals
         - **Exercise:** Fitness equipment
         - **Recreation:** Leisure, relaxation
-        - **Armazenamento (Storage):** Suprimentos, equipamentos
+        - **Storage:** Supplies, equipment
         - **Medical:** First aid, examinations
         """)
     
     # Section 3: Step-by-Step Guide
     with st.expander("### 3. Step-by-Step Guide"):
         st.markdown("""
-        # Step 1
-        st.subheader("Step 1: Define Mission Parameters")
+        #### Step 1: Define Mission Parameters
         
-        1. **Escolha a forma do habitat:**
-           - Cilíndrico para eficiência estrutural
-           - Retangular para flexibilidade de layout
+        1. **Choose habitat shape:**
+           - Cylindrical for structural efficiency
+           - Rectangular for layout flexibility
         
-        2. **Selecione o tipo de estrutura:**
-           - Rígida para missões críticas com muitos sistemas
-           - Inflável para maximizar volume com massa mínima
+        2. **Select structure type:**
+           - Rigid for critical missions with many systems
+           - Inflatable to maximize volume with minimal mass
         
-        3. **Configure dimensões:**
-           - **Cilindro:** Diâmetro (3-8m típico) e Altura (4-10m típico)
-           - **Retângulo:** Comprimento, Largura, Altura (4-10m cada)
+        3. **Configure dimensions:**
+           - **Cylinder:** Diameter (3-8m typical) and Height (4-10m typical)
+           - **Rectangle:** Length, Width, Height (4-10m each)
            - Tip: Start with standard dimensions and adjust as needed
         
-        4. **Defina tripulação e missão:**
-           - Tamanho da tripulação: 4-6 pessoas típico
-           - Duração: 30 dias (curta) até 360+ dias (longa)
+        4. **Define crew and mission:**
+           - Crew size: 4-6 people typical
+           - Duration: 30 days (short) to 360+ days (long)
            - Tip: Duration drastically affects NHV requirements
         
-        5. **Escolha o ambiente gravitacional:**
-           - Microgravidade: ISS, órbita
-           - Lunar: Base lunar
-           - Marciana: Base marciana
+        5. **Choose gravitational environment:**
+           - Microgravity: ISS, orbit
+           - Lunar: Lunar base
+           - Martian: Martian base
         
-        # Step 2
-        st.subheader("Step 2: Select Functional Zones")
+        #### Step 2: Select Functional Zones
         
         1. **Select necessary zones:**
-           - Mínimo recomendado: Dormir, Trabalho, Higiene
+           - Recommended minimum: Sleep, Work, Hygiene
            - Ideal: 5-7 zones for complete functionality
         
-        2. **Ajuste áreas personalizadas (opcional):**
-           - Deixe em branco para distribuição automática balanceada
-           - Ou insira m² específicos para controle preciso
+        2. **Adjust custom areas (optional):**
+           - Leave blank for automatic balanced distribution
+           - Or enter specific m² for precise control
            - Tip: Sleep and Work are usually the largest zones
         
-        3. **Valide a soma:**
-           - A ferramenta avisa se áreas personalizadas excedem área disponível
+        3. **Validate the sum:**
+           - Tool warns if custom areas exceed available area
            - Adjust values or remove zones if necessary
         
         #### Step 3: Visualize the Design
         
-        1. **Layout 2D (Planta Baixa):**
+        1. **2D Layout (Floor Plan):**
            - See zone distribution from top view
-           - Cilindros: setores circulares
-           - Retângulos: grid otimizado
-           - Interação: Hover para detalhes de cada zona
+           - Cylinders: circular sectors
+           - Rectangles: optimized grid
+           - Interaction: Hover for details of each zone
         
-        2. **Layout 3D (Modelo Tridimensional):**
-           - Visualize volume completo do habitat
-           - Interação: Clique e arraste para rotacionar
-           - Use roda do mouse para zoom
-           - Duplo clique para resetar visualização
+        2. **3D Layout (Three-Dimensional Model):**
+           - Visualize complete habitat volume
+           - Interaction: Click and drag to rotate
+           - Use mouse wheel for zoom
+           - Double click to reset view
         
         #### Step 4: Analyze the Metrics
         
-        1. **Acesse Métricas NASA:**
-           - Dashboard completo com todas as métricas quantitativas
+        1. **Access NASA Metrics:**
+           - Complete dashboard with all quantitative metrics
         
-        2. **Verifique conformidade:**
-           - NHV por pessoa vs. padrão NASA
-           - Área de piso por pessoa vs. mínimo 10 m²
+        2. **Verify compliance:**
+           - NHV per person vs. NASA standard
+           - Floor area per person vs. 10 m² minimum
            - Adequate zone distribution
         
-        3. **Identifique problemas:**
+        3. **Identify problems:**
            - Red metrics indicate non-compliance
-           - Leia explicações detalhadas de cada métrica
-           - Ajuste configurações conforme necessário
+           - Read detailed explanations of each metric
+           - Adjust configurations as needed
         
         #### Step 5: Iterate and Refine
         
-        1. **Experimente variações:**
-           - Teste diferentes formas e dimensões
-           - Compare estruturas rígidas vs. infláveis
+        1. **Experiment with variations:**
+           - Test different shapes and dimensions
+           - Compare rigid vs. inflatable structures
            - Vary number and size of zones
         
-        2. **Optimize para seus objetivos:**
-           - Maximize NHV para missões longas
-           - Minimize área para eficiência de massa
-           - Balance funcionalidade vs. recursos
+        2. **Optimize for your objectives:**
+           - Maximize NHV for long missions
+           - Minimize area for mass efficiency
+           - Balance functionality vs. resources
         
-        3. **Documente seu design:**
-           - Use exportação JSON para salvar configurações
-           - Capture screenshots das visualizações
-           - Anote decisões de design e trade-offs
+        3. **Document your design:**
+           - Use JSON export to save configurations
+           - Capture screenshots of visualizations
+           - Note design decisions and trade-offs
         """)
     
     # Section 4: Configuration Parameters
     with st.expander("### 4. Configuration Parameters"):
         st.markdown("""
-        #### Forma do Habitat (Shape)
-        - **Opções:** Cylinder, Rectangular
-        - **Impacto:** Determina fórmulas de volume e área
-        - **Recomendação:** Cilindro para pressurização eficiente
+        #### Habitat Shape
+        - **Options:** Cylinder, Rectangular
+        - **Impact:** Determines volume and area formulas
+        - **Recommendation:** Cylinder for efficient pressurization
         
-        #### Tipo de Estrutura (Structure)
-        - **Opções:** Rigid, Inflatable
-        - **Impacto:** Afeta fator de usabilidade (70-90%)
-        - **Recomendação:** Rígida para durabilidade, Inflável para volume
+        #### Structure Type
+        - **Options:** Rigid, Inflatable
+        - **Impact:** Affects usability factor (70-90%)
+        - **Recommendation:** Rigid for durability, Inflatable for volume
         
-        #### Dimensões
+        #### Dimensions
         
-        **Cilindro:**
-        - **Diâmetro:** 3-8 metros típico
-          - Menor: lançamento mais fácil
-          - Maior: mais espaço interno
-        - **Altura:** 4-10 metros típico
-          - Afeta volume proporcionalmente
-          - Considere altura de teto (2-2.5m mínimo)
+        **Cylinder:**
+        - **Diameter:** 3-8 meters typical
+          - Smaller: easier launch
+          - Larger: more interior space
+        - **Height:** 4-10 meters typical
+          - Affects volume proportionally
+          - Consider ceiling height (2-2.5m minimum)
         
-        **Retângulo:**
-        - **Comprimento/Largura/Altura:** 4-10 metros típico
-        - Considere relação de aspecto (L:W:H)
-        - Evite dimensões muito desproporcionais
+        **Rectangle:**
+        - **Length/Width/Height:** 4-10 meters typical
+        - Consider aspect ratio (L:W:H)
+        - Avoid very disproportionate dimensions
         
-        #### Tamanho da Tripulação (Crew Size)
-        - **Faixa:** 4-6 pessoas
-        - **Típico:** 4-6 pessoas
-        - **Impacto:** Divisor para métricas per capita
-        - **Consideração:** Mais pessoas = mais recursos, mais complexidade social
+        #### Crew Size
+        - **Range:** 1-12 people
+        - **Typical:** 4-6 people
+        - **Impact:** Divisor for per capita metrics
+        - **Consideration:** More people = more resources, more social complexity
         
-        #### Duração da Missão (Mission Duration)
-        - **Faixa:** 1-1000+ dias
-        - **Categorias:**
-          - Curta: ≤30 dias
-          - Média: 31-180 dias
-          - Longa: 181-360 dias
-          - Muito longa: 360+ dias
-        - **Impacto:** Determina NHV requerido por pessoa
-        - **Consideração:** Missões longas requerem mais espaço para saúde mental
+        #### Mission Duration
+        - **Range:** 1-1000+ days
+        - **Categories:**
+          - Short: ≤30 days
+          - Medium: 31-180 days
+          - Long: 181-360 days
+          - Very long: 360+ days
+        - **Impact:** Determines required NHV per person
+        - **Consideration:** Long missions require more space for mental health
         
-        #### Ambiente Gravitacional (Gravity)
-        - **Opções:** 
+        #### Gravitational Environment
+        - **Options:** 
           - Microgravity (0g)
           - Lunar Gravity (0.165g)
           - Martian Gravity (0.38g)
-        - **Impacto:** Influencia uso do espaço e orientação de equipamentos
-        - **Consideração:** Microgravidade usa volume 3D; gravidade usa área de piso
+        - **Impact:** Influences space usage and equipment orientation
+        - **Consideration:** Microgravity uses 3D volume; gravity uses floor area
         
-        #### Fator de Usabilidade (Usability Factor)
-        - **Faixa:** 0.60-0.95 (60%-95%)
-        - **Rígida:** 0.70-0.80 típico
-        - **Inflável:** 0.85-0.90 típico
-        - **Impacto:** Multiplicador direto do NHV
-        - **Recomendação:** Use valores conservadores (0.70-0.75) para designs preliminares
+        #### Usability Factor
+        - **Range:** 0.60-0.95 (60%-95%)
+        - **Rigid:** 0.70-0.80 typical
+        - **Inflatable:** 0.85-0.90 typical
+        - **Impact:** Direct NHV multiplier
+        - **Recommendation:** Use conservative values (0.70-0.75) for preliminary designs
         
         #### Zone Selection
-        - **Mínimo:** 1 zona
+        - **Minimum:** 1 zone
         - **Recommended:** 3-7 zones
-        - **Áreas Personalizadas:** Opcional, em m²
-        - **Auto-distribuição:** Ferramenta calcula automaticamente se não especificado
+        - **Custom Areas:** Optional, in m²
+        - **Auto-distribution:** Tool automatically calculates if not specified
         """)
     
     # Section 5: Interpreting Visualizations
     with st.expander("### 5. Interpreting Visualizations"):
         st.markdown("""
-        #### Visualização 2D (Planta Baixa)
+        #### 2D Visualization (Floor Plan)
         
-        **Habitats Cilíndricos:**
+        **Cylindrical Habitats:**
         - Zones appear as circular sectors (slices)
-        - Círculo central = corredor comum
-        - Tamanho da fatia = área da zona
-        - Cores únicas identificam cada zona
+        - Central circle = common corridor
+        - Slice size = zone area
+        - Unique colors identify each zone
         
-        **Habitats Retangulares:**
+        **Rectangular Habitats:**
         - Zones organized in optimized grid
-        - Linhas de grade para referência espacial
-        - Cada retângulo = uma zona
-        - Proporções aproximadas às áreas reais
+        - Grid lines for spatial reference
+        - Each rectangle = one zone
+        - Proportions approximate real areas
         
-        **Interatividade:**
-        - Hover: Ver nome, área, porcentagem
+        **Interactivity:**
+        - Hover: See name, area, percentage
         - Legends: Colors and zones identified
-        - Responsive: Adapta-se ao tamanho da tela
+        - Responsive: Adapts to screen size
         
-        **O que procurar:**
+        **What to look for:**
         - Balanced zone distribution
         - Zones large enough for function
-        - Separação lógica (ex: dormir longe de exercício)
+        - Logical separation (e.g., sleep far from exercise)
         
-        #### Visualização 3D (Modelo Tridimensional)
+        #### 3D Visualization (Three-Dimensional Model)
         
-        **Elementos do Modelo:**
-        - Contorno externo = forma do habitat
-        - Planos coloridos = divisões de zonas
-        - Cores = correspondência com legenda
-        - Eixos = referência espacial (X, Y, Z)
+        **Model Elements:**
+        - Outer contour = habitat shape
+        - Colored planes = zone divisions
+        - Colors = legend correspondence
+        - Axes = spatial reference (X, Y, Z)
         
-        **Controles Interativos:**
-        - **Rotação:** Clique e arraste
-        - **Zoom:** Roda do mouse ou pinch em touch
-        - **Pan:** Clique direito e arraste (ou Shift + clique)
-        - **Reset:** Duplo clique na visualização
-        - **Legenda:** Clique em itens para mostrar/ocultar zonas
+        **Interactive Controls:**
+        - **Rotation:** Click and drag
+        - **Zoom:** Mouse wheel or pinch on touch
+        - **Pan:** Right click and drag (or Shift + click)
+        - **Reset:** Double click on visualization
+        - **Legend:** Click items to show/hide zones
         
-        **Ângulos de Visualização:**
-        - Vista frontal: Veja altura e largura
-        - Vista lateral: Veja profundidade
-        - Vista superior: Veja planta baixa em 3D
-        - Isométrica: Veja proporções gerais
+        **Viewing Angles:**
+        - Front view: See height and width
+        - Side view: See depth
+        - Top view: See floor plan in 3D
+        - Isometric: See general proportions
         
-        **O que procurar:**
-        - Proporções realistas do habitat
-        - Volume aparente de cada zona
-        - Relações espaciais entre zonas
-        - Adequação para número de tripulantes
+        **What to look for:**
+        - Realistic habitat proportions
+        - Apparent volume of each zone
+        - Spatial relationships between zones
+        - Suitability for crew number
         """)
     
     # Section 6: Understanding NASA Metrics
     with st.expander("### 6. Understanding NASA Metrics"):
         st.markdown("""
-        #### Volume Total
-        - Volume geométrico completo do habitat
-        - Inclui espaço de equipamentos e estruturas
-        - Base para cálculo de NHV
-        - **Fórmulas:**
-          - Cilindro: π × r² × h
-          - Retângulo: L × W × H
+        #### Total Volume
+        - Complete geometric volume of habitat
+        - Includes equipment and structure space
+        - Basis for NHV calculation
+        - **Formulas:**
+          - Cylinder: π × r² × h
+          - Rectangle: L × W × H
         
         #### Net Habitable Volume (NHV)
-        - Volume utilizável pela tripulação
-        - NHV = Volume Total × Fator de Usabilidade
-        - Métrica mais importante para conforto
-        - **Padrões NASA por duração:**
-          - ≤30 dias: 12.7 m³/pessoa
-          - 31-90 dias: 16.7 m³/pessoa
-          - 91-180 dias: 20.0 m³/pessoa
-          - 181-360 dias: 22.5 m³/pessoa
-          - &gt;360 dias: 27.9 m³/pessoa
+        - Volume usable by crew
+        - NHV = Total Volume × Usability Factor
+        - Most important metric for comfort
+        - **NASA Standards by duration:**
+          - ≤30 days: 12.7 m³/person
+          - 31-90 days: 16.7 m³/person
+          - 91-180 days: 20.0 m³/person
+          - 181-360 days: 22.5 m³/person
+          - &gt;360 days: 27.9 m³/person
         
-        #### NHV por Pessoa
-        - NHV total dividido pelo tamanho da tripulação
-        - Compara diretamente com padrões NASA
+        #### NHV per Person
+        - Total NHV divided by crew size
+        - Directly compares to NASA standards
         - Key indicator of design adequacy
-        - **Interpretação:**
-          - Acima do padrão: Excelente
-          - No padrão: Adequado
-          - Abaixo do padrão: Requer revisão
+        - **Interpretation:**
+          - Above standard: Excellent
+          - At standard: Adequate
+          - Below standard: Requires revision
         
-        #### Área de Piso
-        - Área horizontal para circulação e trabalho
-        - Crítica para gravidade parcial ou total
-        - **Padrão NASA:** Mínimo 10 m²/pessoa
-        - **Fórmulas:**
-          - Cilindro: π × r²
-          - Retângulo: L × W
+        #### Floor Area
+        - Horizontal area for circulation and work
+        - Critical for partial or full gravity
+        - **NASA Standard:** Minimum 10 m²/person
+        - **Formulas:**
+          - Cylinder: π × r²
+          - Rectangle: L × W
         
-        #### Área de Piso por Pessoa
-        - Área total dividida pelo tamanho da tripulação
-        - Importante para densidade e mobilidade
-        - **Interpretação:**
-          - &gt;15 m²/pessoa: Espaçoso
-          - 10-15 m²/pessoa: Adequado
-          - &lt;10 m²/pessoa: Congestionado
+        #### Floor Area per Person
+        - Total area divided by crew size
+        - Important for density and mobility
+        - **Interpretation:**
+          - &gt;15 m²/person: Spacious
+          - 10-15 m²/person: Adequate
+          - &lt;10 m²/person: Congested
         
-        #### Distribuição de Zonas
-        - Número e tamanho de zonas funcionais
+        #### Zone Distribution
+        - Number and size of functional zones
         - Diversity indicates functionality
-        - Áreas por zona devem ser apropriadas
-        - **Recomendações por zona:**
-          - Dormir: 2-4 m²/pessoa
-          - Trabalho: 3-5 m²/pessoa
-          - Higiene: 1.5-2 m²/pessoa
-          - Alimentação: 1-2 m²/pessoa
-          - Exercício: 3-4 m²/pessoa
-          - Recreação: 2-3 m²/pessoa
-          - Armazenamento: 1-2 m²/pessoa
+        - Areas per zone should be appropriate
+        - **Recommendations per zone:**
+          - Sleep: 2-4 m²/person
+          - Work: 3-5 m²/person
+          - Hygiene: 1.5-2 m²/person
+          - Food: 1-2 m²/person
+          - Exercise: 3-4 m²/person
+          - Recreation: 2-3 m²/person
+          - Storage: 1-2 m²/person
           - Medical: 2-3 m²/person
         
-        #### Conformidade Geral
-        - Resumo de todas as validações
-        - Verde: Atende aos padrões
-        - Vermelho: Requer atenção
-        - Déficits quantificados para correção
+        #### Overall Compliance
+        - Summary of all validations
+        - Green: Meets standards
+        - Red: Requires attention
+        - Deficits quantified for correction
         """)
     
     # Section 6.5: Resource Requirements and Life Support
     with st.expander("### 6.5. Resource Requirements and Life Support"):
         st.markdown(r"""
-        #### Requisitos de Água
+        #### Water Requirements
         
-        **Água Potável (Hidratação/Consumo):**
-        - Mínimo de $\mathbf{2.0 \text{ kg}}$ de água potável por tripulante por dia de missão para ingestão
-        - Essencial para hidratação e funções corporais
-        - Deve ser potável e livre de contaminantes
+        **Potable Water (Hydration/Consumption):**
+        - Minimum of $\mathbf{2.0 \text{ kg}}$ of potable water per crew member per mission day for ingestion
+        - Essential for hydration and bodily functions
+        - Must be potable and contaminant-free
         
-        **Água para Reidratação de Alimentos:**
-        - Aproximadamente $\mathbf{0.5 \text{ kg}}$ por tripulante por dia de missão
-        - Necessária para preparação de alimentos liofilizados
-        - Temperatura e qualidade controladas
+        **Water for Food Rehydration:**
+        - Approximately $\mathbf{0.5 \text{ kg}}$ per crew member per mission day
+        - Necessary for preparing freeze-dried foods
+        - Temperature and quality controlled
         
-        **Água para Atividades Extraveiculares (EVA):**
-        - Adicionalmente, $\mathbf{0.24 \text{ kg}}$ de água por hora de EVA
-        - Acima da provisão nominal de água
-        - Recomendado para evitar a desidratação durante atividades intensas
+        **Water for Extravehicular Activities (EVA):**
+        - Additionally, $\mathbf{0.24 \text{ kg}}$ of water per hour of EVA
+        - Above nominal water provision
+        - Recommended to avoid dehydration during intense activities
         
-        **Total de Água por Pessoa/Dia:**
-        - **Nominal:** 2.5 kg/dia (2.0 + 0.5)
-        - **Com EVAs:** Adicionar 0.24 kg por hora de EVA
+        **Total Water per Person/Day:**
+        - **Nominal:** 2.5 kg/day (2.0 + 0.5)
+        - **With EVAs:** Add 0.24 kg per hour of EVA
         
-        #### Requisitos de Oxigênio
+        #### Oxygen Requirements
         
-        **Produção de Oxigênio via Plantas:**
-        - Cerca de $\mathbf{20-25 \text{ m}^2}$ de colheitas são necessárias para fornecer o $\text{O}_2$ para um humano
-        - Sistemas bioregenerativos podem reduzir dependência de ressuprimento
-        - Plantas também fornecem benefícios psicológicos
+        **Oxygen Production via Plants:**
+        - About $\mathbf{20-25 \text{ m}^2}$ of crops are needed to provide $\text{O}_2$ for one human
+        - Bioregenerative systems can reduce resupply dependency
+        - Plants also provide psychological benefits
         
-        **Consumo Humano:**
-        - Aproximadamente 0.82 kg de $\text{O}_2$ por pessoa por dia
-        - Produção de 1.0 kg de $\text{CO}_2$ por pessoa por dia
+        **Human Consumption:**
+        - Approximately 0.82 kg of $\text{O}_2$ per person per day
+        - Production of 1.0 kg of $\text{CO}_2$ per person per day
         
-        #### Requisitos de Alimentos
+        #### Food Requirements
         
-        **Produção de Alimentos (Calorias):**
-        - Cerca de $\mathbf{50 \text{ m}^2}$ são necessários para fornecer as calorias dietéticas para um humano
-        - Baseado em 2500 kcal/pessoa/dia
-        - Sistemas de cultivo vertical podem otimizar espaço
+        **Food Production (Calories):**
+        - About $\mathbf{50 \text{ m}^2}$ are needed to provide dietary calories for one human
+        - Based on 2500 kcal/person/day
+        - Vertical farming systems can optimize space
         
-        **Massa de Alimentos:**
-        - Aproximadamente 1.8 kg de alimentos por pessoa por dia
-        - Alimentos liofilizados reduzem massa e volume
+        **Food Mass:**
+        - Approximately 1.8 kg of food per person per day
+        - Freeze-dried foods reduce mass and volume
         
-        #### Saúde da Tripulação
+        #### Crew Health
         
-        **Perda de Massa Corporal:**
-        - Em missões de longa duração na ISS, observou-se uma perda média de $\mathbf{2.4\%}$ do peso corporal a cada 100 dias
-        - Relacionado a: perda de apetite, exercício insuficiente, estresse
-        - Contramedidas: exercício diário (2h), nutrição adequada, monitoramento médico
+        **Body Mass Loss:**
+        - In long-duration ISS missions, an average loss of $\mathbf{2.4\%}$ of body weight was observed every 100 days
+        - Related to: loss of appetite, insufficient exercise, stress
+        - Countermeasures: daily exercise (2h), adequate nutrition, medical monitoring
         
-        **Implicações de Design:**
-        - Zona de exercício é **crítica** para missões longas
-        - Área mínima recomendada: 3-4 m²/pessoa
-        - Equipamentos: esteira, bicicleta ergométrica, resistência
+        **Design Implications:**
+        - Exercise zone is **critical** for long missions
+        - Recommended minimum area: 3-4 m²/person
+        - Equipment: treadmill, ergometric bike, resistance
         
-        #### Resumo de Recursos por Pessoa/Dia
+        #### Resource Summary per Person/Day
         
-        | Recurso | Quantidade | Unidade |
-        |---------|------------|---------|
-        | Água (potável) | 2.0 | kg |
-        | Água (alimentos) | 0.5 | kg |
-        | Água (EVA) | 0.24 | kg/hora EVA |
-        | Oxigênio | 0.82 | kg |
-        | Alimentos | 1.8 | kg |
-        | CO₂ produzido | 1.0 | kg |
-        | Área cultivo O₂ | 20-25 | m² |
-        | Área cultivo alimentos | 50 | m² |
+        | Resource | Quantity | Unit |
+        |---------|----------|------|
+        | Water (potable) | 2.0 | kg |
+        | Water (food) | 0.5 | kg |
+        | Water (EVA) | 0.24 | kg/hour EVA |
+        | Oxygen | 0.82 | kg |
+        | Food | 1.8 | kg |
+        | CO₂ produced | 1.0 | kg |
+        | O₂ crop area | 20-25 | m² |
+        | Food crop area | 50 | m² |
         
-        **Nota:** Estes valores são para missões sem sistemas de reciclagem avançados. 
-        Sistemas ECLSS (Environmental Control and Life Support System) podem reduzir 
-        significativamente a necessidade de ressuprimento através de reciclagem de água e ar.
+        **Note:** These values are for missions without advanced recycling systems. 
+        ECLSS (Environmental Control and Life Support System) can significantly reduce 
+        resupply needs through water and air recycling.
         """)
     
     # Section 7: Tips and Best Practices
     with st.expander("### 7. Tips and Best Practices"):
         st.markdown("""
-        #### Design Geral
+        #### General Design
         
-        **Faça:**
-        - Comece com padrões NASA e ajuste conforme necessário
-        - Itere múltiplas vezes antes de finalizar
-        - Considere trade-offs (volume vs. massa vs. custo)
-        - Documente decisões de design
-        - Use valores conservadores para fator de usabilidade
+        **Do:**
+        - Start with NASA standards and adjust as needed
+        - Iterate multiple times before finalizing
+        - Consider trade-offs (volume vs. mass vs. cost)
+        - Document design decisions
+        - Use conservative values for usability factor
         
-        **Evite:**
-        - Minimizar demais o espaço (conforto importa!)
-        - Ignorar padrões NASA sem justificativa
-        - Designs com apenas 1-2 zonas (insuficiente)
-        - Dimensões extremas sem validação estrutural
-        - Superestimar fator de usabilidade (&gt;90%)
+        **Avoid:**
+        - Minimizing space too much (comfort matters!)
+        - Ignoring NASA standards without justification
+        - Designs with only 1-2 zones (insufficient)
+        - Extreme dimensions without structural validation
+        - Overestimating usability factor (&gt;90%)
         
-        #### Seleção de Forma
+        #### Shape Selection
         
-        **Use Cilindro quando:**
-        - Pressurização é crítica
-        - Lançamento em cargas úteis cilíndricas
-        - Eficiência estrutural é prioridade
-        - Massa deve ser minimizada
+        **Use Cylinder when:**
+        - Pressurization is critical
+        - Launching in cylindrical payloads
+        - Structural efficiency is priority
+        - Mass must be minimized
         
-        **Use Retângulo quando:**
-        - Flexibilidade de layout é importante
+        **Use Rectangle when:**
+        - Layout flexibility is important
         - Connection with other modules
-        - Utilização de cantos é vantajosa
-        - Design modular é necessário
+        - Corner utilization is advantageous
+        - Modular design is necessary
         
-        #### Dimensionamento
+        #### Sizing
         
-        **Para Tripulações Pequenas (2-3 pessoas):**
-        - Cilindro: ⌀4-5m × H5-7m
-        - Retângulo: 5×4×5m típico
-        - Foco em multifuncionalidade de zonas
+        **For Small Crews (2-3 people):**
+        - Cylinder: ⌀4-5m × H5-7m
+        - Rectangle: 5×4×5m typical
+        - Focus on zone multifunctionality
         
-        **Para Tripulações Médias (4-6 pessoas):**
-        - Cilindro: ⌀6-7m × H8-10m
-        - Retângulo: 8×6×6m típico
-        - Zonas especializadas importantes
+        **For Medium Crews (4-6 people):**
+        - Cylinder: ⌀6-7m × H8-10m
+        - Rectangle: 8×6×6m typical
+        - Specialized zones important
         
-        **Para Tripulações Grandes (7+ pessoas):**
+        **For Large Crews (7+ people):**
         - Cylinder: ⌀8m × H10+m or multiple modules
         - Rectangle: 10×8×8m or multiple modules
-        - Considere habitats modulares conectados
+        - Consider connected modular habitats
         
-        #### Alocação de Zonas
+        #### Zone Allocation
         
-        **Prioridades por Duração:**
+        **Priorities by Duration:**
         
-        **Missões Curtas (≤30 dias):**
-        1. Trabalho (40%)
-        2. Dormir (25%)
-        3. Higiene (15%)
-        4. Alimentação (10%)
-        5. Armazenamento (10%)
+        **Short Missions (≤30 days):**
+        1. Work (40%)
+        2. Sleep (25%)
+        3. Hygiene (15%)
+        4. Food (10%)
+        5. Storage (10%)
         
-        **Missões Médias (31-180 dias):**
-        1. Trabalho (30%)
-        2. Dormir (25%)
-        3. Exercício (15%)
-        4. Alimentação (10%)
-        5. Higiene (10%)
-        6. Recreação (5%)
-        7. Armazenamento (5%)
+        **Medium Missions (31-180 days):**
+        1. Work (30%)
+        2. Sleep (25%)
+        3. Exercise (15%)
+        4. Food (10%)
+        5. Hygiene (10%)
+        6. Recreation (5%)
+        7. Storage (5%)
         
-        **Missões Longas (&gt;180 dias):**
-        1. Trabalho (25%)
-        2. Dormir (25%)
-        3. Exercício (15%)
-        4. Recreação (10%)
-        5. Alimentação (10%)
-        6. Higiene (10%)
-        7. Armazenamento (3%)
+        **Long Missions (&gt;180 days):**
+        1. Work (25%)
+        2. Sleep (25%)
+        3. Exercise (15%)
+        4. Recreation (10%)
+        5. Food (10%)
+        6. Hygiene (10%)
+        7. Storage (3%)
         8. Medical (2%)
         
-        #### Otimização Iterativa
+        #### Iterative Optimization
         
-        **Processo recomendado:**
-        1. Comece com dimensões padrão
-        2. Verifique conformidade NASA
-        3. Identifique maior déficit
-        4. Ajuste parâmetro relevante
-        5. Revalide métricas
-        6. Repita até conformidade
-        7. Refine para otimização
+        **Recommended process:**
+        1. Start with standard dimensions
+        2. Check NASA compliance
+        3. Identify largest deficit
+        4. Adjust relevant parameter
+        5. Revalidate metrics
+        6. Repeat until compliance
+        7. Refine for optimization
         
-        **Parâmetros de ajuste rápido:**
-        - Aumentar NHV: ↑ dimensões ou ↑ fator usabilidade
-        - Aumentar área de piso: ↑ diâmetro/comprimento/largura
-        - Melhorar distribuição: Ajustar áreas de zonas
-        - Reduzir massa: ↓ dimensões ou use inflável
+        **Quick adjustment parameters:**
+        - Increase NHV: ↑ dimensions or ↑ usability factor
+        - Increase floor area: ↑ diameter/length/width
+        - Improve distribution: Adjust zone areas
+        - Reduce mass: ↓ dimensions or use inflatable
         """)
     
     # Section 8: Data Export
     with st.expander("### 8. Data Export"):
         st.markdown("""
-        #### Formatos de Exportação
+        #### Export Formats
         
         **JSON (JavaScript Object Notation):**
-        - Formato estruturado legível por máquina
-        - Contém todas as configurações e métricas
-        - Ideal para arquivamento e compartilhamento
-        - Pode ser reimportado (futuro)
+        - Machine-readable structured format
+        - Contains all configurations and metrics
+        - Ideal for archiving and sharing
+        - Can be reimported (future feature)
         
-        **Conteúdo do Arquivo JSON:**
+        **JSON File Content:**
         ```json
         {
           "configuration": {
@@ -634,193 +632,193 @@ def render_documentation_page():
         
         #### How to Export
         
-        1. Configure completamente seu habitat
-        2. Valide todas as métricas
+        1. Fully configure your habitat
+        2. Validate all metrics
         3. Navigate to the export section (usually at the end of each page)
-        4. Clique no botão "Exportar Configuração (JSON)"
-        5. Arquivo será baixado automaticamente
+        4. Click the "Export Configuration (JSON)" button
+        5. File will be downloaded automatically
         
-        #### Usando os Dados Exportados
+        #### Using Exported Data
         
-        **Documentação:**
-        - Anexe a relatórios de design
-        - Inclua em propostas de missão
+        **Documentation:**
+        - Attach to design reports
+        - Include in mission proposals
         - Use as baseline for iterations
         
-        **Análise:**
-        - Importe em ferramentas de análise (Excel, Python, MATLAB)
-        - Compare múltiplos designs
-        - Gere gráficos de trade-off
+        **Analysis:**
+        - Import into analysis tools (Excel, Python, MATLAB)
+        - Compare multiple designs
+        - Generate trade-off charts
         
-        **Compartilhamento:**
-        - Envie para colegas de equipe
-        - Submeta para revisões
-        - Archive em repositórios de projeto
+        **Sharing:**
+        - Send to team members
+        - Submit for reviews
+        - Archive in project repositories
         
-        **Rastreabilidade:**
-        - Timestamp automático
-        - Todas as decisões de design capturadas
-        - Reprodutível para auditoria
+        **Traceability:**
+        - Automatic timestamp
+        - All design decisions captured
+        - Reproducible for auditing
         
         #### Screenshots
         
-        **Visualizações 2D/3D:**
-        - Use ferramenta de captura de tela do navegador
-        - Ou ferramenta de screenshot do sistema operacional
-        - Alta resolução recomendada para apresentações
+        **2D/3D Visualizations:**
+        - Use browser screenshot tool
+        - Or operating system screenshot tool
+        - High resolution recommended for presentations
         
-        **Métricas:**
-        - Capture dashboard completo
-        - Inclua validações de conformidade
-        - Use em relatórios e apresentações
+        **Metrics:**
+        - Capture complete dashboard
+        - Include compliance validations
+        - Use in reports and presentations
         """)
     
-    # Seção 9: Solução de Problemas
-    with st.expander("### 9. Problem Solution"):
+    # Section 9: Troubleshooting
+    with st.expander("### 9. Troubleshooting"):
         st.markdown("""
-        #### Problemas Comuns e Soluções
+        #### Common Problems and Solutions
         
-        #### "NHV por pessoa está abaixo do padrão NASA"
+        #### "NHV per person is below NASA standard"
         
-        **Causas possíveis:**
-        - Dimensões do habitat muito pequenas
-        - Fator de usabilidade muito baixo
-        - Tripulação muito grande para o volume
-        - Duração da missão muito longa para o NHV atual
+        **Possible causes:**
+        - Habitat dimensions too small
+        - Usability factor too low
+        - Crew too large for the volume
+        - Mission duration too long for current NHV
         
-        **Soluções:**
-        1. Aumentar dimensões (diâmetro, altura, comprimento, largura)
-        2. Aumentar fator de usabilidade (se justificável)
-        3. Reduzir tamanho da tripulação (se possível)
-        4. Considerar estrutura inflável (maior fator de usabilidade)
-        5. Usar múltiplos módulos conectados
+        **Solutions:**
+        1. Increase dimensions (diameter, height, length, width)
+        2. Increase usability factor (if justifiable)
+        3. Reduce crew size (if possible)
+        4. Consider inflatable structure (higher usability factor)
+        5. Use multiple connected modules
         
-        #### "Área de piso por pessoa abaixo do mínimo"
+        #### "Floor area per person below minimum"
         
-        **Causas possíveis:**
-        - Diâmetro/comprimento/largura insuficientes
-        - Tripulação muito grande
-        - Forma cilíndrica com diâmetro pequeno
+        **Possible causes:**
+        - Insufficient diameter/length/width
+        - Crew too large
+        - Cylindrical shape with small diameter
         
-        **Soluções:**
-        1. Aumentar diâmetro (cilindro) ou comprimento/largura (retângulo)
-        2. Considerar forma retangular (mais área de piso por volume)
-        3. Reduzir tamanho da tripulação
-        4. Verificar se altura excessiva está "desperdiçando" volume
+        **Solutions:**
+        1. Increase diameter (cylinder) or length/width (rectangle)
+        2. Consider rectangular shape (more floor area per volume)
+        3. Reduce crew size
+        4. Check if excessive height is "wasting" volume
         
-        #### "Soma das áreas de zonas excede área disponível"
+        #### "Sum of zone areas exceeds available area"
         
-        **Causas possíveis:**
-        - Áreas personalizadas somam mais que área total de piso
-        - Erros de entrada de dados
+        **Possible causes:**
+        - Custom areas sum more than total floor area
+        - Data entry errors
         
-        **Soluções:**
-        1. Deixe áreas em branco para distribuição automática
-        2. Reduza valores de áreas personalizadas
-        3. Remova algumas zonas
-        4. Aumente dimensões do habitat para mais área de piso
+        **Solutions:**
+        1. Leave areas blank for automatic distribution
+        2. Reduce custom area values
+        3. Remove some zones
+        4. Increase habitat dimensions for more floor area
         
-        #### "Visualização 2D ou 3D não aparece"
+        #### "2D or 3D visualization does not appear"
         
-        **Causas possíveis:**
-        - Nenhuma zona selecionada
-        - Erro de conexão (Plotly requer internet)
-        - Browser não suporta WebGL (para 3D)
+        **Possible causes:**
+        - No zone selected
+        - Connection error (Plotly requires internet)
+        - Browser does not support WebGL (for 3D)
         
-        **Soluções:**
-        1. Selecione pelo menos uma zona funcional
-        2. Verifique conexão com internet
-        3. Use navegador moderno (Chrome, Firefox, Edge atualizados)
-        4. Habilite WebGL nas configurações do navegador
-        5. Desabilite extensões que bloqueiam scripts
+        **Solutions:**
+        1. Select at least one functional zone
+        2. Check internet connection
+        3. Use modern browser (Chrome, Firefox, Edge updated)
+        4. Enable WebGL in browser settings
+        5. Disable extensions that block scripts
         
-        #### "Métricas parecem incorretas"
+        #### "Metrics seem incorrect"
         
-        **Causas possíveis:**
-        - Configuração inconsistente
-        - Cache do navegador desatualizado
-        - Valores de entrada inválidos
+        **Possible causes:**
+        - Inconsistent configuration
+        - Outdated browser cache
+        - Invalid input values
         
-        **Soluções:**
-        1. Recarregue a página (F5 ou Ctrl+R)
-        2. Limpe cache do navegador
-        3. Verifique todos os valores de entrada
-        4. Revise fórmulas na página de métricas
-        5. Exporte JSON e verifique valores brutos
+        **Solutions:**
+        1. Reload page (F5 or Ctrl+R)
+        2. Clear browser cache
+        3. Check all input values
+        4. Review formulas on metrics page
+        5. Export JSON and check raw values
         
-        #### "Interface está lenta ou travando"
+        #### "Interface is slow or freezing"
         
-        **Causas possíveis:**
-        - Muitas zonas selecionadas (8+)
-        - Conexão lenta com internet
-        - Navegador com muitas abas abertas
-        - Hardware limitado
+        **Possible causes:**
+        - Too many zones selected (8+)
+        - Slow internet connection
+        - Browser with many open tabs
+        - Limited hardware
         
-        **Soluções:**
-        1. Reduza número de zonas para 5-7
-        2. Feche abas desnecessárias do navegador
-        3. Desabilite extensões do navegador temporariamente
-        4. Use modo de navegação anônima
-        5. Tente navegador diferente
+        **Solutions:**
+        1. Reduce number of zones to 5-7
+        2. Close unnecessary browser tabs
+        3. Temporarily disable browser extensions
+        4. Use incognito mode
+        5. Try different browser
         
-        #### "Não consigo exportar JSON"
+        #### "Cannot export JSON"
         
-        **Causas possíveis:**
-        - Bloqueador de downloads
-        - Permissões do navegador
-        - Pasta de downloads cheia
+        **Possible causes:**
+        - Download blocker
+        - Browser permissions
+        - Downloads folder full
         
-        **Soluções:**
-        1. Permita downloads do site nas configurações do navegador
-        2. Verifique espaço em disco
-        3. Tente navegador diferente
-        4. Verifique pasta de downloads padrão
+        **Solutions:**
+        1. Allow downloads from site in browser settings
+        2. Check disk space
+        3. Try different browser
+        4. Check default downloads folder
         
-        #### Ainda com Problemas?
+        #### Still Having Problems?
         
-        Se você continua enfrentando dificuldades:
-        1. Verifique a página **ℹ️ Sobre** para informações de contato
-        2. Documente o problema (screenshots, mensagens de erro)
-        3. Anote configurações que causam o problema
-        4. Reporte através dos canais de suporte
+        If you continue to face difficulties:
+        1. Check the **ℹ️ About** page for contact information
+        2. Document the problem (screenshots, error messages)
+        3. Note configurations that cause the problem
+        4. Report through support channels
         """)
     
     st.markdown("---")
     
-    # Documentação NASA
+    # NASA Documentation
     with st.expander("### 10. NASA Documentation"):
         st.markdown("""
-        #### Padrões e Referências Oficiais
+        #### Official Standards and References
         
         **NASA HIDH Standards**
         
-        O Human Integration Design Handbook é a principal referência para design de habitats espaciais:
+        The Human Integration Design Handbook is the main reference for space habitat design:
         - [NASA HIDH Standards](https://www.nasa.gov/wp-content/uploads/2023/03/human-integration-design-handbook-revision-1.pdf?emrc=68e269191aa6f)
-        - Cobre requisitos de volume, ergonomia, fatores humanos e habitabilidade
-        - Base para todos os cálculos de NHV e área mínima desta ferramenta
+        - Covers volume requirements, ergonomics, human factors, and habitability
+        - Foundation for all NHV and minimum area calculations in this tool
         
         **ISS Research Publications**
         
-        Pesquisas e dados operacionais da Estação Espacial Internacional:
+        Research and operational data from the International Space Station:
         - [ISS Research Publications](https://issnationallab.org/publications/)
-        - Lições aprendidas de mais de 20 anos de operação contínua
-        - Dados reais de habitabilidade em microgravidade
+        - Lessons learned from over 20 years of continuous operation
+        - Real habitability data in microgravity
         
         **Human Spaceflight Standards**
         
-        Padrões técnicos da NASA para voos espaciais tripulados:
+        NASA technical standards for crewed spaceflight:
         - [Human Spaceflight Standards](https://www.nasa.gov/ochmo/human-spaceflight-and-aviation-standards/)
-        - Requisitos de segurança, saúde e desempenho da tripulação
-        - Normas para design de sistemas espaciais
+        - Safety, health, and crew performance requirements
+        - Standards for space systems design
         
-        #### Como Usar Esta Documentação
+        #### How to Use This Documentation
         
-        1. **Para Validação:** Compare resultados desta ferramenta com valores oficiais
-        2. **Para Aprofundamento:** Leia documentos completos para contexto adicional
-        3. **Para Pesquisa:** Use como ponto de partida para estudos mais avançados
-        4. **Para Conformidade:** Verifique se seu design atende aos padrões NASA
+        1. **For Validation:** Compare this tool's results with official values
+        2. **For Deep Dive:** Read complete documents for additional context
+        3. **For Research:** Use as starting point for more advanced studies
+        4. **For Compliance:** Verify that your design meets NASA standards
         
-        #### Publicações Científicas Relacionadas
+        #### Related Scientific Publications
         
         - "Volume and Surface Area Allocations for Crew Habitability"
         - "Psychological and Human Factors in Long Duration Spaceflight"
@@ -835,8 +833,8 @@ def render_documentation_page():
     st.markdown("""
     <div style='text-align: center; padding: 2rem; background: rgba(59, 130, 246, 0.1); border-radius: 10px;'>
         <p style='color: #3b82f6; font-size: 1.1rem;'>
-            💡 <strong>Dica Final:</strong> A prática leva à perfeição! Experimente diferentes configurações 
-            e aprenda como cada parâmetro afeta o design geral.
+            💡 <strong>Final Tip:</strong> Practice makes perfect! Experiment with different configurations 
+            and learn how each parameter affects the overall design.
         </p>
     </div>
     """, unsafe_allow_html=True)

@@ -44,7 +44,11 @@ def render_metrics_page():
     """, unsafe_allow_html=True)
     
     # Configuration panel
-    with st.expander("Configure Habitat", expanded=True):
+    config_col, viz_col = st.columns([1, 2])
+    
+    # Left column: Configuration panel
+    with config_col:
+        st.markdown("### Configuration")
         config = render_config_panel()
     
     # Validate if zones are selected
@@ -52,54 +56,55 @@ def render_metrics_page():
         st.warning("Please select at least one functional zone in the configuration above.")
         st.stop()
     
-    st.markdown("---")
-    
-    # Calculate metrics
-    if config["shape"] == "Cylinder":
-        total_volume = calculate_cylinder_volume(
-            config["dimensions"]["diameter"],
-            config["dimensions"]["height"]
+    # Right column: Metrics dashboard
+    with viz_col:
+        st.markdown("### Complete Metrics Dashboard")
+        
+        # Calculate metrics
+        if config["shape"] == "Cylinder":
+            total_volume = calculate_cylinder_volume(
+                config["dimensions"]["diameter"],
+                config["dimensions"]["height"]
+            )
+            floor_area = calculate_cylinder_floor_area(
+                config["dimensions"]["diameter"],
+                config["dimensions"]["height"]
+            )
+        else:
+            total_volume = calculate_box_volume(
+                config["dimensions"]["length"],
+                config["dimensions"]["width"],
+                config["dimensions"]["height"]
+            )
+            floor_area = calculate_box_floor_area(
+                config["dimensions"]["length"],
+                config["dimensions"]["width"]
+            )
+        
+        nhv = calculate_nhv(total_volume, config["usable_factor"])
+        nhv_per_person = nhv / config["crew_size"]
+        floor_area_per_person = floor_area / config["crew_size"]
+        nhv_required_per_person = calculate_nhv_per_person(config["mission_duration"])
+        
+        # Calculate required water
+        total_water = config["crew_size"] * config["mission_duration"] * 2.5  # 2.5 kg/person/day
+        
+        # Allocate zones
+        zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
+        
+        # Metrics dashboard
+        render_metrics(
+            total_volume=total_volume,
+            floor_area=floor_area,
+            nhv=nhv,
+            nhv_per_person=nhv_per_person,
+            floor_area_per_person=floor_area_per_person,
+            crew_size=config["crew_size"],
+            total_water=total_water,
+            mission_duration=config["mission_duration"],
+            min_nhv=nhv_required_per_person,
+            min_floor_area=MIN_FLOOR_AREA_PER_PERSON
         )
-        floor_area = calculate_cylinder_floor_area(
-            config["dimensions"]["diameter"],
-            config["dimensions"]["height"]
-        )
-    else:
-        total_volume = calculate_box_volume(
-            config["dimensions"]["length"],
-            config["dimensions"]["width"],
-            config["dimensions"]["height"]
-        )
-        floor_area = calculate_box_floor_area(
-            config["dimensions"]["length"],
-            config["dimensions"]["width"]
-        )
-    
-    nhv = calculate_nhv(total_volume, config["usable_factor"])
-    nhv_per_person = nhv / config["crew_size"]
-    floor_area_per_person = floor_area / config["crew_size"]
-    nhv_required_per_person = calculate_nhv_per_person(config["mission_duration"])
-    
-    # Calculate required water
-    total_water = config["crew_size"] * config["mission_duration"] * 2.5  # 2.5 kg/person/day
-    
-    # Allocate zones
-    zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
-    
-    # Metrics dashboard
-    st.markdown("### Complete Metrics Dashboard")
-    render_metrics(
-        total_volume=total_volume,
-        floor_area=floor_area,
-        nhv=nhv,
-        nhv_per_person=nhv_per_person,
-        floor_area_per_person=floor_area_per_person,
-        crew_size=config["crew_size"],
-        total_water=total_water,
-        mission_duration=config["mission_duration"],
-        min_nhv=nhv_required_per_person,
-        min_floor_area=MIN_FLOOR_AREA_PER_PERSON
-    )
     
     st.markdown("---")
     

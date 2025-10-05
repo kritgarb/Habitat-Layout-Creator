@@ -21,36 +21,27 @@ def render_layout_3d_page():
     # 3D visualization explanation
     st.markdown("""
     <div style='background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1)); 
-                padding: 1.5rem; border-radius: 10px; border-left: 4px solid #8b5cf6; margin-bottom: 2rem;'>
+                padding: 1.5rem; border-radius: 10px; border-left: 4px solid #8b5cf6; margin-bottom: 1.5rem;'>
         <h3 style='color: #8b5cf6; margin-top: 0;'>What is 3D Visualization?</h3>
         <p style='color: #E2E8F0; line-height: 1.8;'>
             The 3D visualization shows the <strong>complete volume</strong> of your space habitat, 
             allowing you to see the <strong>real dimensions</strong> and <strong>zone distribution</strong> 
             in three dimensions.
         </p>
-        <ul style='color: #E2E8F0; line-height: 1.8;'>
-            <li><strong>Interactivity:</strong> Click and drag to rotate the model. Use mouse wheel 
-            for zoom. Explore all angles of your habitat.</li>
-            <li><strong>Divided Zones:</strong> Colored planes divide the habitat into functional zones. 
-            Each color corresponds to a specific zone (see legend).</li>
-            <li><strong>Real Perspective:</strong> The visualization maintains exact proportions of your design, 
-            giving a clear sense of available interior space.</li>
-            <li><strong>Structure:</strong> The external outline shows the habitat shape (cylinder or rectangular box) 
-            and its total dimensions.</li>
-        </ul>
     </div>
     """, unsafe_allow_html=True)
     
-    # Configuration panel
-    with st.expander("Configure Habitat", expanded=True):
+    # Create two columns: configuration panel (left) and visualization (right)
+    config_col, viz_col = st.columns([1, 2])
+    
+    with config_col:
+        st.markdown("### Configuration")
         config = render_config_panel()
     
     # Validate if zones are selected
     if not config["zone_areas"]:
-        st.warning("Please select at least one functional zone in the configuration above.")
+        st.warning("Please select at least one functional zone in the configuration.")
         st.stop()
-    
-    st.markdown("---")
     
     # Calculate metrics
     if config["shape"] == "Cylinder":
@@ -82,47 +73,59 @@ def render_layout_3d_page():
     zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
     total_zone_area = sum(zones.values())
     
-    # Quick summary
-    st.markdown("### Design Summary")
-    metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
-    
-    with metric_col1:
-        st.metric("Total Volume", f"{total_volume:.1f} m³")
-        st.caption(f"NHV: {nhv:.1f} m³")
-    
-    with metric_col2:
-        st.metric("NHV/Person", f"{nhv_per_person:.1f} m³")
-        delta_nhv = nhv_per_person - nhv_required_per_person
-        st.caption(f"NASA: {nhv_required_per_person:.1f} m³")
-    
-    with metric_col3:
-        if config["shape"] == "Cylinder":
-            st.metric("Dimensions", f"D{config['dimensions']['diameter']}m x H{config['dimensions']['height']}m")
-            st.caption("Cylinder")
-        else:
-            st.metric("Dimensions", f"{config['dimensions']['length']}m × {config['dimensions']['width']}m × {config['dimensions']['height']}m")
-            st.caption("Rectangle")
-    
-    with metric_col4:
-        st.metric("Structure", config['structure_type'])
-        st.caption(f"Gravity: {config['gravity_env']}")
+    with viz_col:
+        st.markdown("### Interactive 3D Model")
+        
+        # Quick summary metrics above visualization
+        metric_col1, metric_col2, metric_col3 = st.columns(3)
+        
+        with metric_col1:
+            st.metric("Total Volume", f"{total_volume:.1f} m³")
+            st.caption(f"NHV: {nhv:.1f} m³")
+        
+        with metric_col2:
+            st.metric("NHV/Person", f"{nhv_per_person:.1f} m³")
+            st.caption(f"NASA: {nhv_required_per_person:.1f} m³")
+        
+        with metric_col3:
+            if config["shape"] == "Cylinder":
+                st.metric("Dimensions", f"D{config['dimensions']['diameter']}m × H{config['dimensions']['height']}m")
+                st.caption("Cylinder")
+            else:
+                st.metric("Dimensions", f"{config['dimensions']['length']}m × {config['dimensions']['width']}m × {config['dimensions']['height']}m")
+                st.caption("Rectangle")
+        
+        # Interaction tip
+        st.info("Tip: Click and drag to rotate. Use mouse wheel to zoom. Double-click to reset view.")
+        
+        # 3D Visualization
+        fig_3d = create_3d_habitat_view(
+            config["shape"], config["dimensions"], zones,
+            ZONE_COLORS, ZONE_NAMES
+        )
+        st.plotly_chart(fig_3d, use_container_width=True, config={"displayModeBar": True, "responsive": True})
+        
+        # Validations
+        val_col1, val_col2 = st.columns(2)
+        
+        with val_col1:
+            if nhv_per_person >= nhv_required_per_person:
+                st.success(f"NHV per person ({nhv_per_person:.1f} m³) meets NASA standard ({nhv_required_per_person:.1f} m³)")
+            else:
+                st.error(f"NHV per person ({nhv_per_person:.1f} m³) is below NASA minimum ({nhv_required_per_person:.1f} m³)")
+                st.caption(f"Deficit: {nhv_required_per_person - nhv_per_person:.1f} m³/person")
+        
+        with val_col2:
+            if floor_area_per_person >= MIN_FLOOR_AREA_PER_PERSON:
+                st.success(f"Floor area per person ({floor_area_per_person:.1f} m²) meets NASA standard ({MIN_FLOOR_AREA_PER_PERSON} m²)")
+            else:
+                st.error(f"Floor area per person ({floor_area_per_person:.1f} m²) is below NASA minimum ({MIN_FLOOR_AREA_PER_PERSON} m²)")
+                st.caption(f"Deficit: {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²/person")
     
     st.markdown("---")
     
-    # 3D Visualization
-    st.markdown("### Interactive 3D Model")
-    
-    st.info("Tip: Click and drag to rotate. Use mouse wheel to zoom. Double-click to reset view.")
-    
-    fig_3d = create_3d_habitat_view(
-        config["shape"], config["dimensions"], zones,
-        ZONE_COLORS, ZONE_NAMES
-    )
-    st.plotly_chart(fig_3d, config={"displayModeBar": True, "responsive": True})
-    
-    # Legend and zone explanation
-    st.markdown("---")
-    st.markdown("### Zone Legend")
+    # Zone Legend below (full width)
+    st.markdown("### Zone Distribution Details")
     
     legend_cols = st.columns(3)
     for idx, (zone_id, area) in enumerate(zones.items()):
@@ -146,7 +149,7 @@ def render_layout_3d_page():
     
     # Interpretation tips
     st.markdown("---")
-    st.markdown("### How to Interpret the 3D Model")
+    st.markdown("### Design Insights")
     
     tip_col1, tip_col2 = st.columns(2)
     
@@ -181,23 +184,3 @@ def render_layout_3d_page():
         - Rigid structures: 70-80% (more equipment)
         - Inflatable structures: 85-90% (less equipment)
         """)
-    
-    # Validations
-    st.markdown("---")
-    st.markdown("### NASA Validations")
-    
-    val_col1, val_col2 = st.columns(2)
-    
-    with val_col1:
-        if nhv_per_person >= nhv_required_per_person:
-            st.success(f"NHV per person ({nhv_per_person:.1f} m³) meets NASA standard ({nhv_required_per_person:.1f} m³)")
-        else:
-            st.error(f"NHV per person ({nhv_per_person:.1f} m³) is below NASA minimum ({nhv_required_per_person:.1f} m³)")
-            st.caption(f"Deficit: {nhv_required_per_person - nhv_per_person:.1f} m³/person")
-    
-    with val_col2:
-        if floor_area_per_person >= MIN_FLOOR_AREA_PER_PERSON:
-            st.success(f"Floor area per person ({floor_area_per_person:.1f} m²) meets NASA standard ({MIN_FLOOR_AREA_PER_PERSON} m²)")
-        else:
-            st.error(f"Floor area per person ({floor_area_per_person:.1f} m²) is below NASA minimum ({MIN_FLOOR_AREA_PER_PERSON} m²)")
-            st.caption(f"Deficit: {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²/person")

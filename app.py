@@ -27,13 +27,16 @@ if 'page' not in st.session_state:
     st.session_state.page = 'Home'
 
 # Header com Logo
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    st.image("src/logo/AEGIS LOGO BRANCO.svg")
+encoded_logo = _svg_to_data_uri("src/logo/AEGIS LOGO BRANCO.svg")
+st.markdown(f"""
+<div style='text-align: center; padding: 0;'>
+    <img src='{encoded_logo}' style='height: 100px; max-width: 100%;'/>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("""
 <div style='text-align: center; padding: 0.5rem 0 0.5rem 0;'>
-    <p style='font-size: 1.2rem; color: #A0AEC0; font-weight: 500;'>Your Home in Space: The Habitat Layout Creator - NASA Space Apps Challenge 2025</p>
+    <p style='font-size: 1.2rem; color: #A0AEC0; font-weight: 500;'>Toolbox for you to create and validate space habitat layouts</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -117,7 +120,7 @@ elif st.session_state.page == 'About':
 st.markdown("---")
 logo_assets = [
     ("src/img/LOGO_TIC.svg", "TIC"),
-    ("src/img/LOGO_NS.svg", "NS"),
+    ("src/img/LOGO_NSA.svg", "NSA"),
     ("src/img/LOGO_ENTERPRISE.svg", "Enterprise"),
 ]
 logos_inline = "".join(
