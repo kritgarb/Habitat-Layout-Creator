@@ -22,9 +22,9 @@ st.set_page_config(
 )
 st.markdown(CUSTOM_CSS, unsafe_allow_html=True)
 
-# Inicializar estado da página
+# Initialize page state
 if 'page' not in st.session_state:
-    st.session_state.page = 'Início'
+    st.session_state.page = 'Home'
 
 # Header com Logo
 col1, col2, col3 = st.columns([1, 2, 1])
@@ -33,7 +33,7 @@ with col2:
 
 st.markdown("""
 <div style='text-align: center; padding: 0.5rem 0 0.5rem 0;'>
-    <p style='font-size: 1.2rem; color: #A0AEC0; font-weight: 500;'>Sua Casa no Espaço: O Criador de Layout de Habitat - NASA Space Apps Challenge 2025</p>
+    <p style='font-size: 1.2rem; color: #A0AEC0; font-weight: 500;'>Your Home in Space: The Habitat Layout Creator - NASA Space Apps Challenge 2025</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -42,33 +42,33 @@ st.markdown("---")
 menu_col1, menu_col2, menu_col3, menu_col4, menu_col5, menu_col6, menu_col7 = st.columns(7)
 
 with menu_col1:
-    if st.button("Início", width="stretch", type="primary" if st.session_state.page == 'Início' else "secondary"):
-        st.session_state.page = 'Início'
+    if st.button("Home", width="stretch", type="primary" if st.session_state.page == 'Home' else "secondary"):
+        st.session_state.page = 'Home'
         st.rerun()
 
 with menu_col2:
-    if st.button("Layout 2D", width="stretch", type="primary" if st.session_state.page == 'Layout 2D' else "secondary"):
-        st.session_state.page = 'Layout 2D'
+    if st.button("2D Layout", width="stretch", type="primary" if st.session_state.page == '2D Layout' else "secondary"):
+        st.session_state.page = '2D Layout'
         st.rerun()
 
 with menu_col3:
-    if st.button("Layout 3D", width="stretch", type="primary" if st.session_state.page == 'Layout 3D' else "secondary"):
-        st.session_state.page = 'Layout 3D'
+    if st.button("3D Layout", width="stretch", type="primary" if st.session_state.page == '3D Layout' else "secondary"):
+        st.session_state.page = '3D Layout'
         st.rerun()
 
 with menu_col4:
-    if st.button("Métricas NASA", width="stretch", type="primary" if st.session_state.page == 'Métricas NASA' else "secondary"):
-        st.session_state.page = 'Métricas NASA'
+    if st.button("NASA Metrics", width="stretch", type="primary" if st.session_state.page == 'NASA Metrics' else "secondary"):
+        st.session_state.page = 'NASA Metrics'
         st.rerun()
 
 with menu_col5:
-    if st.button("Documentação", width="stretch", type="primary" if st.session_state.page == 'Documentação' else "secondary"):
-        st.session_state.page = 'Documentação'
+    if st.button("Documentation", width="stretch", type="primary" if st.session_state.page == 'Documentation' else "secondary"):
+        st.session_state.page = 'Documentation'
         st.rerun()
 
 with menu_col6:
-    if st.button("Sobre", width="stretch", type="primary" if st.session_state.page == 'Sobre' else "secondary"):
-        st.session_state.page = 'Sobre'
+    if st.button("About", width="stretch", type="primary" if st.session_state.page == 'About' else "secondary"):
+        st.session_state.page = 'About'
         st.rerun()
 
 with menu_col7:
@@ -87,37 +87,36 @@ with menu_col7:
             cursor: pointer;
             transition: all 0.15s ease;
         ' onmouseover='this.style.borderColor="rgb(167, 130, 240)"' onmouseout='this.style.borderColor="rgb(77, 77, 77)"'>
-            Game Protótipo
+            Game Prototype
         </button>
     </a>
     """, unsafe_allow_html=True)
 
 st.markdown("---")
 
-# Roteamento de páginas
-if st.session_state.page == 'Início':
+# Page routing
+if st.session_state.page == 'Home':
     render_home_page()
 
-elif st.session_state.page == 'Layout 2D':
+elif st.session_state.page == '2D Layout':
     render_layout_2d_page()
 
-elif st.session_state.page == 'Layout 3D':
+elif st.session_state.page == '3D Layout':
     render_layout_3d_page()
 
-elif st.session_state.page == 'Métricas NASA':
+elif st.session_state.page == 'NASA Metrics':
     render_metrics_page()
 
-elif st.session_state.page == 'Documentação':
+elif st.session_state.page == 'Documentation':
     render_documentation_page()
 
-elif st.session_state.page == 'Sobre':
+elif st.session_state.page == 'About':
     render_about_page()
 
-# Footer (em todas as páginas)
+# Footer (on all pages)
 st.markdown("---")
 logo_assets = [
     ("src/img/LOGO_TIC.svg", "TIC"),
-    ("src/img/LOGO_NSA.svg", "NASA Space Apps"),
     ("src/img/LOGO_NS.svg", "NS"),
     ("src/img/LOGO_ENTERPRISE.svg", "Enterprise"),
 ]

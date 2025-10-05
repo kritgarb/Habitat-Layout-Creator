@@ -1,5 +1,5 @@
 """
-Página de métricas NASA com configurações e explicações didáticas
+NASA metrics page with configurations and educational explanations
 """
 import streamlit as st
 from src.components.config_panel import render_config_panel
@@ -14,47 +14,47 @@ from src.utils.nasa_calculations import calculate_nhv_per_person
 
 
 def render_metrics_page():
-    """Renderiza a página de Métricas NASA"""
+    """Renders the NASA Metrics page"""
     
-    st.markdown("# Métricas NASA - Análise Quantitativa")
+    st.markdown("# NASA Metrics - Quantitative Analysis")
     
-    # Explicação das métricas NASA
+    # NASA metrics explanation
     st.markdown("""
     <div style='background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.1)); 
                 padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ec4899; margin-bottom: 2rem;'>
-        <h3 style='color: #ec4899; margin-top: 0;'>O que são as Métricas NASA?</h3>
+        <h3 style='color: #ec4899; margin-top: 0;'>What are NASA Metrics?</h3>
         <p style='color: #E2E8F0; line-height: 1.8;'>
-            As métricas quantitativas da <strong>NASA Human Integration Design Handbook (HIDH)</strong> são 
-            padrões científicos estabelecidos através de décadas de pesquisa em missões espaciais. 
-            Elas garantem que o habitat seja <strong>seguro, funcional e psicologicamente saudável</strong> 
-            para a tripulação.
+            The quantitative metrics from <strong>NASA Human Integration Design Handbook (HIDH)</strong> are 
+            scientific standards established through decades of space mission research. 
+            They ensure the habitat is <strong>safe, functional, and psychologically healthy</strong> 
+            for the crew.
         </p>
-        <h4 style='color: #ec4899; margin-top: 1.5rem;'>Por que essas métricas importam?</h4>
+        <h4 style='color: #ec4899; margin-top: 1.5rem;'>Why do these metrics matter?</h4>
         <ul style='color: #E2E8F0; line-height: 1.8;'>
-            <li><strong>Saúde Física:</strong> Espaço insuficiente causa problemas de mobilidade, fadiga e 
-            aumento de risco de acidentes.</li>
-            <li><strong>Bem-estar Psicológico:</strong> Ambientes confinados demais aumentam estresse, conflitos 
-            interpessoais e deterioração do desempenho da equipe.</li>
-            <li><strong>Eficiência Operacional:</strong> Layouts mal dimensionados reduzem produtividade e 
-            dificultam atividades diárias críticas.</li>
-            <li><strong>Segurança de Missão:</strong> Padrões NASA são baseados em dados de ISS, Skylab, Mir 
-            e outras missões reais.</li>
+            <li><strong>Physical Health:</strong> Insufficient space causes mobility problems, fatigue, and 
+            increased accident risk.</li>
+            <li><strong>Psychological Well-being:</strong> Over-confined environments increase stress, interpersonal 
+            conflicts, and team performance deterioration.</li>
+            <li><strong>Operational Efficiency:</strong> Poorly dimensioned layouts reduce productivity and 
+            complicate critical daily activities.</li>
+            <li><strong>Mission Safety:</strong> NASA standards are based on data from ISS, Skylab, Mir 
+            and other real missions.</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
     
-    # Painel de configuração
-    with st.expander("Configurar Habitat", expanded=True):
+    # Configuration panel
+    with st.expander("Configure Habitat", expanded=True):
         config = render_config_panel()
     
-    # Validar se há zonas selecionadas
+    # Validate if zones are selected
     if not config["zone_areas"]:
-        st.warning("Por favor, selecione pelo menos uma zona funcional na configuração acima.")
+        st.warning("Please select at least one functional zone in the configuration above.")
         st.stop()
     
     st.markdown("---")
     
-    # Calcular métricas
+    # Calculate metrics
     if config["shape"] == "Cylinder":
         total_volume = calculate_cylinder_volume(
             config["dimensions"]["diameter"],
@@ -80,14 +80,14 @@ def render_metrics_page():
     floor_area_per_person = floor_area / config["crew_size"]
     nhv_required_per_person = calculate_nhv_per_person(config["mission_duration"])
     
-    # Calcular água necessária
-    total_water = config["crew_size"] * config["mission_duration"] * 2.5  # 2.5 kg/pessoa/dia
+    # Calculate required water
+    total_water = config["crew_size"] * config["mission_duration"] * 2.5  # 2.5 kg/person/day
     
-    # Alocar zonas
+    # Allocate zones
     zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
     
-    # Dashboard de métricas
-    st.markdown("### Dashboard Completo de Métricas")
+    # Metrics dashboard
+    st.markdown("### Complete Metrics Dashboard")
     render_metrics(
         total_volume=total_volume,
         floor_area=floor_area,
@@ -103,83 +103,83 @@ def render_metrics_page():
     
     st.markdown("---")
     
-    # Explicações didáticas das métricas principais
-    st.markdown("### Guia de Interpretação das Métricas")
+    # Educational explanations of main metrics
+    st.markdown("### Metrics Interpretation Guide")
     
     # NHV
-    with st.expander("Net Habitable Volume (NHV) - Volume Habitável Líquido", expanded=True):
+    with st.expander("Net Habitable Volume (NHV) - Net Habitable Volume", expanded=True):
         st.markdown(f"""
-        **Definição:**  
-        O NHV é o volume interno **realmente utilizável** pelos astronautas, excluindo espaço ocupado 
-        por equipamentos, sistemas de suporte de vida, armazenamento e estruturas.
+        **Definition:**  
+        NHV is the interior volume **actually usable** by astronauts, excluding space occupied 
+        by equipment, life support systems, storage, and structures.
         
-        **Fórmula:**
+        **Formula:**
         ```
-        NHV = Volume Total × Fator de Usabilidade
+        NHV = Total Volume × Usability Factor
         ```
         
-        **Seu Habitat:**
-        - Volume Total: **{total_volume:.1f} m³**
-        - Fator de Usabilidade: **{config['usable_factor']*100:.0f}%**
-        - NHV Resultante: **{nhv:.1f} m³**
-        - NHV por Pessoa: **{nhv_per_person:.1f} m³/pessoa**
+        **Your Habitat:**
+        - Total Volume: **{total_volume:.1f} m³**
+        - Usability Factor: **{config['usable_factor']*100:.0f}%**
+        - Resulting NHV: **{nhv:.1f} m³**
+        - NHV per Person: **{nhv_per_person:.1f} m³/person**
         
-        **Padrões NASA (baseados na duração da missão):**
-        - ≤30 dias: 12.7 m³/pessoa
-        - 31-90 dias: 16.7 m³/pessoa
-        - 91-180 dias: 20.0 m³/pessoa
-        - 181-360 dias: 22.5 m³/pessoa
-        - &gt;360 dias: 27.9 m³/pessoa
+        **NASA Standards (based on mission duration):**
+        - ≤30 days: 12.7 m³/person
+        - 31-90 days: 16.7 m³/person
+        - 91-180 days: 20.0 m³/person
+        - 181-360 days: 22.5 m³/person
+        - &gt;360 days: 27.9 m³/person
         
-        **Para sua missão de {config['mission_duration']} dias:**
-        - NHV Requerido: **{nhv_required_per_person:.1f} m³/pessoa**
-        - Seu NHV: **{nhv_per_person:.1f} m³/pessoa**
-        - Status: {'ADEQUADO' if nhv_per_person >= nhv_required_per_person else f'ABAIXO DO PADRÃO (déficit de {nhv_required_per_person - nhv_per_person:.1f} m³/pessoa)'}
+        **For your {config['mission_duration']}-day mission:**
+        - Required NHV: **{nhv_required_per_person:.1f} m³/person**
+        - Your NHV: **{nhv_per_person:.1f} m³/person**
+        - Status: {'ADEQUATE' if nhv_per_person >= nhv_required_per_person else f'BELOW STANDARD (deficit of {nhv_required_per_person - nhv_per_person:.1f} m³/person)'}
         
-        **Por que isso importa:**  
-        Estudos da NASA mostram que NHV insuficiente está correlacionado com aumento de estresse, 
-        conflitos interpessoais, problemas de sono e queda no desempenho cognitivo. O NHV adequado 
-        proporciona espaço para movimento, privacidade e atividades recreacionais essenciais para 
-        missões de longa duração.
+        **Why this matters:**  
+        NASA studies show that insufficient NHV correlates with increased stress, 
+        interpersonal conflicts, sleep problems, and cognitive performance decline. Adequate NHV 
+        provides space for movement, privacy, and recreational activities essential for 
+        long-duration missions.
         """)
     
-    # Área de piso
-    with st.expander("Floor Area - Área de Piso"):
+    # Floor area
+    with st.expander("Floor Area - Floor Area"):
         st.markdown(f"""
-        **Definição:**  
-        A área de piso é o espaço horizontal disponível para circulação, trabalho e atividades diárias.
+        **Definition:**  
+        Floor area is the horizontal space available for circulation, work, and daily activities.
         
-        **Fórmula:**
-        - **Cilindro:** Área = π × (Diâmetro/2)²
-        - **Retângulo:** Área = Comprimento × Largura
+        **Formula:**
+        - **Cylinder:** Area = π × (Diameter/2)²
+        - **Rectangle:** Area = Length × Width
         
-        **Seu Habitat:**
-        - Área Total de Piso: **{floor_area:.1f} m²**
-        - Área por Pessoa: **{floor_area_per_person:.1f} m²/pessoa**
+        **Your Habitat:**
+        - Total Floor Area: **{floor_area:.1f} m²**
+        - Area per Person: **{floor_area_per_person:.1f} m²/person**
         
-        **Padrão NASA Mínimo:**
-        - Requerido: **{MIN_FLOOR_AREA_PER_PERSON} m²/pessoa**
-        - Status: {'ATENDE AO PADRÃO' if floor_area_per_person >= MIN_FLOOR_AREA_PER_PERSON else f'ABAIXO DO MÍNIMO (déficit de {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²/pessoa)'}
+        **NASA Minimum Standard:**
+        - Required: **{MIN_FLOOR_AREA_PER_PERSON} m²/person**
+        - Status: {'MEETS STANDARD' if floor_area_per_person >= MIN_FLOOR_AREA_PER_PERSON else f'BELOW MINIMUM (deficit of {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²/person)'}
         
-        **Por que isso importa:**  
-        A área de piso impacta diretamente a mobilidade, especialmente em ambientes de microgravidade 
-        onde os astronautas usam as paredes e teto para se movimentar. Área insuficiente aumenta o 
-        risco de colisões, dificulta o trabalho simultâneo de múltiplos tripulantes e reduz a 
-        eficiência operacional.
+        **Why this matters:**  
+        Floor area directly impacts mobility, especially in microgravity environments 
+        where astronauts use walls and ceiling to move. Insufficient area increases collision 
+        risk, hampers simultaneous work by multiple crew members, and reduces 
+        operational efficiency.
         """)
     
-    # Distribuição de zonas
-    with st.expander("Zone Distribution - Distribuição de Zonas"):
+    # Zone distribution
+    with st.expander("Zone Distribution - Zone Distribution"):
         st.markdown(f"""
-        **Definição:**  
-        As zonas funcionais dividem o habitat em áreas especializadas para diferentes atividades 
-        (dormir, trabalhar, higiene, alimentação, etc.).
+        **Definition:**  
+        Functional zones divide the habitat into specialized areas for different activities 
+        (sleeping, working, hygiene, eating, etc.).
         
-        **Seu Habitat:**
-        - Número de Zonas: **{len(zones)}**
-        - Área Total Alocada: **{sum(zones.values()):.1f} m²**
+        **Your Habitat:**
+        - Number of Zones: **{len(zones)}**
+        - Total Allocated Area: **{sum(zones.values()):.1f} m²**
         
-        **Distribuição Detalhada:**
+        **Detailed Distribution:**
         """)
         
         from ..config.constants import ZONE_NAMES
@@ -187,132 +187,132 @@ def render_metrics_page():
             percentage = (area / sum(zones.values())) * 100
             area_per_person = area / config["crew_size"]
             st.markdown(f"""
-            - **{ZONE_NAMES[zone_id]}:** {area:.1f} m² ({percentage:.1f}%) = {area_per_person:.1f} m²/pessoa
+            - **{ZONE_NAMES[zone_id]}:** {area:.1f} m² ({percentage:.1f}%) = {area_per_person:.1f} m²/person
             """)
         
         st.markdown("""
-        **Recomendações NASA por Zona:**
-        - **Dormir:** 2-4 m²/pessoa (privacidade essencial)
-        - **Trabalho:** 3-5 m²/pessoa (espaço para equipamentos)
-        - **Higiene:** 1.5-2 m²/pessoa (banheiro + higiene pessoal)
-        - **Alimentação:** 1-2 m²/pessoa (preparação + consumo)
-        - **Exercício:** 3-4 m²/pessoa (equipamentos + movimentação)
-        - **Recreação:** 2-3 m²/pessoa (bem-estar psicológico)
-        - **Armazenamento:** 1-2 m²/pessoa (suprimentos + equipamentos)
+        **NASA Recommendations by Zone:**
+        - **Sleep:** 2-4 m²/person (privacy essential)
+        - **Work:** 3-5 m²/person (space for equipment)
+        - **Hygiene:** 1.5-2 m²/person (bathroom + personal hygiene)
+        - **Food:** 1-2 m²/person (preparation + consumption)
+        - **Exercise:** 3-4 m²/person (equipment + movement)
+        - **Recreation:** 2-3 m²/person (psychological well-being)
+        - **Storage:** 1-2 m²/person (supplies + equipment)
         
-        **Por que isso importa:**  
-        A distribuição adequada de zonas é crítica para separar atividades incompatíveis (ex: dormir 
-        e exercícios), manter higiene (separação de áreas úmidas/secas) e otimizar o fluxo de trabalho 
-        da tripulação.
+        **Why this matters:**  
+        Adequate zone distribution is critical for separating incompatible activities (e.g. sleeping 
+        and exercise), maintaining hygiene (separation of wet/dry areas), and optimizing crew 
+        workflow.
         """)
     
-    # Fator de usabilidade
-    with st.expander("Usability Factor - Fator de Usabilidade"):
+    # Usability factor
+    with st.expander("Usability Factor - Usability Factor"):
         st.markdown(f"""
-        **Definição:**  
-        O fator de usabilidade representa a porcentagem do volume total que é realmente utilizável 
-        pelos tripulantes, descontando espaço ocupado por sistemas e equipamentos.
+        **Definition:**  
+        The usability factor represents the percentage of total volume that is actually usable 
+        by crew members, discounting space occupied by systems and equipment.
         
-        **Seu Habitat:**
-        - Fator de Usabilidade: **{config['usable_factor']*100:.0f}%**
-        - Estrutura: **{config['structure_type']}**
+        **Your Habitat:**
+        - Usability Factor: **{config['usable_factor']*100:.0f}%**
+        - Structure: **{config['structure_type']}**
         
-        **Faixas Típicas por Tipo de Estrutura:**
-        - **Estruturas Rígidas (Metálicas):** 70-80%
-          - Mais equipamentos integrados (HVAC, energia, comunicação)
-          - Painéis de controle e sistemas ocupam paredes
-          - Estrutura mais robusta = mais espaço perdido
+        **Typical Ranges by Structure Type:**
+        - **Rigid Structures (Metallic):** 70-80%
+          - More integrated equipment (HVAC, power, communication)
+          - Control panels and systems occupy walls
+          - More robust structure = more lost space
         
-        - **Estruturas Infláveis (Soft Goods):** 85-90%
-          - Menos equipamento estrutural fixo
-          - Paredes flexíveis permitem melhor uso do espaço
-          - Sistemas mais compactos ou externos
+        - **Inflatable Structures (Soft Goods):** 85-90%
+          - Less fixed structural equipment
+          - Flexible walls allow better space utilization
+          - More compact or external systems
         
-        **Exemplos Históricos:**
-        - ISS: ~75% (estrutura rígida complexa)
-        - Bigelow BEAM: ~88% (módulo inflável)
-        - Skylab: ~72% (estrutura rígida)
+        **Historical Examples:**
+        - ISS: ~75% (complex rigid structure)
+        - Bigelow BEAM: ~88% (inflatable module)
+        - Skylab: ~72% (rigid structure)
         
-        **Por que isso importa:**  
-        Um fator de usabilidade superestimado resulta em NHV irreal, levando a designs que parecem 
-        adequados no papel mas são claustrofóbicos na prática. Valores conservadores (70-75%) são 
-        mais seguros para designs preliminares.
+        **Why this matters:**  
+        An overestimated usability factor results in unrealistic NHV, leading to designs that appear 
+        adequate on paper but are claustrophobic in practice. Conservative values (70-75%) are 
+        safer for preliminary designs.
         """)
     
-    # Gravidade e recursos
-    with st.expander("Gravity & Resources - Gravidade e Recursos"):
+    # Gravity and resources
+    with st.expander("Gravity & Resources - Gravity and Resources"):
         st.markdown(f"""
-        **Seu Habitat:**
-        - Ambiente de Gravidade: **{config['gravity_env']}**
-        - Duração da Missão: **{config['mission_duration']} dias**
-        - Tamanho da Tripulação: **{config['crew_size']} pessoas**
+        **Your Habitat:**
+        - Gravity Environment: **{config['gravity_env']}**
+        - Mission Duration: **{config['mission_duration']} days**
+        - Crew Size: **{config['crew_size']} people**
         
-        **Impacto da Gravidade no Design:**
+        **Gravity Impact on Design:**
         
-        **Microgravidade (0g):**
-        - Astronautas usam todas as superfícies (paredes, teto, piso)
-        - Volume 3D é mais importante que área de piso
-        - Necessidade de pontos de ancoragem e restraints
-        - Maior risco de colisões e desorientação espacial
+        **Microgravity (0g):**
+        - Astronauts use all surfaces (walls, ceiling, floor)
+        - 3D volume is more important than floor area
+        - Need for anchor points and restraints
+        - Higher risk of collisions and spatial disorientation
         
-        **Gravidade Lunar (1/6g = 0.165g):**
-        - Movimento ainda é "flutuante" mas com direção preferencial
-        - Piso é mais importante mas teto/paredes ainda usáveis
-        - Equipamentos podem ter orientação gravitacional
-        - Adaptação mais fácil que microgravidade
+        **Lunar Gravity (1/6g = 0.165g):**
+        - Movement is still "floating" but with preferred direction
+        - Floor is more important but ceiling/walls still usable
+        - Equipment can have gravitational orientation
+        - Easier adaptation than microgravity
         
-        **Gravidade Marciana (3/8g = 0.38g):**
-        - Comportamento mais próximo à Terra
-        - Piso é superfície primária de trabalho
-        - Design mais tradicional com "up/down" claro
-        - Menos restrições de orientação de equipamentos
+        **Martian Gravity (3/8g = 0.38g):**
+        - Behavior closer to Earth
+        - Floor is primary work surface
+        - More traditional design with clear "up/down"
+        - Fewer equipment orientation restrictions
         
-        **Impacto da Duração:**
-        - **Curta (&lt;30 dias):** Foco em funcionalidade, conforto secundário
-        - **Média (30-180 dias):** Necessidade de espaços recreacionais e privacidade
-        - **Longa (&gt;180 dias):** Bem-estar psicológico crítico, variedade de ambientes essencial
+        **Duration Impact:**
+        - **Short (&lt;30 days):** Focus on functionality, comfort secondary
+        - **Medium (30-180 days):** Need recreational spaces and privacy
+        - **Long (&gt;180 days):** Psychological well-being critical, environment variety essential
         
-        **Por que isso importa:**  
-        O ambiente gravitacional e a duração da missão influenciam dramaticamente os requisitos de 
-        volume, layout e amenidades. Missões longas em microgravidade requerem os maiores volumes 
-        por pessoa para manter a saúde mental da tripulação.
+        **Why this matters:**  
+        The gravitational environment and mission duration dramatically influence volume, layout, 
+        and amenity requirements. Long missions in microgravity require the largest volumes 
+        per person to maintain crew mental health.
         """)
     
     st.markdown("---")
     
-    # Resumo de validação
-    st.markdown("### Resumo de Conformidade NASA")
+    # Validation summary
+    st.markdown("### NASA Compliance Summary")
     
     validations = []
     
-    # Validar NHV
+    # Validate NHV
     if nhv_per_person >= nhv_required_per_person:
-        validations.append(("NHV por Pessoa", True, f"{nhv_per_person:.1f} m³ (requerido: {nhv_required_per_person:.1f} m³)"))
+        validations.append(("NHV per Person", True, f"{nhv_per_person:.1f} m³ (required: {nhv_required_per_person:.1f} m³)"))
     else:
-        validations.append(("NHV por Pessoa", False, f"{nhv_per_person:.1f} m³ (requerido: {nhv_required_per_person:.1f} m³) - Déficit: {nhv_required_per_person - nhv_per_person:.1f} m³"))
+        validations.append(("NHV per Person", False, f"{nhv_per_person:.1f} m³ (required: {nhv_required_per_person:.1f} m³) - Deficit: {nhv_required_per_person - nhv_per_person:.1f} m³"))
     
-    # Validar área de piso
+    # Validate floor area
     if floor_area_per_person >= MIN_FLOOR_AREA_PER_PERSON:
-        validations.append(("Área de Piso", True, f"{floor_area_per_person:.1f} m²/pessoa (mínimo: {MIN_FLOOR_AREA_PER_PERSON} m²)"))
+        validations.append(("Floor Area", True, f"{floor_area_per_person:.1f} m²/person (minimum: {MIN_FLOOR_AREA_PER_PERSON} m²)"))
     else:
-        validations.append(("Área de Piso", False, f"{floor_area_per_person:.1f} m²/pessoa (mínimo: {MIN_FLOOR_AREA_PER_PERSON} m²) - Déficit: {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²"))
+        validations.append(("Floor Area", False, f"{floor_area_per_person:.1f} m²/person (minimum: {MIN_FLOOR_AREA_PER_PERSON} m²) - Deficit: {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²"))
     
-    # Validar zonas mínimas
+    # Validate minimum zones
     if len(zones) >= 3:
-        validations.append(("Diversidade de Zonas", True, f"{len(zones)} zonas funcionais"))
+        validations.append(("Zone Diversity", True, f"{len(zones)} functional zones"))
     else:
-        validations.append(("Diversidade de Zonas", False, f"{len(zones)} zonas (recomendado: mínimo 3 para funcionalidade básica)"))
+        validations.append(("Zone Diversity", False, f"{len(zones)} zones (recommended: minimum 3 for basic functionality)"))
     
-    # Exibir validações
+    # Display validations
     for metric_name, is_valid, description in validations:
         if is_valid:
             st.success(f"**{metric_name}:** {description}")
         else:
             st.error(f"**{metric_name}:** {description}")
     
-    # Conclusão
+    # Conclusion
     all_valid = all(v[1] for v in validations)
     if all_valid:
-        st.success("Parabéns! Seu habitat atende a todos os padrões NASA HIDH analisados.")
+        st.success("Congratulations! Your habitat meets all analyzed NASA HIDH standards.")
     else:
-        st.warning("Atenção: Seu habitat não atende a todos os padrões NASA. Revise as métricas em vermelho e ajuste as configurações.")
+        st.warning("Attention: Your habitat does not meet all NASA standards. Review the metrics in red and adjust the configurations.")

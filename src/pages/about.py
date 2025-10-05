@@ -1,13 +1,13 @@
 """
-Página Sobre com informações do projeto
+About page with project information
 """
 import streamlit as st
 
 
 def render_about_page():
-    """Renderiza a página Sobre"""
+    """Renders the About page"""
     
-    st.markdown("# Sobre o AEGIS Habitat Layout Creator")
+    st.markdown("# About AEGIS Habitat Layout Creator")
     
     # Hero section
     st.markdown("""
@@ -15,39 +15,39 @@ def render_about_page():
                 padding: 2rem; border-radius: 10px; border-left: 4px solid #6366f1; margin-bottom: 2rem; text-align: center;'>
         <h2 style='color: #6366f1; margin-top: 0;'>AEGIS Habitat Layout Creator</h2>
         <p style='color: #E2E8F0; font-size: 1.2rem; line-height: 1.8;'>
-            Ferramenta interativa de design para habitats espaciais seguindo padrões NASA HIDH
+            Interactive design tool for space habitats following NASA HIDH standards
         </p>
         <p style='color: #A0AEC0; font-size: 1rem;'>
-            Versão 1.0.0 | Desenvolvido com Streamlit + Plotly
+            Version 1.0.0 | Developed with Streamlit + Plotly
         </p>
     </div>
     """, unsafe_allow_html=True)
 
-    st.markdown("### Nossa Equipe")
+    st.markdown("### Our Team")
     team_col1, team_col2, team_col3 = st.columns([1, 4, 1])
     with team_col2:
         st.image("src/img/FOTO-GRUPO.svg", width="stretch")
         st.markdown("""
         <p style='text-align: center; color: #CBD5F5; font-size: 0.95rem; margin-top: 0.75rem;'>
-            Time multidisciplinar da ENTERPRISE com expertise em ciência da computação, design e análise e desenvolvimento de sistemas.
+            Multidisciplinary ENTERPRISE team with expertise in computer science, design, and systems analysis and development.
         </p>
         """, unsafe_allow_html=True)
 
     st.markdown("---")
 
-    # Missão e Visão
-    st.markdown("### Missão e Visão")
+    # Mission and Vision
+    st.markdown("### Mission and Vision")
     
     mission_col1, mission_col2 = st.columns(2)
     
     with mission_col1:
         st.markdown("""
         <div style='background: rgba(72, 187, 120, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #48bb78; height: 100%;'>
-            <h4 style='color: #48bb78;'>Nossa Missão</h4>
+            <h4 style='color: #48bb78;'>Our Mission</h4>
             <p style='color: #E2E8F0; line-height: 1.8;'>
-                Democratizar o acesso a ferramentas profissionais de design espacial, permitindo que 
-                engenheiros, pesquisadores e entusiastas criem e validem layouts de habitats espaciais 
-                seguindo os rigorosos padrões da NASA.
+                Democratize access to professional space design tools, enabling 
+                engineers, researchers, and enthusiasts to create and validate space habitat layouts 
+                following rigorous NASA standards.
             </p>
         </div>
         """, unsafe_allow_html=True)
@@ -55,163 +55,163 @@ def render_about_page():
     with mission_col2:
         st.markdown("""
         <div style='background: rgba(139, 92, 246, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #8b5cf6; height: 100%;'>
-            <h4 style='color: #8b5cf6;'>Nossa Visão</h4>
+            <h4 style='color: #8b5cf6;'>Our Vision</h4>
             <p style='color: #E2E8F0; line-height: 1.8;'>
-                Ser a ferramenta de referência para design conceitual de habitats espaciais, 
-                acelerando o desenvolvimento da arquitetura espacial e contribuindo para a 
-                expansão sustentável da humanidade além da Terra.
+                Be the reference tool for conceptual space habitat design, 
+                accelerating space architecture development and contributing to the 
+                sustainable expansion of humanity beyond Earth.
             </p>
         </div>
         """, unsafe_allow_html=True)
     
     st.markdown("---")
     
-    # Sobre o projeto
-    st.markdown("### Sobre o Projeto")
+    # About the project
+    st.markdown("### About the Project")
     
     st.markdown("""
-    O **AEGIS Habitat Layout Creator** nasceu da necessidade de uma ferramenta acessível e intuitiva 
-    para o design de habitats espaciais. Enquanto softwares profissionais de CAD e análise estrutural 
-    são essenciais para projetos finais, há uma lacuna no estágio conceitual - onde ideias precisam 
-    ser rapidamente testadas e validadas contra padrões NASA.
+    The **AEGIS Habitat Layout Creator** was born from the need for an accessible and intuitive 
+    tool for space habitat design. While professional CAD and structural analysis software 
+    are essential for final projects, there's a gap in the conceptual stage - where ideas need 
+    to be quickly tested and validated against NASA standards.
     
-    Nossa ferramenta preenche essa lacuna, oferecendo:
+    Our tool fills this gap by offering:
     
-    - **Validação Instantânea:** Métricas NASA calculadas em tempo real
-    - **Visualizações Interativas:** Compreenda seu design em 2D e 3D
-    - **Educação:** Explicações didáticas de conceitos e padrões espaciais
-    - **Acessibilidade:** Interface web sem necessidade de instalação
-    - **Open Standards:** Baseado em documentação pública da NASA HIDH
+    - **Instant Validation:** NASA metrics calculated in real time
+    - **Interactive Visualizations:** Understand your design in 2D and 3D
+    - **Education:** Educational explanations of space concepts and standards
+    - **Accessibility:** Web interface with no installation required
+    - **Open Standards:** Based on public NASA HIDH documentation
     """)
     
     st.markdown("---")
     
-    # Recursos principais
-    st.markdown("### Recursos Principais")
+    # Main features
+    st.markdown("### Main Features")
     
     feature_col1, feature_col2, feature_col3 = st.columns(3)
     
     with feature_col1:
         st.markdown("""
-        **Design Interativo**
-        - Configuração intuitiva de parâmetros
-        - Feedback visual imediato
-        - Múltiplas formas e estruturas
-        - Customização completa de zonas
+        **Interactive Design**
+        - Intuitive parameter configuration
+        - Immediate visual feedback
+        - Multiple shapes and structures
+        - Complete zone customization
         """)
         
         st.markdown("""
-        **Métricas NASA**
-        - Cálculos conforme HIDH
-        - Validação automática
-        - Explicações detalhadas
-        - Dashboard completo
+        **NASA Metrics**
+        - HIDH-compliant calculations
+        - Automatic validation
+        - Detailed explanations
+        - Complete dashboard
         """)
     
     with feature_col2:
         st.markdown("""
-        **Visualizações**
-        - Plantas baixas 2D profissionais
-        - Modelos 3D interativos
-        - Rotação e zoom
-        - Legendas e anotações
+        **Visualizations**
+        - Professional 2D floor plans
+        - Interactive 3D models
+        - Rotation and zoom
+        - Legends and annotations
         """)
         
         st.markdown("""
-        **Documentação**
-        - Guia completo de uso
-        - Glossário de termos
-        - Dicas e melhores práticas
-        - Referências NASA
+        **Documentation**
+        - Complete usage guide
+        - Terms glossary
+        - Tips and best practices
+        - NASA references
         """)
     
     with feature_col3:
         st.markdown("""
-        **Exportação**
-        - Formato JSON estruturado
-        - Todas as métricas incluídas
-        - Timestamp automático
-        - Fácil compartilhamento
+        **Export**
+        - Structured JSON format
+        - All metrics included
+        - Automatic timestamp
+        - Easy sharing
         """)
         
         st.markdown("""
-        **Acessibilidade**
-        - Interface web responsiva
-        - Sem instalação necessária
-        - Suporte multi-idioma
-        - Gratuito e open-source
+        **Accessibility**
+        - Responsive web interface
+        - No installation required
+        - Multi-language support
+        - Free and open-source
         """)
     
     st.markdown("---")
     
-    # Stack tecnológico
-    st.markdown("### Stack Tecnológico")
+    # Technology stack
+    st.markdown("### Technology Stack")
     
     tech_col1, tech_col2 = st.columns(2)
     
     with tech_col1:
         st.markdown("""
         **Frontend:**
-        - **Streamlit** - Framework de aplicações web interativas
-        - **Plotly** - Gráficos e visualizações 3D interativas
-        - **HTML/CSS** - Estilização customizada
+        - **Streamlit** - Interactive web application framework
+        - **Plotly** - Interactive 3D graphics and visualizations
+        - **HTML/CSS** - Custom styling
         
         **Backend:**
-        - **Python 3.11+** - Linguagem principal
-        - **NumPy** - Cálculos numéricos eficientes
-        - **Matemática Python** - Cálculos geométricos precisos
+        - **Python 3.11+** - Main language
+        - **NumPy** - Efficient numerical calculations
+        - **Python Math** - Precise geometric calculations
         
-        **Desenvolvimento:**
-        - **VS Code** - IDE principal de desenvolvimento
-        - **Claude Sonnet 4** - Agent AI para auxílio técnico
-        - **Notebook LLM** - Ferramenta de estudo e prototipação
+        **Development:**
+        - **VS Code** - Primary development IDE
+        - **Claude Sonnet 4** - AI agent for technical assistance
+        - **Notebook LLM** - Study and prototyping tool
         """)
     
     with tech_col2:
         st.markdown("""
-        **Arquitetura:**
-        - Modular e escalável
-        - Separação clara de responsabilidades
-        - Componentes reutilizáveis
-        - Fácil manutenção
+        **Architecture:**
+        - Modular and scalable
+        - Clear separation of responsibilities
+        - Reusable components
+        - Easy maintenance
         
         **Deployment & DevOps:**
-        - **Docker** - Containerização da aplicação
-        - **Docker Compose** - Orquestração de containers
+        - **Docker** - Application containerization
+        - **Docker Compose** - Container orchestration
         - Cloud-ready (Google Cloud Run)
         - CI/CD pipeline
-        - Escalabilidade horizontal
+        - Horizontal scalability
         
-        **Controle de Versão:**
-        - **Git** - Sistema de versionamento
-        - **GitHub** - Repositório remoto e colaboração
+        **Version Control:**
+        - **Git** - Version control system
+        - **GitHub** - Remote repository and collaboration
         """)
     
     st.markdown("---")
     
-    # Padrões e referências
-    st.markdown("### Padrões e Referências")
+    # Standards and references
+    st.markdown("### Standards and References")
     
     st.markdown("""
-    Esta ferramenta implementa cálculos e validações baseados em:
+    This tool implements calculations and validations based on:
     
     **NASA Human Integration Design Handbook (HIDH):**
-    - NASA/SP-2010-3407 - Volume habitável e requisitos espaciais
+    - NASA/SP-2010-3407 - Habitable volume and space requirements
     - NASA-STD-3001 - Human Systems Integration Requirements
     - NASA Technical Standards - Habitability and Human Factors
     
-    **Missões de Referência:**
-    - **International Space Station (ISS)** - Dados operacionais de longa duração
-    - **Skylab** - Primeiros estudos de volume habitável
+    **Reference Missions:**
+    - **International Space Station (ISS)** - Long-duration operational data
+    - **Skylab** - First studies of habitable volume
     - **Mir Space Station** - Experiências soviéticas/russas
-    - **Apollo/Gemini** - Missões de curta duração
+    - **Apollo/Gemini** - Short-duration missions
     
     **Programas Futuros:**
-    - **Artemis Gateway** - Estação lunar orbital
-    - **Mars Design Reference Architectures** - Missões marcianas
-    - **Commercial LEO Destinations** - Estações espaciais comerciais
+    - **Artemis Gateway** - Lunar orbital station
+    - **Mars Design Reference Architectures** - Martian missions
+    - **Commercial LEO Destinations** - Commercial space stations
     
-    **Publicações Científicas:**
+    **Scientific Publications:**
     - "Volume and Surface Area Allocations for Crew Habitability"
     - "Psychological and Human Factors in Long Duration Spaceflight"
     - "Architectural Approaches to Space Habitat Design"
@@ -219,117 +219,117 @@ def render_about_page():
     
     st.markdown("---")
     
-    # Contribuições
-    st.markdown("### Como Contribuir")
+    # Contributions
+    st.markdown("### How to Contribute")
     
     contribute_col1, contribute_col2 = st.columns(2)
     
     with contribute_col1:
         st.markdown("""
-        **Para Desenvolvedores:**
-        - Contribua com código no GitHub
-        - Reporte bugs e issues
-        - Sugira novos recursos
-        - Melhore a documentação
-        - Adicione testes automatizados
+        **For Developers:**
+        - Contribute code on GitHub
+        - Report bugs and issues
+        - Suggest new features
+        - Improve documentation
+        - Add automated tests
         
-        **Tecnologias Necessárias:**
+        **Required Technologies:**
         - Python 3.11+
         - Streamlit
         - Git/GitHub
-        - Docker (opcional)
+        - Docker (optional)
         """)
     
     with contribute_col2:
         st.markdown("""
-        **Para Não-Desenvolvedores:**
-        - Compartilhe seus designs
-        - Dê feedback sobre usabilidade
-        - Contribua com documentação
-        - Sugira melhorias de UI/UX
-        - Divulgue a ferramenta
+        **For Non-Developers:**
+        - Share your designs
+        - Give usability feedback
+        - Contribute with documentation
+        - Suggest UI/UX improvements
+        - Promote the tool
         
-        **Áreas de Contribuição:**
-        - Validação de cálculos
-        - Casos de uso reais
-        - Tutoriais e guias
-        - Traduções
+        **Contribution Areas:**
+        - Calculation validation
+        - Real use cases
+        - Tutorials and guides
+        - Translations
         """)
     
     st.markdown("---")
     
-    # Licença
-    st.markdown("### Licença e Uso")
+    # License
+    st.markdown("### License and Usage")
     
     st.markdown("""
-    **Licença:** MIT License
+    **License:** MIT License
     
-    Este projeto é **open-source** e livre para uso, modificação e distribuição, desde que 
-    mantidos os créditos originais.
+    This project is **open-source** and free for use, modification and distribution, provided that 
+    original credits are maintained.
     
-    **Você pode:**
-    - Usar comercialmente
-    - Modificar o código
-    - Distribuir cópias
-    - Uso privado
-    - Criar trabalhos derivados
+    **You can:**
+    - Use commercially
+    - Modify the code
+    - Distribute copies
+    - Private use
+    - Create derivative works
     
-    **Você deve:**
-    - Incluir a licença original
-    - Manter créditos de copyright
-    - Documentar mudanças significativas
+    **You must:**
+    - Include the original license
+    - Maintain copyright credits
+    - Document significant changes
     
-    **Isenção de Responsabilidade:**
+    **Disclaimer:**
     
-    Esta ferramenta é fornecida "como está" para fins educacionais e de design conceitual. 
-    **Não substitui análises estruturais, térmicas ou de sistemas profissionais** necessárias 
-    para projetos de voo real. Sempre consulte engenheiros qualificados e siga regulamentações 
-    aeroespaciais aplicáveis para designs de produção.
+    This tool is provided "as is" for educational and conceptual design purposes. 
+    **It does not replace professional structural, thermal or systems analysis** required 
+    for real flight projects. Always consult qualified engineers and follow applicable 
+    aerospace regulations for production designs.
     """)
     
     st.markdown("---")
     
-    # Contato e suporte
-    st.markdown("### Contato e Suporte")
+    # Contact and support
+    st.markdown("### Contact and Support")
     
     contact_col1, contact_col2 = st.columns(2)
     
     with contact_col1:
         st.markdown("""
-        **Repositório do Projeto:**
+        **Project Repository:**
         - GitHub: [Habitat-Layout-Creator](https://github.com/kritgarb/Habitat-Layout-Creator)
         """)
     
     with contact_col2:
         st.markdown("""
-        **Redes Sociais:**
-        - Instagram: [@fatherofcode](https://instagram.com/fatherofcode)
+        **Social Networks:**
         - LinkedIn: [Benjamin Vieira](https://www.linkedin.com/in/garbkrit/)
+        - LinkedIn: [Alice Araujo](https://www.linkedin.com/in/alice-araujo-892258238)
         """)
     
     st.markdown("---")
     
-    # Agradecimentos
-    st.markdown("### Agradecimentos")
+    # Acknowledgments
+    st.markdown("### Acknowledgments")
     
     st.markdown("""
-    Este projeto não seria possível sem:
+    This project would not be possible without:
     
-    **NASA** - Por décadas de pesquisa em habitabilidade espacial e por disponibilizar publicamente 
-    os padrões HIDH que formam a base desta ferramenta.
+    **NASA** - For decades of research in space habitability and for making publicly available 
+    the HIDH standards that form the basis of this tool.
     
-    **Innovation Center e Grupo Tiradentes** - Pelo apoio institucional e fomento à inovação tecnológica.
+    **Innovation Center and Grupo Tiradentes** - For institutional support and fostering technological innovation.
     
-    **Leonardo Sales** - Organizador local do NASA Space Apps Challenge, por fomentar tecnologia no 
-    Nordeste brasileiro e incentivar os jovens nesse ambiente de inovação.
+    **Leonardo Sales** - Local organizer of the NASA Space Apps Challenge, for fostering technology in 
+    Northeast Brazil and encouraging young people in this innovation environment.
     
-    **Comunidade Open-Source** - Streamlit, Plotly, e inúmeras bibliotecas Python que tornam 
-    desenvolvimento rápido e acessível.
+    **Open-Source Community** - Streamlit, Plotly, and countless Python libraries that make 
+    development fast and accessible.
     
-    **Pesquisadores e Engenheiros** - Cujo trabalho em arquitetura espacial, fatores humanos e 
-    sistemas de suporte de vida informam os algoritmos e validações desta ferramenta.
+    **Researchers and Engineers** - Whose work in space architecture, human factors and 
+    life support systems inform the algorithms and validations of this tool.
     
-    **Você** - Por usar esta ferramenta e contribuir para o futuro da exploração espacial!
+    **You** - For using this tool and contributing to the future of space exploration!
     """)
     
     st.markdown("---")
@@ -337,10 +337,10 @@ def render_about_page():
     # Footer
     st.markdown("""
     <div style='text-align: center; padding: 2rem; background: rgba(99, 102, 241, 0.1); border-radius: 10px; margin-top: 2rem;'>
-        <h3 style='color: #6366f1;'>Vamos Construir o Futuro Espacial Juntos!</h3>
+        <h3 style='color: #6366f1;'>Let's Build the Space Future Together!</h3>
         <p style='color: #E2E8F0; font-size: 1.1rem; line-height: 1.8;'>
-            Cada grande jornada começa com um pequeno passo. Seu design pode ser o próximo habitat 
-            a abrigar a humanidade entre as estrelas.
+            Every great journey begins with a small step. Your design could be the next habitat 
+            to shelter humanity among the stars.
         </p>
         <p style='color: #A0AEC0; margin-top: 1rem;'>
             Made with love for the space community | © 2025 ENTERPRISE

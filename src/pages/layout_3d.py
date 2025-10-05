@@ -1,5 +1,5 @@
 """
-Página de visualização 3D com configurações e explicações
+3D visualization page with configurations and explanations
 """
 import streamlit as st
 from src.components.config_panel import render_config_panel
@@ -14,45 +14,45 @@ from src.utils.nasa_calculations import calculate_nhv_per_person
 
 
 def render_layout_3d_page():
-    """Renderiza a página de Layout 3D"""
+    """Renders the 3D Layout page"""
     
-    st.markdown("# Layout 3D - Visualização Tridimensional")
+    st.markdown("# 3D Layout - Three-Dimensional Visualization")
     
-    # Explicação da visualização 3D
+    # 3D visualization explanation
     st.markdown("""
     <div style='background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(168, 85, 247, 0.1)); 
                 padding: 1.5rem; border-radius: 10px; border-left: 4px solid #8b5cf6; margin-bottom: 2rem;'>
-        <h3 style='color: #8b5cf6; margin-top: 0;'>O que é a Visualização 3D?</h3>
+        <h3 style='color: #8b5cf6; margin-top: 0;'>What is 3D Visualization?</h3>
         <p style='color: #E2E8F0; line-height: 1.8;'>
-            A visualização 3D mostra o <strong>volume completo</strong> do seu habitat espacial, 
-            permitindo que você veja as <strong>dimensões reais</strong> e a <strong>distribuição das zonas</strong> 
-            em três dimensões.
+            The 3D visualization shows the <strong>complete volume</strong> of your space habitat, 
+            allowing you to see the <strong>real dimensions</strong> and <strong>zone distribution</strong> 
+            in three dimensions.
         </p>
         <ul style='color: #E2E8F0; line-height: 1.8;'>
-            <li><strong>Interatividade:</strong> Clique e arraste para rotacionar o modelo. Use a roda do mouse 
-            para zoom. Explore todos os ângulos do seu habitat.</li>
-            <li><strong>Zonas Divididas:</strong> Planos coloridos dividem o habitat nas zonas funcionais. 
-            Cada cor corresponde a uma zona específica (veja a legenda).</li>
-            <li><strong>Perspectiva Real:</strong> A visualização mantém as proporções exatas do seu design, 
-            dando uma noção clara do espaço interno disponível.</li>
-            <li><strong>Estrutura:</strong> O contorno externo mostra a forma do habitat (cilindro ou caixa retangular) 
-            e suas dimensões totais.</li>
+            <li><strong>Interactivity:</strong> Click and drag to rotate the model. Use mouse wheel 
+            for zoom. Explore all angles of your habitat.</li>
+            <li><strong>Divided Zones:</strong> Colored planes divide the habitat into functional zones. 
+            Each color corresponds to a specific zone (see legend).</li>
+            <li><strong>Real Perspective:</strong> The visualization maintains exact proportions of your design, 
+            giving a clear sense of available interior space.</li>
+            <li><strong>Structure:</strong> The external outline shows the habitat shape (cylinder or rectangular box) 
+            and its total dimensions.</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
     
-    # Painel de configuração
-    with st.expander("Configurar Habitat", expanded=True):
+    # Configuration panel
+    with st.expander("Configure Habitat", expanded=True):
         config = render_config_panel()
     
-    # Validar se há zonas selecionadas
+    # Validate if zones are selected
     if not config["zone_areas"]:
-        st.warning("Por favor, selecione pelo menos uma zona funcional na configuração acima.")
+        st.warning("Please select at least one functional zone in the configuration above.")
         st.stop()
     
     st.markdown("---")
     
-    # Calcular métricas
+    # Calculate metrics
     if config["shape"] == "Cylinder":
         total_volume = calculate_cylinder_volume(
             config["dimensions"]["diameter"],
@@ -78,41 +78,41 @@ def render_layout_3d_page():
     floor_area_per_person = floor_area / config["crew_size"]
     nhv_required_per_person = calculate_nhv_per_person(config["mission_duration"])
     
-    # Alocar zonas
+    # Allocate zones
     zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
     total_zone_area = sum(zones.values())
     
-    # Resumo rápido
-    st.markdown("### Resumo do Design")
+    # Quick summary
+    st.markdown("### Design Summary")
     metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
     
     with metric_col1:
-        st.metric("Volume Total", f"{total_volume:.1f} m³")
+        st.metric("Total Volume", f"{total_volume:.1f} m³")
         st.caption(f"NHV: {nhv:.1f} m³")
     
     with metric_col2:
-        st.metric("NHV/Pessoa", f"{nhv_per_person:.1f} m³")
+        st.metric("NHV/Person", f"{nhv_per_person:.1f} m³")
         delta_nhv = nhv_per_person - nhv_required_per_person
         st.caption(f"NASA: {nhv_required_per_person:.1f} m³")
     
     with metric_col3:
         if config["shape"] == "Cylinder":
-            st.metric("Dimensões", f"D{config['dimensions']['diameter']}m x H{config['dimensions']['height']}m")
-            st.caption("Cilindro")
+            st.metric("Dimensions", f"D{config['dimensions']['diameter']}m x H{config['dimensions']['height']}m")
+            st.caption("Cylinder")
         else:
-            st.metric("Dimensões", f"{config['dimensions']['length']}m × {config['dimensions']['width']}m × {config['dimensions']['height']}m")
-            st.caption("Retângulo")
+            st.metric("Dimensions", f"{config['dimensions']['length']}m × {config['dimensions']['width']}m × {config['dimensions']['height']}m")
+            st.caption("Rectangle")
     
     with metric_col4:
-        st.metric("Estrutura", config['structure_type'])
-        st.caption(f"Gravidade: {config['gravity_env']}")
+        st.metric("Structure", config['structure_type'])
+        st.caption(f"Gravity: {config['gravity_env']}")
     
     st.markdown("---")
     
-    # Visualização 3D
-    st.markdown("### Modelo 3D Interativo")
+    # 3D Visualization
+    st.markdown("### Interactive 3D Model")
     
-    st.info("Dica: Clique e arraste para rotacionar. Use a roda do mouse para zoom. Clique duas vezes para resetar a visualização.")
+    st.info("Tip: Click and drag to rotate. Use mouse wheel to zoom. Double-click to reset view.")
     
     fig_3d = create_3d_habitat_view(
         config["shape"], config["dimensions"], zones,
@@ -120,15 +120,15 @@ def render_layout_3d_page():
     )
     st.plotly_chart(fig_3d, config={"displayModeBar": True, "responsive": True})
     
-    # Legenda e explicação das zonas
+    # Legend and zone explanation
     st.markdown("---")
-    st.markdown("### Legenda de Zonas")
+    st.markdown("### Zone Legend")
     
     legend_cols = st.columns(3)
     for idx, (zone_id, area) in enumerate(zones.items()):
         with legend_cols[idx % 3]:
             percentage = (area / total_zone_area) * 100
-            volume_per_zone = (total_volume / len(zones))  # Simplificação
+            volume_per_zone = (total_volume / len(zones))  # Simplification
             st.markdown(f"""
             <div style='background: {ZONE_COLORS[zone_id]}20; padding: 1rem; border-radius: 8px; 
                         border-left: 4px solid {ZONE_COLORS[zone_id]}; margin-bottom: 1rem;'>
@@ -136,68 +136,68 @@ def render_layout_3d_page():
                     {ZONE_NAMES[zone_id]}
                 </div>
                 <div style='color: #E2E8F0; font-size: 1.1rem; margin: 0.5rem 0;'>
-                    Área: {area:.1f} m² ({percentage:.1f}%)
+                    Area: {area:.1f} m² ({percentage:.1f}%)
                 </div>
                 <div style='color: #A0AEC0;'>
-                    Volume estimado: ~{volume_per_zone:.1f} m³
+                    Estimated volume: ~{volume_per_zone:.1f} m³
                 </div>
             </div>
             """, unsafe_allow_html=True)
     
-    # Dicas de interpretação
+    # Interpretation tips
     st.markdown("---")
-    st.markdown("### Como Interpretar o Modelo 3D")
+    st.markdown("### How to Interpret the 3D Model")
     
     tip_col1, tip_col2 = st.columns(2)
     
     with tip_col1:
         st.markdown("""
-        **Análise Volumétrica:**
-        - O volume 3D é crítico para ambientes pressurizados
-        - NHV (Net Habitable Volume) exclui equipamentos e estruturas
-        - Maior volume = mais conforto psicológico para tripulação
-        - NASA recomenda mínimos baseados em duração da missão
+        **Volumetric Analysis:**
+        - 3D volume is critical for pressurized environments
+        - NHV (Net Habitable Volume) excludes equipment and structures
+        - Larger volume = more psychological comfort for crew
+        - NASA recommends minimums based on mission duration
         """)
         
         st.markdown("""
-        **Referências NASA:**
-        - Missões curtas (30 dias): 12.7 m³/pessoa
-        - Missões médias (90 dias): 16.7 m³/pessoa  
-        - Missões longas (360+ dias): 22.5 m³/pessoa
+        **NASA References:**
+        - Short missions (30 days): 12.7 m³/person
+        - Medium missions (90 days): 16.7 m³/person  
+        - Long missions (360+ days): 22.5 m³/person
         """)
     
     with tip_col2:
         st.markdown("""
-        **Rotação e Exploração:**
-        - Visualize o habitat de todos os ângulos
-        - Verifique proporções e distribuição espacial
-        - Considere fluxo de movimento entre zonas
-        - Avalie adequação para atividades específicas
+        **Rotation and Exploration:**
+        - Visualize the habitat from all angles
+        - Check proportions and spatial distribution
+        - Consider movement flow between zones
+        - Evaluate suitability for specific activities
         """)
         
         st.markdown("""
-        **Fatores de Usabilidade:**
-        - Fator de usabilidade reduz volume total para NHV
-        - Estruturas rígidas: 70-80% (mais equipamento)
-        - Estruturas infláveis: 85-90% (menos equipamento)
+        **Usability Factors:**
+        - Usability factor reduces total volume to NHV
+        - Rigid structures: 70-80% (more equipment)
+        - Inflatable structures: 85-90% (less equipment)
         """)
     
-    # Validações
+    # Validations
     st.markdown("---")
-    st.markdown("### Validações NASA")
+    st.markdown("### NASA Validations")
     
     val_col1, val_col2 = st.columns(2)
     
     with val_col1:
         if nhv_per_person >= nhv_required_per_person:
-            st.success(f"NHV por pessoa ({nhv_per_person:.1f} m³) atende ao padrão NASA ({nhv_required_per_person:.1f} m³)")
+            st.success(f"NHV per person ({nhv_per_person:.1f} m³) meets NASA standard ({nhv_required_per_person:.1f} m³)")
         else:
-            st.error(f"NHV por pessoa ({nhv_per_person:.1f} m³) está abaixo do mínimo NASA ({nhv_required_per_person:.1f} m³)")
-            st.caption(f"Déficit: {nhv_required_per_person - nhv_per_person:.1f} m³/pessoa")
+            st.error(f"NHV per person ({nhv_per_person:.1f} m³) is below NASA minimum ({nhv_required_per_person:.1f} m³)")
+            st.caption(f"Deficit: {nhv_required_per_person - nhv_per_person:.1f} m³/person")
     
     with val_col2:
         if floor_area_per_person >= MIN_FLOOR_AREA_PER_PERSON:
-            st.success(f"Área de piso por pessoa ({floor_area_per_person:.1f} m²) atende ao padrão NASA ({MIN_FLOOR_AREA_PER_PERSON} m²)")
+            st.success(f"Floor area per person ({floor_area_per_person:.1f} m²) meets NASA standard ({MIN_FLOOR_AREA_PER_PERSON} m²)")
         else:
-            st.error(f"Área de piso por pessoa ({floor_area_per_person:.1f} m²) está abaixo do mínimo NASA ({MIN_FLOOR_AREA_PER_PERSON} m²)")
-            st.caption(f"Déficit: {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²/pessoa")
+            st.error(f"Floor area per person ({floor_area_per_person:.1f} m²) is below NASA minimum ({MIN_FLOOR_AREA_PER_PERSON} m²)")
+            st.caption(f"Deficit: {MIN_FLOOR_AREA_PER_PERSON - floor_area_per_person:.1f} m²/person")

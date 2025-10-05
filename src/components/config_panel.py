@@ -1,5 +1,5 @@
 """
-Painel de configuração reutilizável para cada página
+Reusable configuration panel for each page
 """
 import streamlit as st
 from ..config.constants import GRAVITY_ENVIRONMENTS, HABITAT_TYPES, NHV_REFERENCE, ZONE_MIN_AREA, ZONE_NAMES
@@ -7,66 +7,66 @@ from ..config.constants import GRAVITY_ENVIRONMENTS, HABITAT_TYPES, NHV_REFERENC
 
 def render_config_panel():
     """
-    Renderiza o painel de configuração do habitat.
+    Renders the habitat configuration panel.
     
     Returns:
-        Dicionário com todas as configurações selecionadas
+        Dictionary with all selected configurations
     """
-    st.markdown("### Configuração do Habitat")
+    st.markdown("### Habitat Configuration")
     
     col1, col2 = st.columns(2)
     
     with col1:
-        st.markdown("#### Forma e Estrutura")
-        shape = st.selectbox("Forma do Habitat", ["Cylinder", "Rectangular"], key="shape")
+        st.markdown("#### Shape and Structure")
+        shape = st.selectbox("Habitat Shape", ["Cylinder", "Rectangular"], key="shape")
         structure_type = st.radio(
-            "Tipo de Estrutura",
+            "Structure Type",
             ["rigid", "inflatable"],
             format_func=lambda x: HABITAT_TYPES[x]["description"],
-            help="Estrutura rígida: volume limitado, alta proteção\nInflável: 3-4x maior volume, menor massa",
+            help="Rigid structure: limited volume, high protection\nInflatable: 3-4x larger volume, lower mass",
             key="structure"
         )
         
     with col2:
-        st.markdown("#### Parâmetros da Missão")
-        crew_size = st.slider("Tamanho da Tripulação", min_value=4, max_value=6, value=4, key="crew")
+        st.markdown("#### Mission Parameters")
+        crew_size = st.slider("Crew Size", min_value=4, max_value=6, value=4, key="crew")
         mission_duration = st.number_input(
-            "Duração da Missão (dias)", 
+            "Mission Duration (days)", 
             min_value=1, 
             max_value=1000, 
             value=180,
-            help="Usado para calcular NHV requerido pela fórmula NASA: 6.67 × ln(dias) - 7.79",
+            help="Used to calculate required NHV by NASA formula: 6.67 × ln(days) - 7.79",
             key="duration"
         )
         gravity_env = st.selectbox(
-            "Ambiente Gravitacional",
+            "Gravitational Environment",
             ["microgravity", "lunar", "mars"],
             format_func=lambda x: GRAVITY_ENVIRONMENTS[x]["description"],
-            help="Afeta se volume ou área horizontal é priorizada",
+            help="Affects whether volume or horizontal area is prioritized",
             key="gravity"
         )
     
-    st.markdown("#### Dimensões (metros)")
+    st.markdown("#### Dimensions (meters)")
     dim_col1, dim_col2, dim_col3 = st.columns(3)
     
     if shape == "Cylinder":
         with dim_col1:
-            diameter = st.number_input("Diâmetro", min_value=2.0, max_value=15.0, value=6.0, step=0.5, key="diameter")
+            diameter = st.number_input("Diameter", min_value=2.0, max_value=15.0, value=6.0, step=0.5, key="diameter")
         with dim_col2:
-            height = st.number_input("Altura", min_value=2.0, max_value=20.0, value=10.0, step=0.5, key="height")
+            height = st.number_input("Height", min_value=2.0, max_value=20.0, value=10.0, step=0.5, key="height")
         dimensions = {"diameter": diameter, "height": height, "length": None, "width": None}
     else:
         with dim_col1:
-            length = st.number_input("Comprimento", min_value=2.0, max_value=20.0, value=10.0, step=0.5, key="length")
+            length = st.number_input("Length", min_value=2.0, max_value=20.0, value=10.0, step=0.5, key="length")
         with dim_col2:
-            width = st.number_input("Largura", min_value=2.0, max_value=15.0, value=6.0, step=0.5, key="width")
+            width = st.number_input("Width", min_value=2.0, max_value=15.0, value=6.0, step=0.5, key="width")
         with dim_col3:
-            height = st.number_input("Altura", min_value=2.0, max_value=20.0, value=4.0, step=0.5, key="height")
+            height = st.number_input("Height", min_value=2.0, max_value=20.0, value=4.0, step=0.5, key="height")
         dimensions = {"length": length, "width": width, "height": height, "diameter": width}
     
     st.markdown("---")
-    st.markdown("#### Zonas Funcionais")
-    st.caption("Selecione zonas para incluir e customize as áreas por pessoa:")
+    st.markdown("#### Functional Zones")
+    st.caption("Select zones to include and customize areas per person:")
     
     zone_cols = st.columns(3)
     zone_areas = {}
@@ -80,7 +80,7 @@ def render_config_panel():
             )
             if include_zone:
                 area = st.number_input(
-                    "m²/pessoa",
+                    "m²/person",
                     min_value=0.5,
                     max_value=20.0,
                     value=ZONE_MIN_AREA[zone_id],
@@ -89,33 +89,33 @@ def render_config_panel():
                 )
                 zone_areas[zone_id] = area
     
-    # Mostrar resumo
+    # Show summary
     if zone_areas:
         total_area_per_person = sum(zone_areas.values())
-        st.success(f"{len(zone_areas)} zonas selecionadas · {total_area_per_person:.1f} m²/pessoa total")
+        st.success(f"{len(zone_areas)} zones selected · {total_area_per_person:.1f} m²/person total")
     else:
-        st.warning("Nenhuma zona selecionada")
+        st.warning("No zones selected")
     
     st.markdown("---")
     
     adv_col1, adv_col2 = st.columns(2)
     with adv_col1:
         usable_factor = st.slider(
-            "Fator de Volume Utilizável", 
+            "Usable Volume Factor", 
             min_value=0.5, 
             max_value=0.9, 
             value=0.7, 
             step=0.05,
-            help="Fração do volume total que é habitável líquido (NHV)",
+            help="Fraction of total volume that is net habitable (NHV)",
             key="usable"
         )
     
     with adv_col2:
-        st.markdown("**Referência NHV NASA:**")
+        st.markdown("**NASA NHV Reference:**")
         st.caption(f"""
-        - 30 dias: {NHV_REFERENCE[30]} m³/pessoa
-        - 180 dias: {NHV_REFERENCE[180]} m³/pessoa
-        - 365 dias: {NHV_REFERENCE[365]} m³/pessoa
+        - 30 days: {NHV_REFERENCE[30]} m³/person
+        - 180 days: {NHV_REFERENCE[180]} m³/person
+        - 365 days: {NHV_REFERENCE[365]} m³/person
         """)
     
     return {

@@ -1,3 +1,3 @@
 """
-Módulo de páginas da aplicação
+Application pages module
 """

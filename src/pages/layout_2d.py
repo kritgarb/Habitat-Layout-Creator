@@ -1,5 +1,5 @@
 """
-Página de visualização 2D com configurações e explicações
+2D visualization page with configurations and explanations
 """
 import streamlit as st
 from src.components.config_panel import render_config_panel
@@ -14,42 +14,42 @@ from src.utils.nasa_calculations import calculate_nhv_per_person
 
 
 def render_layout_2d_page():
-    """Renderiza a página de Layout 2D"""
+    """Renders the 2D Layout page"""
     
-    st.markdown("# Layout 2D - Planta Baixa do Habitat")
+    st.markdown("# 2D Layout - Habitat Floor Plan")
     
-    # Explicação da visualização 2D
+    # 2D visualization explanation
     st.markdown("""
     <div style='background: linear-gradient(135deg, rgba(72, 187, 120, 0.1), rgba(56, 178, 172, 0.1)); 
                 padding: 1.5rem; border-radius: 10px; border-left: 4px solid #48bb78; margin-bottom: 2rem;'>
-        <h3 style='color: #48bb78; margin-top: 0;'>O que é a Planta Baixa 2D?</h3>
+        <h3 style='color: #48bb78; margin-top: 0;'>What is the 2D Floor Plan?</h3>
         <p style='color: #E2E8F0; line-height: 1.8;'>
-            A visualização 2D mostra a <strong>planta baixa</strong> do seu habitat - uma visão de cima que 
-            revela como as <strong>zonas funcionais</strong> estão distribuídas no espaço disponível.
+            The 2D visualization shows the <strong>floor plan</strong> of your habitat - a top view that 
+            reveals how the <strong>functional zones</strong> are distributed in the available space.
         </p>
         <ul style='color: #E2E8F0; line-height: 1.8;'>
-            <li><strong>Habitats Cilíndricos:</strong> As zonas são exibidas como setores circulares (fatias de pizza), 
-            proporcionais às suas áreas. O círculo central representa o corredor comum.</li>
-            <li><strong>Habitats Retangulares:</strong> As zonas são organizadas em um grid otimizado automaticamente, 
-            com linhas de grade para referência espacial.</li>
-            <li><strong>Cores:</strong> Cada zona tem uma cor única para fácil identificação. Passe o mouse sobre 
-            qualquer zona para ver detalhes (nome, área, porcentagem).</li>
+            <li><strong>Cylindrical Habitats:</strong> Zones are displayed as circular sectors (pizza slices), 
+            proportional to their areas. The central circle represents the common corridor.</li>
+            <li><strong>Rectangular Habitats:</strong> Zones are organized in an automatically optimized grid, 
+            with grid lines for spatial reference.</li>
+            <li><strong>Colors:</strong> Each zone has a unique color for easy identification. Hover over 
+            any zone to see details (name, area, percentage).</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
     
-    # Painel de configuração
-    with st.expander("Configurar Habitat", expanded=True):
+    # Configuration panel
+    with st.expander("Configure Habitat", expanded=True):
         config = render_config_panel()
     
-    # Validar se há zonas selecionadas
+    # Validate if zones are selected
     if not config["zone_areas"]:
-        st.warning("Por favor, selecione pelo menos uma zona funcional na configuração acima.")
+        st.warning("Please select at least one functional zone in the configuration above.")
         st.stop()
     
     st.markdown("---")
     
-    # Calcular métricas
+    # Calculate metrics
     if config["shape"] == "Cylinder":
         total_volume = calculate_cylinder_volume(
             config["dimensions"]["diameter"],
@@ -75,35 +75,35 @@ def render_layout_2d_page():
     floor_area_per_person = floor_area / config["crew_size"]
     nhv_required_per_person = calculate_nhv_per_person(config["mission_duration"])
     
-    # Alocar zonas
+    # Allocate zones
     zones = allocate_zones(floor_area, config["crew_size"], config["zone_areas"])
     total_zone_area = sum(zones.values())
     
-    # Resumo rápido
-    st.markdown("### Resumo do Design")
+    # Quick summary
+    st.markdown("### Design Summary")
     metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
     
     with metric_col1:
-        forma_traduzida = "Cilíndrico" if config['shape'] == 'Cylinder' else "Retangular"
-        st.metric("Forma", forma_traduzida)
+        shape_translated = "Cylindrical" if config['shape'] == 'Cylinder' else "Rectangular"
+        st.metric("Shape", shape_translated)
     
     with metric_col2:
-        st.metric("Área de Piso", f"{floor_area:.1f} m²")
+        st.metric("Floor Area", f"{floor_area:.1f} m²")
         delta_floor = floor_area_per_person - MIN_FLOOR_AREA_PER_PERSON
-        st.caption(f"{floor_area_per_person:.1f} m²/pessoa")
+        st.caption(f"{floor_area_per_person:.1f} m²/person")
     
     with metric_col3:
-        st.metric("Zonas", f"{len(zones)}")
+        st.metric("Zones", f"{len(zones)}")
         st.caption(f"{total_zone_area:.1f} m² total")
     
     with metric_col4:
-        st.metric("Tripulação", f"{config['crew_size']} pessoas")
-        st.caption(f"{config['mission_duration']} dias de missão")
+        st.metric("Crew", f"{config['crew_size']} people")
+        st.caption(f"{config['mission_duration']} mission days")
     
     st.markdown("---")
     
-    # Visualização 2D
-    st.markdown("### Planta Baixa Interativa")
+    # 2D Visualization
+    st.markdown("### Interactive Floor Plan")
     
     fig_2d = create_2d_layout_plotly(
         zones, floor_area, config["shape"], config["dimensions"],
@@ -111,9 +111,9 @@ def render_layout_2d_page():
     )
     st.plotly_chart(fig_2d, config={"displayModeBar": True, "responsive": True})
     
-    # Legenda e explicação das zonas
+    # Legend and zone explanation
     st.markdown("---")
-    st.markdown("### Legenda de Zonas")
+    st.markdown("### Zone Legend")
     
     legend_cols = st.columns(3)
     for idx, (zone_id, area) in enumerate(zones.items()):
@@ -129,37 +129,37 @@ def render_layout_2d_page():
                     {area:.1f} m²
                 </div>
                 <div style='color: #A0AEC0;'>
-                    {percentage:.1f}% do total | {area/config['crew_size']:.1f} m²/pessoa
+                    {percentage:.1f}% of total | {area/config['crew_size']:.1f} m²/person
                 </div>
             </div>
             """, unsafe_allow_html=True)
     
-    # Dicas de interpretação
+    # Interpretation tips
     st.markdown("---")
-    st.markdown("### Como Interpretar a Planta Baixa")
+    st.markdown("### How to Interpret the Floor Plan")
     
     tip_col1, tip_col2 = st.columns(2)
     
     with tip_col1:
         st.markdown("""
-        **Análise Espacial:**
-        - Zonas maiores = mais área alocada para essa função
-        - Distribuição equilibrada indica design balanceado
-        - Verifique se há espaço suficiente para cada atividade
-        - Compare com referências NASA (10 m²/pessoa mínimo)
+        **Spatial Analysis:**
+        - Larger zones = more area allocated for that function
+        - Balanced distribution indicates balanced design
+        - Check if there's enough space for each activity
+        - Compare with NASA references (10 m²/person minimum)
         """)
     
     with tip_col2:
         st.markdown("""
-        **Considerações Importantes:**
-        - Zonas incompatíveis (ex: dormir + exercício) devem estar separadas
-        - Higiene deve estar próxima aos quartos de dormir
-        - Cozinha deve ser central para acesso fácil
-        - Armazenamento deve ser distribuído estrategicamente
+        **Important Considerations:**
+        - Incompatible zones (e.g. sleep + exercise) should be separated
+        - Hygiene should be close to sleeping quarters
+        - Kitchen should be central for easy access
+        - Storage should be strategically distributed
         """)
     
-    # Validação básica
+    # Basic validation
     if floor_area_per_person < MIN_FLOOR_AREA_PER_PERSON:
-        st.error(f"Área de piso por pessoa ({floor_area_per_person:.1f} m²) está abaixo do mínimo NASA ({MIN_FLOOR_AREA_PER_PERSON} m²)")
+        st.error(f"Floor area per person ({floor_area_per_person:.1f} m²) is below NASA minimum ({MIN_FLOOR_AREA_PER_PERSON} m²)")
     else:
-        st.success(f"Área de piso por pessoa ({floor_area_per_person:.1f} m²) atende ao padrão NASA")
+        st.success(f"Floor area per person ({floor_area_per_person:.1f} m²) meets NASA standard")

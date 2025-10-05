@@ -1,5 +1,5 @@
 """
-Visualizações 3D interativas com Plotly e NumPy
+Interactive 3D visualizations with Plotly and NumPy
 """
 import plotly.graph_objects as go
 import numpy as np
@@ -8,17 +8,17 @@ import numpy as np
 def create_3d_habitat_view(shape_type: str, dimensions: dict, zones: dict,
                            zone_colors: dict, zone_names: dict) -> go.Figure:
     """
-    Cria visualização 3D interativa do habitat usando Plotly.
+    Creates interactive 3D visualization of the habitat using Plotly.
     
     Args:
-        shape_type: Tipo de forma ("Cylinder" ou "Rectangular")
-        dimensions: Dicionário com dimensões do habitat
-        zones: Dicionário com áreas de cada zona
-        zone_colors: Dicionário com cores das zonas
-        zone_names: Dicionário com nomes das zonas
+        shape_type: Shape type ("Cylinder" or "Rectangular")
+        dimensions: Dictionary with habitat dimensions
+        zones: Dictionary with areas of each zone
+        zone_colors: Dictionary with zone colors
+        zone_names: Dictionary with zone names
     
     Returns:
-        Figura Plotly com o habitat em 3D
+        Plotly figure with the habitat in 3D
     """
     fig = go.Figure()
     
@@ -27,7 +27,7 @@ def create_3d_habitat_view(shape_type: str, dimensions: dict, zones: dict,
     else:  # Rectangular
         fig = _create_box_3d(dimensions, zones, zone_colors, zone_names, fig)
     
-    # Configuração comum do layout
+    # Common layout configuration
     fig.update_layout(
         scene=dict(
             xaxis=dict(showgrid=True, gridcolor='#2d3748', showbackground=True, backgroundcolor='#0F1419'),

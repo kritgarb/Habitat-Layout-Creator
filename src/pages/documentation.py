@@ -1,102 +1,102 @@
 """
-Página de documentação com guia completo de uso
+Documentation page with complete usage guide
 """
 import streamlit as st
 
 
 def render_documentation_page():
-    """Renderiza a página de Documentação"""
+    """Renders the Documentation page"""
     
-    st.markdown("# Documentação - Guia Completo de Uso")
+    st.markdown("# Documentation - Complete Usage Guide")
     
-    # Introdução
+    # Introduction
     st.markdown("""
     <div style='background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(37, 99, 235, 0.1)); 
                 padding: 1.5rem; border-radius: 10px; border-left: 4px solid #3b82f6; margin-bottom: 2rem;'>
-        <h3 style='color: #3b82f6; margin-top: 0;'>Bem-vindo à Documentação</h3>
+        <h3 style='color: #3b82f6; margin-top: 0;'>Welcome to Documentation</h3>
         <p style='color: #E2E8F0; line-height: 1.8;'>
-            Este guia abrangente irá ajudá-lo a dominar o <strong>AEGIS Habitat Layout Creator</strong>, 
-            desde conceitos básicos até técnicas avançadas de design espacial.
+            This comprehensive guide will help you master the <strong>AEGIS Habitat Layout Creator</strong>, 
+            from basic concepts to advanced space design techniques.
         </p>
     </div>
     """, unsafe_allow_html=True)
     
-    # Índice
-    st.markdown("## Índice")
+    # Table of contents
+    st.markdown("## Table of Contents")
     st.markdown("""
-    1. [Começando](#1-come-ando)
-    2. [Conceitos Fundamentais](#2-conceitos-fundamentais)
-    3. [Guia Passo a Passo](#3-guia-passo-a-passo)
-    4. [Parâmetros de Configuração](#4-par-metros-de-configura-o)
-    5. [Interpretando Visualizações](#5-interpretando-visualiza-es)
-    6. [Entendendo Métricas NASA](#6-entendendo-m-tricas-nasa)
-    7. [Requisitos de Recursos e Suporte de Vida](#6-5-requisitos-de-recursos-e-suporte-de-vida)
-    8. [Dicas e Melhores Práticas](#7-dicas-e-melhores-pr-ticas)
-    9. [Exportação de Dados](#8-exporta-o-de-dados)
-    10. [Solução de Problemas](#9-solu-o-de-problemas)
-    11. [Documentação NASA](#10-documenta-o-nasa)
+    1. [Getting Started](#1-getting-started)
+    2. [Fundamental Concepts](#2-fundamental-concepts)
+    3. [Step-by-Step Guide](#3-step-by-step-guide)
+    4. [Configuration Parameters](#4-configuration-parameters)
+    5. [Interpreting Visualizations](#5-interpreting-visualizations)
+    6. [Understanding NASA Metrics](#6-understanding-nasa-metrics)
+    7. [Resource and Life Support Requirements](#6-5-resource-and-life-support-requirements)
+    8. [Tips and Best Practices](#7-tips-and-best-practices)
+    9. [Data Export](#8-data-export)
+    10. [Troubleshooting](#9-troubleshooting)
+    11. [NASA Documentation](#10-nasa-documentation)
     """)
     
     st.markdown("---")
     
-    # Seção 1: Começando
-    with st.expander("### 1. Começando", expanded=True):
+    # Section 1: Getting Started
+    with st.expander("### 1. Getting Started", expanded=True):
         st.markdown("""
-        #### O que é o AEGIS Habitat Layout Creator?
+        #### What is the AEGIS Habitat Layout Creator?
         
-        O AEGIS é uma ferramenta de design interativa para criar e validar layouts de habitats espaciais 
-        seguindo os padrões da **NASA Human Integration Design Handbook (HIDH)**. 
+        AEGIS is an interactive design tool for creating and validating space habitat layouts 
+        following **NASA Human Integration Design Handbook (HIDH)** standards. 
         
-        #### Quem deve usar?
-        - Engenheiros aeroespaciais
-        - Designers de sistemas espaciais
-        - Pesquisadores de arquitetura espacial
-        - Estudantes de engenharia e ciências espaciais
-        - Entusiastas de exploração espacial
+        #### Who should use it?
+        - Aerospace engineers
+        - Space systems designers
+        - Space architecture researchers
+        - Engineering and space science students
+        - Space exploration enthusiasts
         
-        #### Requisitos
-        - Navegador web moderno (Chrome, Firefox, Edge, Safari)
-        - Conexão com internet (para gráficos interativos Plotly)
-        - Conhecimento básico de conceitos espaciais (opcional mas recomendado)
+        #### Requirements
+        - Modern web browser (Chrome, Firefox, Edge, Safari)
+        - Internet connection (for interactive Plotly graphics)
+        - Basic knowledge of space concepts (optional but recommended)
         
-        #### Primeiros Passos
-        1. Navegue até a página **Início** para entender a ferramenta
-        2. Leia o glossário de termos para familiarizar-se com a terminologia
-        3. Escolha entre **Layout 2D** ou **Layout 3D** para começar seu design
-        4. Configure os parâmetros básicos do habitat
-        5. Visualize e valide seu design nas **Métricas NASA**
+        #### First Steps
+        1. Navigate to the **Home** page to understand the tool
+        2. Read the terms glossary to familiarize yourself with terminology
+        3. Choose between **2D Layout** or **3D Layout** to start your design
+        4. Configure basic habitat parameters
+        5. Visualize and validate your design in **NASA Metrics**
         """)
     
-    # Seção 2: Conceitos Fundamentais
-    with st.expander("### 2. Conceitos Fundamentais"):
+    # Section 2: Fundamental Concepts
+    with st.expander("### 2. Fundamental Concepts"):
         st.markdown("""
         #### Net Habitable Volume (NHV)
-        - **O que é:** Volume interno utilizável pelos astronautas, excluindo equipamentos e estruturas
-        - **Fórmula:** NHV = Volume Total × Fator de Usabilidade
-        - **Importância:** Relacionado diretamente ao conforto psicológico e desempenho da tripulação
-        - **Padrões NASA:** Varia de 12.7 m³/pessoa (30 dias) até 27.9 m³/pessoa (1+ ano)
+        - **What it is:** Interior volume usable by astronauts, excluding equipment and structures
+        - **Formula:** NHV = Total Volume × Usability Factor
+        - **Importance:** Directly related to crew psychological comfort and performance
+        - **NASA Standards:** Ranges from 12.7 m³/person (30 days) to 27.9 m³/person (1+ year)
         
-        #### Formas de Habitat
+        #### Habitat Shapes
         
-        **Cilíndrico:**
-        - Mais eficiente para pressurização (distribuição uniforme de estresse)
-        - Melhor para lançamento (cabe em cargas úteis cilíndricas)
-        - Volume = π × (Diâmetro/2)² × Altura
-        - Exemplo: ISS modules, SpaceX Starship
+        **Cylindrical:**
+        - More efficient for pressurization (uniform stress distribution)
+        - Better for launch (fits in cylindrical payloads)
+        - Volume = π × (Diameter/2)² × Height
+        - Example: ISS modules, SpaceX Starship
         
-        **Retangular (Box):**
-        - Mais flexível para layouts internos
-        - Melhor utilização de área de piso (cantos retos)
-        - Volume = Comprimento × Largura × Altura
-        - Exemplo: TransHab concept, B330 modules
+        **Rectangular (Box):**
+        - More flexible for interior layouts
+        - Better floor area utilization (right corners)
+        - Volume = Length × Width × Height
+        - Example: TransHab concept, B330 modules
         
-        #### Tipos de Estrutura
+        #### Structure Types
         
-        **Rígida (Rigid):**
-        - Estrutura metálica permanente
-        - Maior proteção contra radiação e micrometeoritos
-        - Mais equipamentos integrados = menor fator de usabilidade (70-80%)
-        - Exemplo: ISS, Skylab
+        **Rigid:**
+        - Permanent metallic structure
+        - Greater protection against radiation and micrometeoroids
+        - More integrated equipment = lower usability factor (70-80%)
+        - Example: ISS, Skylab
         
         **Inflável (Inflatable):**
         - Estrutura de tecidos avançados (Kevlar, Vectran)
@@ -113,7 +113,7 @@ def render_documentation_page():
         
         **Gravidade Lunar (0.165g):**
         - Superfície da Lua
-        - Movimento ainda "flutuante" mas com orientação
+        - Movement still "floating" but with orientation
         - Equilíbrio entre volume e área de piso
         
         **Gravidade Marciana (0.38g):**
@@ -121,23 +121,24 @@ def render_documentation_page():
         - Mais próximo de design terrestre
         - Área de piso é primária
         
-        #### Zonas Funcionais
+        #### Functional Zones
         
-        Divisões do habitat por função:
+        Habitat divisions by function:
         - **Dormir (Sleep):** Privacidade, descanso
         - **Trabalho (Work):** Laboratórios, controles
         - **Higiene (Hygiene):** Banheiro, chuveiro
-        - **Alimentação (Food):** Cozinha, refeições
-        - **Exercício (Exercise):** Equipamentos fitness
-        - **Recreação (Recreation):** Lazer, relaxamento
+        - **Food:** Kitchen, meals
+        - **Exercise:** Fitness equipment
+        - **Recreation:** Leisure, relaxation
         - **Armazenamento (Storage):** Suprimentos, equipamentos
-        - **Médica (Medical):** Primeiros socorros, exames
+        - **Medical:** First aid, examinations
         """)
     
-    # Seção 3: Guia Passo a Passo
-    with st.expander("### 3. Guia Passo a Passo"):
+    # Section 3: Step-by-Step Guide
+    with st.expander("### 3. Step-by-Step Guide"):
         st.markdown("""
-        #### Passo 1: Defina os Parâmetros da Missão
+        # Step 1
+        st.subheader("Step 1: Define Mission Parameters")
         
         1. **Escolha a forma do habitat:**
            - Cilíndrico para eficiência estrutural
@@ -150,37 +151,38 @@ def render_documentation_page():
         3. **Configure dimensões:**
            - **Cilindro:** Diâmetro (3-8m típico) e Altura (4-10m típico)
            - **Retângulo:** Comprimento, Largura, Altura (4-10m cada)
-           - Dica: Comece com dimensões padrão e ajuste conforme necessário
+           - Tip: Start with standard dimensions and adjust as needed
         
         4. **Defina tripulação e missão:**
            - Tamanho da tripulação: 4-6 pessoas típico
            - Duração: 30 dias (curta) até 360+ dias (longa)
-           - Dica: Duração afeta drasticamente requisitos de NHV
+           - Tip: Duration drastically affects NHV requirements
         
         5. **Escolha o ambiente gravitacional:**
            - Microgravidade: ISS, órbita
            - Lunar: Base lunar
            - Marciana: Base marciana
         
-        #### Passo 2: Configure as Zonas Funcionais
+        # Step 2
+        st.subheader("Step 2: Select Functional Zones")
         
-        1. **Selecione zonas necessárias:**
+        1. **Select necessary zones:**
            - Mínimo recomendado: Dormir, Trabalho, Higiene
-           - Ideal: 5-7 zonas para funcionalidade completa
+           - Ideal: 5-7 zones for complete functionality
         
         2. **Ajuste áreas personalizadas (opcional):**
            - Deixe em branco para distribuição automática balanceada
            - Ou insira m² específicos para controle preciso
-           - Dica: Dormir e Trabalho geralmente são as maiores zonas
+           - Tip: Sleep and Work are usually the largest zones
         
         3. **Valide a soma:**
            - A ferramenta avisa se áreas personalizadas excedem área disponível
-           - Ajuste valores ou remova zonas se necessário
+           - Adjust values or remove zones if necessary
         
-        #### Passo 3: Visualize o Design
+        #### Step 3: Visualize the Design
         
         1. **Layout 2D (Planta Baixa):**
-           - Veja distribuição de zonas vista de cima
+           - See zone distribution from top view
            - Cilindros: setores circulares
            - Retângulos: grid otimizado
            - Interação: Hover para detalhes de cada zona
@@ -191,7 +193,7 @@ def render_documentation_page():
            - Use roda do mouse para zoom
            - Duplo clique para resetar visualização
         
-        #### Passo 4: Analise as Métricas
+        #### Step 4: Analyze the Metrics
         
         1. **Acesse Métricas NASA:**
            - Dashboard completo com todas as métricas quantitativas
@@ -199,19 +201,19 @@ def render_documentation_page():
         2. **Verifique conformidade:**
            - NHV por pessoa vs. padrão NASA
            - Área de piso por pessoa vs. mínimo 10 m²
-           - Distribuição de zonas adequada
+           - Adequate zone distribution
         
         3. **Identifique problemas:**
-           - Métricas em vermelho indicam não-conformidade
+           - Red metrics indicate non-compliance
            - Leia explicações detalhadas de cada métrica
            - Ajuste configurações conforme necessário
         
-        #### Passo 5: Itere e Refine
+        #### Step 5: Iterate and Refine
         
         1. **Experimente variações:**
            - Teste diferentes formas e dimensões
            - Compare estruturas rígidas vs. infláveis
-           - Varie número e tamanho de zonas
+           - Vary number and size of zones
         
         2. **Optimize para seus objetivos:**
            - Maximize NHV para missões longas
@@ -224,8 +226,8 @@ def render_documentation_page():
            - Anote decisões de design e trade-offs
         """)
     
-    # Seção 4: Parâmetros de Configuração
-    with st.expander("### 4. Parâmetros de Configuração"):
+    # Section 4: Configuration Parameters
+    with st.expander("### 4. Configuration Parameters"):
         st.markdown("""
         #### Forma do Habitat (Shape)
         - **Opções:** Cylinder, Rectangular
@@ -283,38 +285,38 @@ def render_documentation_page():
         - **Impacto:** Multiplicador direto do NHV
         - **Recomendação:** Use valores conservadores (0.70-0.75) para designs preliminares
         
-        #### Seleção de Zonas
+        #### Zone Selection
         - **Mínimo:** 1 zona
-        - **Recomendado:** 3-7 zonas
+        - **Recommended:** 3-7 zones
         - **Áreas Personalizadas:** Opcional, em m²
         - **Auto-distribuição:** Ferramenta calcula automaticamente se não especificado
         """)
     
-    # Seção 5: Interpretando Visualizações
-    with st.expander("### 5. Interpretando Visualizações"):
+    # Section 5: Interpreting Visualizations
+    with st.expander("### 5. Interpreting Visualizations"):
         st.markdown("""
         #### Visualização 2D (Planta Baixa)
         
         **Habitats Cilíndricos:**
-        - Zonas aparecem como setores circulares (fatias)
+        - Zones appear as circular sectors (slices)
         - Círculo central = corredor comum
         - Tamanho da fatia = área da zona
         - Cores únicas identificam cada zona
         
         **Habitats Retangulares:**
-        - Zonas organizadas em grid otimizado
+        - Zones organized in optimized grid
         - Linhas de grade para referência espacial
         - Cada retângulo = uma zona
         - Proporções aproximadas às áreas reais
         
         **Interatividade:**
         - Hover: Ver nome, área, porcentagem
-        - Legendas: Cores e zonas identificadas
+        - Legends: Colors and zones identified
         - Responsive: Adapta-se ao tamanho da tela
         
         **O que procurar:**
-        - Distribuição balanceada de zonas
-        - Zonas grandes o suficiente para função
+        - Balanced zone distribution
+        - Zones large enough for function
         - Separação lógica (ex: dormir longe de exercício)
         
         #### Visualização 3D (Modelo Tridimensional)
@@ -345,8 +347,8 @@ def render_documentation_page():
         - Adequação para número de tripulantes
         """)
     
-    # Seção 6: Entendendo Métricas NASA
-    with st.expander("### 6. Entendendo Métricas NASA"):
+    # Section 6: Understanding NASA Metrics
+    with st.expander("### 6. Understanding NASA Metrics"):
         st.markdown("""
         #### Volume Total
         - Volume geométrico completo do habitat
@@ -370,7 +372,7 @@ def render_documentation_page():
         #### NHV por Pessoa
         - NHV total dividido pelo tamanho da tripulação
         - Compara diretamente com padrões NASA
-        - Indicador chave de adequação do design
+        - Key indicator of design adequacy
         - **Interpretação:**
           - Acima do padrão: Excelente
           - No padrão: Adequado
@@ -394,7 +396,7 @@ def render_documentation_page():
         
         #### Distribuição de Zonas
         - Número e tamanho de zonas funcionais
-        - Diversidade indica funcionalidade
+        - Diversity indicates functionality
         - Áreas por zona devem ser apropriadas
         - **Recomendações por zona:**
           - Dormir: 2-4 m²/pessoa
@@ -404,7 +406,7 @@ def render_documentation_page():
           - Exercício: 3-4 m²/pessoa
           - Recreação: 2-3 m²/pessoa
           - Armazenamento: 1-2 m²/pessoa
-          - Médica: 2-3 m²/pessoa
+          - Medical: 2-3 m²/person
         
         #### Conformidade Geral
         - Resumo de todas as validações
@@ -413,8 +415,8 @@ def render_documentation_page():
         - Déficits quantificados para correção
         """)
     
-    # Seção 6.5: Requisitos de Recursos e Suporte de Vida
-    with st.expander("### 6.5. Requisitos de Recursos e Suporte de Vida"):
+    # Section 6.5: Resource Requirements and Life Support
+    with st.expander("### 6.5. Resource Requirements and Life Support"):
         st.markdown(r"""
         #### Requisitos de Água
         
@@ -489,8 +491,8 @@ def render_documentation_page():
         significativamente a necessidade de ressuprimento através de reciclagem de água e ar.
         """)
     
-    # Seção 7: Dicas e Melhores Práticas
-    with st.expander("### 7. Dicas e Melhores Práticas"):
+    # Section 7: Tips and Best Practices
+    with st.expander("### 7. Tips and Best Practices"):
         st.markdown("""
         #### Design Geral
         
@@ -518,7 +520,7 @@ def render_documentation_page():
         
         **Use Retângulo quando:**
         - Flexibilidade de layout é importante
-        - Conexão com outros módulos
+        - Connection with other modules
         - Utilização de cantos é vantajosa
         - Design modular é necessário
         
@@ -535,8 +537,8 @@ def render_documentation_page():
         - Zonas especializadas importantes
         
         **Para Tripulações Grandes (7+ pessoas):**
-        - Cilindro: ⌀8m × H10+m ou múltiplos módulos
-        - Retângulo: 10×8×8m ou múltiplos módulos
+        - Cylinder: ⌀8m × H10+m or multiple modules
+        - Rectangle: 10×8×8m or multiple modules
         - Considere habitats modulares conectados
         
         #### Alocação de Zonas
@@ -567,7 +569,7 @@ def render_documentation_page():
         5. Alimentação (10%)
         6. Higiene (10%)
         7. Armazenamento (3%)
-        8. Médica (2%)
+        8. Medical (2%)
         
         #### Otimização Iterativa
         
@@ -587,8 +589,8 @@ def render_documentation_page():
         - Reduzir massa: ↓ dimensões ou use inflável
         """)
     
-    # Seção 8: Exportação de Dados
-    with st.expander("### 8. Exportação de Dados"):
+    # Section 8: Data Export
+    with st.expander("### 8. Data Export"):
         st.markdown("""
         #### Formatos de Exportação
         
@@ -630,11 +632,11 @@ def render_documentation_page():
         }
         ```
         
-        #### Como Exportar
+        #### How to Export
         
         1. Configure completamente seu habitat
         2. Valide todas as métricas
-        3. Navegue até a seção de exportação (geralmente no final de cada página)
+        3. Navigate to the export section (usually at the end of each page)
         4. Clique no botão "Exportar Configuração (JSON)"
         5. Arquivo será baixado automaticamente
         
@@ -643,7 +645,7 @@ def render_documentation_page():
         **Documentação:**
         - Anexe a relatórios de design
         - Inclua em propostas de missão
-        - Use como baseline para iterações
+        - Use as baseline for iterations
         
         **Análise:**
         - Importe em ferramentas de análise (Excel, Python, MATLAB)
@@ -674,7 +676,7 @@ def render_documentation_page():
         """)
     
     # Seção 9: Solução de Problemas
-    with st.expander("### 9. Solução de Problemas"):
+    with st.expander("### 9. Problem Solution"):
         st.markdown("""
         #### Problemas Comuns e Soluções
         
@@ -786,7 +788,7 @@ def render_documentation_page():
     st.markdown("---")
     
     # Documentação NASA
-    with st.expander("### 10. Documentação NASA"):
+    with st.expander("### 10. NASA Documentation"):
         st.markdown("""
         #### Padrões e Referências Oficiais
         
