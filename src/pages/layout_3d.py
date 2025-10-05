@@ -118,7 +118,7 @@ def render_layout_3d_page():
         config["shape"], config["dimensions"], zones,
         ZONE_COLORS, ZONE_NAMES
     )
-    st.plotly_chart(fig_3d, use_container_width=True)
+    st.plotly_chart(fig_3d, width="stretch")
     
     # Legenda e explicação das zonas
     st.markdown("---")

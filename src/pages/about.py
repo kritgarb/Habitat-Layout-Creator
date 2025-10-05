@@ -22,7 +22,19 @@ def render_about_page():
         </p>
     </div>
     """, unsafe_allow_html=True)
-    
+
+    st.markdown("### Nossa Equipe")
+    team_col1, team_col2, team_col3 = st.columns([1, 4, 1])
+    with team_col2:
+        st.image("src/img/FOTO-GRUPO.svg", width="stretch")
+        st.markdown("""
+        <p style='text-align: center; color: #CBD5F5; font-size: 0.95rem; margin-top: 0.75rem;'>
+            Time multidisciplinar da ENTERPRISE com expertise em engenharia espacial, design e ciência de dados.
+        </p>
+        """, unsafe_allow_html=True)
+
+    st.markdown("---")
+
     # Missão e Visão
     st.markdown("### Missão e Visão")
     

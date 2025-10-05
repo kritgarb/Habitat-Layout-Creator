@@ -1,3 +1,6 @@
+import base64
+from pathlib import Path
+
 import streamlit as st
 from src.config.styles import CUSTOM_CSS
 from src.pages.home import render_home_page
@@ -6,9 +9,14 @@ from src.pages.layout_3d import render_layout_3d_page
 from src.pages.metrics import render_metrics_page
 from src.pages.documentation import render_documentation_page
 from src.pages.about import render_about_page
-
+def _svg_to_data_uri(file_path: str) -> str:
+    svg_path = Path(file_path)
+    svg_content = svg_path.read_text(encoding="utf-8")
+    encoded = base64.b64encode(svg_content.encode("utf-8")).decode("utf-8")
+    return f"data:image/svg+xml;base64,{encoded}"
 st.set_page_config(
     page_title="AEGIS - NASA Space Apps 2025",
+    page_icon="src/logo/AEGIS LOGO ICONE BRANCO OUTLINE.svg",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -34,32 +42,32 @@ st.markdown("---")
 menu_col1, menu_col2, menu_col3, menu_col4, menu_col5, menu_col6 = st.columns(6)
 
 with menu_col1:
-    if st.button("Início", use_container_width=True, type="primary" if st.session_state.page == 'Início' else "secondary"):
+    if st.button("Início", width="stretch", type="primary" if st.session_state.page == 'Início' else "secondary"):
         st.session_state.page = 'Início'
         st.rerun()
 
 with menu_col2:
-    if st.button("Layout 2D", use_container_width=True, type="primary" if st.session_state.page == 'Layout 2D' else "secondary"):
+    if st.button("Layout 2D", width="stretch", type="primary" if st.session_state.page == 'Layout 2D' else "secondary"):
         st.session_state.page = 'Layout 2D'
         st.rerun()
 
 with menu_col3:
-    if st.button("Layout 3D", use_container_width=True, type="primary" if st.session_state.page == 'Layout 3D' else "secondary"):
+    if st.button("Layout 3D", width="stretch", type="primary" if st.session_state.page == 'Layout 3D' else "secondary"):
         st.session_state.page = 'Layout 3D'
         st.rerun()
 
 with menu_col4:
-    if st.button("Métricas NASA", use_container_width=True, type="primary" if st.session_state.page == 'Métricas NASA' else "secondary"):
+    if st.button("Métricas NASA", width="stretch", type="primary" if st.session_state.page == 'Métricas NASA' else "secondary"):
         st.session_state.page = 'Métricas NASA'
         st.rerun()
 
 with menu_col5:
-    if st.button("Documentação", use_container_width=True, type="primary" if st.session_state.page == 'Documentação' else "secondary"):
+    if st.button("Documentação", width="stretch", type="primary" if st.session_state.page == 'Documentação' else "secondary"):
         st.session_state.page = 'Documentação'
         st.rerun()
 
 with menu_col6:
-    if st.button("Sobre", use_container_width=True, type="primary" if st.session_state.page == 'Sobre' else "secondary"):
+    if st.button("Sobre", width="stretch", type="primary" if st.session_state.page == 'Sobre' else "secondary"):
         st.session_state.page = 'Sobre'
         st.rerun()
 
@@ -86,9 +94,26 @@ elif st.session_state.page == 'Sobre':
 
 # Footer (em todas as páginas)
 st.markdown("---")
-st.markdown("""
-<div style='text-align: center; padding: 2rem 0; color: #718096;'>
-    <p style='font-size: 1.1rem; font-weight: 600;'>AEGIS made by ENTERPRISE</p>
-    <p style='font-size: 0.9rem;'>Your Home in Space: The Habitat Layout Creator - NASA Space Apps Challenge 2025</p>
-</div>
-""", unsafe_allow_html=True)
+logo_assets = [
+    ("src/img/LOGO_TIC.svg", "TIC"),
+    ("src/img/LOGO_NSA.svg", "NASA Space Apps"),
+    ("src/img/LOGO_NS.svg", "NS"),
+    ("src/img/LOGO_ENTERPRISE.svg", "Enterprise"),
+]
+logos_inline = "".join(
+    f"<img src='{_svg_to_data_uri(path)}' alt='{alt}' style='height:48px; margin:0 10px;'/>"
+    for path, alt in logo_assets
+)
+
+st.markdown(
+    f"""
+    <div style='text-align:center; padding: 1.5rem 0;'>
+        <div style='display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;'>
+            {logos_inline}
+        </div>
+        <p style='font-size: 1.1rem; font-weight: 600; color: #718096; margin: 1rem 0 0.25rem 0;'>AEGIS made by ENTERPRISE</p>
+        <p style='font-size: 0.9rem; color: #718096; margin: 0;'>Your Home in Space: The Habitat Layout Creator - NASA Space Apps Challenge 2025</p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)

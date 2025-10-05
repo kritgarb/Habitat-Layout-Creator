@@ -109,7 +109,7 @@ def render_layout_2d_page():
         zones, floor_area, config["shape"], config["dimensions"],
         ZONE_COLORS, ZONE_NAMES
     )
-    st.plotly_chart(fig_2d, use_container_width=True)
+    st.plotly_chart(fig_2d, width="stretch")
     
     # Legenda e explicação das zonas
     st.markdown("---")
