@@ -160,6 +160,11 @@ def render_about_page():
         - **Python 3.11+** - Linguagem principal
         - **NumPy** - Cálculos numéricos eficientes
         - **Matemática Python** - Cálculos geométricos precisos
+        
+        **Desenvolvimento:**
+        - **VS Code** - IDE principal de desenvolvimento
+        - **Claude Sonnet 4** - Agent AI para auxílio técnico
+        - **Notebook LLM** - Ferramenta de estudo e prototipação
         """)
     
     with tech_col2:
@@ -170,11 +175,16 @@ def render_about_page():
         - Componentes reutilizáveis
         - Fácil manutenção
         
-        **Deployment:**
-        - Docker containerizado
+        **Deployment & DevOps:**
+        - **Docker** - Containerização da aplicação
+        - **Docker Compose** - Orquestração de containers
         - Cloud-ready (Google Cloud Run)
         - CI/CD pipeline
         - Escalabilidade horizontal
+        
+        **Controle de Versão:**
+        - **Git** - Sistema de versionamento
+        - **GitHub** - Repositório remoto e colaboração
         """)
     
     st.markdown("---")
