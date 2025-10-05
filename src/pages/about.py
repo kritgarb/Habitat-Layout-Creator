@@ -29,7 +29,7 @@ def render_about_page():
         st.image("src/img/FOTO-GRUPO.svg", width="stretch")
         st.markdown("""
         <p style='text-align: center; color: #CBD5F5; font-size: 0.95rem; margin-top: 0.75rem;'>
-            Time multidisciplinar da ENTERPRISE com expertise em engenharia espacial, design e ciência de dados.
+            Time multidisciplinar da ENTERPRISE com expertise em ciência da computação, design e análise e desenvolvimento de sistemas.
         </p>
         """, unsafe_allow_html=True)
 
@@ -209,47 +209,6 @@ def render_about_page():
     
     st.markdown("---")
     
-    # Roadmap
-    st.markdown("### Roadmap de Desenvolvimento")
-    
-    st.markdown("""
-    **Versão Atual (1.0.0):**
-    - Configuração completa de habitats cilíndricos e retangulares
-    - Validação de métricas NASA HIDH
-    - Visualizações 2D e 3D interativas
-    - Customização de zonas funcionais
-    - Exportação JSON
-    - Documentação completa em português
-    
-    **Próximas Versões:**
-    
-    **v1.1.0 - Recursos Avançados:**
-    - Importação de configurações JSON
-    - Comparação lado a lado de múltiplos designs
-    - Calculadora de massa estrutural
-    - Análise de custos estimados
-    
-    **v1.2.0 - Colaboração:**
-    - Compartilhamento de designs via URL
-    - Galeria de designs comunitários
-    - Comentários e feedback em designs
-    - Sistema de versionamento de designs
-    
-    **v1.3.0 - Análises Avançadas:**
-    - Simulação de fluxo de tripulação
-    - Análise de compatibilidade de zonas
-    - Otimização automática de layouts
-    - Geração de relatórios PDF
-    
-    **v2.0.0 - Expansão:**
-    - Habitats modulares conectados (multi-módulo)
-    - Formas complexas (toroidais, em L, etc.)
-    - Integração com CAD (exportação STEP/IGES)
-    - API para integração com outras ferramentas
-    """)
-    
-    st.markdown("---")
-    
     # Contribuições
     st.markdown("### Como Contribuir")
     
@@ -328,25 +287,14 @@ def render_about_page():
     with contact_col1:
         st.markdown("""
         **Repositório do Projeto:**
-        - GitHub: [AEGIS-Habitat-Layout-Creator](#)
-        - Documentação: [Wiki do GitHub](#)
-        - Issues: [GitHub Issues](#)
-        
-        **Comunidade:**
-        - Discussions: [GitHub Discussions](#)
-        - Updates: [Releases](#)
+        - GitHub: [Habitat-Layout-Creator](https://github.com/kritgarb/Habitat-Layout-Creator)
         """)
     
     with contact_col2:
         st.markdown("""
         **Redes Sociais:**
-        - Twitter: [@AEGIS_Tools](#)
-        - LinkedIn: [AEGIS Space Tools](#)
-        
-        **Suporte:**
-        - Email: support@aegis-tools.com
-        - FAQ: [Perguntas Frequentes](#)
-        - Tutoriais: [YouTube Channel](#)
+        - Instagram: [@fatherofcode](https://instagram.com/fatherofcode)
+        - LinkedIn: [Benjamin Vieira](https://www.linkedin.com/in/garbkrit/)
         """)
     
     st.markdown("---")
@@ -360,14 +308,16 @@ def render_about_page():
     **NASA** - Por décadas de pesquisa em habitabilidade espacial e por disponibilizar publicamente 
     os padrões HIDH que formam a base desta ferramenta.
     
+    **Innovation Center e Grupo Tiradentes** - Pelo apoio institucional e fomento à inovação tecnológica.
+    
+    **Leonardo Sales** - Organizador local do NASA Space Apps Challenge, por fomentar tecnologia no 
+    Nordeste brasileiro e incentivar os jovens nesse ambiente de inovação.
+    
     **Comunidade Open-Source** - Streamlit, Plotly, e inúmeras bibliotecas Python que tornam 
     desenvolvimento rápido e acessível.
     
     **Pesquisadores e Engenheiros** - Cujo trabalho em arquitetura espacial, fatores humanos e 
     sistemas de suporte de vida informam os algoritmos e validações desta ferramenta.
-    
-    **Primeiros Usuários** - Pela paciência, feedback e sugestões que melhoraram significativamente 
-    a usabilidade e precisão da ferramenta.
     
     **Você** - Por usar esta ferramenta e contribuir para o futuro da exploração espacial!
     """)
@@ -383,7 +333,7 @@ def render_about_page():
             a abrigar a humanidade entre as estrelas.
         </p>
         <p style='color: #A0AEC0; margin-top: 1rem;'>
-            Made with love for the space community | © 2024 AEGIS Tools
+            Made with love for the space community | © 2025 ENTERPRISE
         </p>
     </div>
     """, unsafe_allow_html=True)

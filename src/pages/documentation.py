@@ -30,9 +30,11 @@ def render_documentation_page():
     4. [Parâmetros de Configuração](#4-par-metros-de-configura-o)
     5. [Interpretando Visualizações](#5-interpretando-visualiza-es)
     6. [Entendendo Métricas NASA](#6-entendendo-m-tricas-nasa)
-    7. [Dicas e Melhores Práticas](#7-dicas-e-melhores-pr-ticas)
-    8. [Exportação de Dados](#8-exporta-o-de-dados)
-    9. [Solução de Problemas](#9-solu-o-de-problemas)
+    7. [Requisitos de Recursos e Suporte de Vida](#6-5-requisitos-de-recursos-e-suporte-de-vida)
+    8. [Dicas e Melhores Práticas](#7-dicas-e-melhores-pr-ticas)
+    9. [Exportação de Dados](#8-exporta-o-de-dados)
+    10. [Solução de Problemas](#9-solu-o-de-problemas)
+    11. [Documentação NASA](#10-documenta-o-nasa)
     """)
     
     st.markdown("---")
@@ -151,7 +153,7 @@ def render_documentation_page():
            - Dica: Comece com dimensões padrão e ajuste conforme necessário
         
         4. **Defina tripulação e missão:**
-           - Tamanho da tripulação: 2-6 pessoas típico
+           - Tamanho da tripulação: 4-6 pessoas típico
            - Duração: 30 dias (curta) até 360+ dias (longa)
            - Dica: Duração afeta drasticamente requisitos de NHV
         
@@ -226,7 +228,7 @@ def render_documentation_page():
     with st.expander("### 4. Parâmetros de Configuração"):
         st.markdown("""
         #### Forma do Habitat (Shape)
-        - **Opções:** Cylinder, Box
+        - **Opções:** Cylinder, Rectangular
         - **Impacto:** Determina fórmulas de volume e área
         - **Recomendação:** Cilindro para pressurização eficiente
         
@@ -251,8 +253,8 @@ def render_documentation_page():
         - Evite dimensões muito desproporcionais
         
         #### Tamanho da Tripulação (Crew Size)
-        - **Faixa:** 1-10 pessoas
-        - **Típico:** 2-6 pessoas
+        - **Faixa:** 4-6 pessoas
+        - **Típico:** 4-6 pessoas
         - **Impacto:** Divisor para métricas per capita
         - **Consideração:** Mais pessoas = mais recursos, mais complexidade social
         
@@ -409,6 +411,82 @@ def render_documentation_page():
         - Verde: Atende aos padrões
         - Vermelho: Requer atenção
         - Déficits quantificados para correção
+        """)
+    
+    # Seção 6.5: Requisitos de Recursos e Suporte de Vida
+    with st.expander("### 6.5. Requisitos de Recursos e Suporte de Vida"):
+        st.markdown(r"""
+        #### Requisitos de Água
+        
+        **Água Potável (Hidratação/Consumo):**
+        - Mínimo de $\mathbf{2.0 \text{ kg}}$ de água potável por tripulante por dia de missão para ingestão
+        - Essencial para hidratação e funções corporais
+        - Deve ser potável e livre de contaminantes
+        
+        **Água para Reidratação de Alimentos:**
+        - Aproximadamente $\mathbf{0.5 \text{ kg}}$ por tripulante por dia de missão
+        - Necessária para preparação de alimentos liofilizados
+        - Temperatura e qualidade controladas
+        
+        **Água para Atividades Extraveiculares (EVA):**
+        - Adicionalmente, $\mathbf{0.24 \text{ kg}}$ de água por hora de EVA
+        - Acima da provisão nominal de água
+        - Recomendado para evitar a desidratação durante atividades intensas
+        
+        **Total de Água por Pessoa/Dia:**
+        - **Nominal:** 2.5 kg/dia (2.0 + 0.5)
+        - **Com EVAs:** Adicionar 0.24 kg por hora de EVA
+        
+        #### Requisitos de Oxigênio
+        
+        **Produção de Oxigênio via Plantas:**
+        - Cerca de $\mathbf{20-25 \text{ m}^2}$ de colheitas são necessárias para fornecer o $\text{O}_2$ para um humano
+        - Sistemas bioregenerativos podem reduzir dependência de ressuprimento
+        - Plantas também fornecem benefícios psicológicos
+        
+        **Consumo Humano:**
+        - Aproximadamente 0.82 kg de $\text{O}_2$ por pessoa por dia
+        - Produção de 1.0 kg de $\text{CO}_2$ por pessoa por dia
+        
+        #### Requisitos de Alimentos
+        
+        **Produção de Alimentos (Calorias):**
+        - Cerca de $\mathbf{50 \text{ m}^2}$ são necessários para fornecer as calorias dietéticas para um humano
+        - Baseado em 2500 kcal/pessoa/dia
+        - Sistemas de cultivo vertical podem otimizar espaço
+        
+        **Massa de Alimentos:**
+        - Aproximadamente 1.8 kg de alimentos por pessoa por dia
+        - Alimentos liofilizados reduzem massa e volume
+        
+        #### Saúde da Tripulação
+        
+        **Perda de Massa Corporal:**
+        - Em missões de longa duração na ISS, observou-se uma perda média de $\mathbf{2.4\%}$ do peso corporal a cada 100 dias
+        - Relacionado a: perda de apetite, exercício insuficiente, estresse
+        - Contramedidas: exercício diário (2h), nutrição adequada, monitoramento médico
+        
+        **Implicações de Design:**
+        - Zona de exercício é **crítica** para missões longas
+        - Área mínima recomendada: 3-4 m²/pessoa
+        - Equipamentos: esteira, bicicleta ergométrica, resistência
+        
+        #### Resumo de Recursos por Pessoa/Dia
+        
+        | Recurso | Quantidade | Unidade |
+        |---------|------------|---------|
+        | Água (potável) | 2.0 | kg |
+        | Água (alimentos) | 0.5 | kg |
+        | Água (EVA) | 0.24 | kg/hora EVA |
+        | Oxigênio | 0.82 | kg |
+        | Alimentos | 1.8 | kg |
+        | CO₂ produzido | 1.0 | kg |
+        | Área cultivo O₂ | 20-25 | m² |
+        | Área cultivo alimentos | 50 | m² |
+        
+        **Nota:** Estes valores são para missões sem sistemas de reciclagem avançados. 
+        Sistemas ECLSS (Environmental Control and Life Support System) podem reduzir 
+        significativamente a necessidade de ressuprimento através de reciclagem de água e ar.
         """)
     
     # Seção 7: Dicas e Melhores Práticas
@@ -707,40 +785,51 @@ def render_documentation_page():
     
     st.markdown("---")
     
-    # Recursos adicionais
-    st.markdown("### Recursos Adicionais")
-    
-    resource_col1, resource_col2 = st.columns(2)
-    
-    with resource_col1:
+    # Documentação NASA
+    with st.expander("### 10. Documentação NASA"):
         st.markdown("""
-        **Documentação NASA:**
-        - [NASA HIDH Standards](https://www.nasa.gov/reference/standards)
-        - [ISS Research Publications](https://www.nasa.gov/mission_pages/station/research)
-        - [Human Spaceflight Standards](https://standards.nasa.gov)
+        #### Padrões e Referências Oficiais
         
-        **Artigos Técnicos:**
-        - Habitability and Human Factors in Long-Duration Space Missions
-        - Architectural Design of Space Habitats
-        - Volumetric Requirements for Deep Space Habitats
-        """)
-    
-    with resource_col2:
-        st.markdown("""
-        **Projetos de Referência:**
-        - International Space Station (ISS)
-        - Bigelow Expandable Activity Module (BEAM)
-        - NASA Deep Space Habitats
-        - SpaceX Starship
-        - Sierra Space LIFE Habitat
+        **NASA HIDH Standards**
         
-        **Comunidades:**
-        - AIAA Space Architecture Technical Committee
-        - Mars Society
-        - Space Frontier Foundation
+        O Human Integration Design Handbook é a principal referência para design de habitats espaciais:
+        - [NASA HIDH Standards](https://www.nasa.gov/wp-content/uploads/2023/03/human-integration-design-handbook-revision-1.pdf?emrc=68e269191aa6f)
+        - Cobre requisitos de volume, ergonomia, fatores humanos e habitabilidade
+        - Base para todos os cálculos de NHV e área mínima desta ferramenta
+        
+        **ISS Research Publications**
+        
+        Pesquisas e dados operacionais da Estação Espacial Internacional:
+        - [ISS Research Publications](https://issnationallab.org/publications/)
+        - Lições aprendidas de mais de 20 anos de operação contínua
+        - Dados reais de habitabilidade em microgravidade
+        
+        **Human Spaceflight Standards**
+        
+        Padrões técnicos da NASA para voos espaciais tripulados:
+        - [Human Spaceflight Standards](https://www.nasa.gov/ochmo/human-spaceflight-and-aviation-standards/)
+        - Requisitos de segurança, saúde e desempenho da tripulação
+        - Normas para design de sistemas espaciais
+        
+        #### Como Usar Esta Documentação
+        
+        1. **Para Validação:** Compare resultados desta ferramenta com valores oficiais
+        2. **Para Aprofundamento:** Leia documentos completos para contexto adicional
+        3. **Para Pesquisa:** Use como ponto de partida para estudos mais avançados
+        4. **Para Conformidade:** Verifique se seu design atende aos padrões NASA
+        
+        #### Publicações Científicas Relacionadas
+        
+        - "Volume and Surface Area Allocations for Crew Habitability"
+        - "Psychological and Human Factors in Long Duration Spaceflight"
+        - "Architectural Approaches to Space Habitat Design"
+        - "Defining the Net Habitable Volume for Long Duration Exploration Missions"
         """)
     
     st.markdown("---")
+    
+    st.markdown("---")
+    
     st.markdown("""
     <div style='text-align: center; padding: 2rem; background: rgba(59, 130, 246, 0.1); border-radius: 10px;'>
         <p style='color: #3b82f6; font-size: 1.1rem;'>

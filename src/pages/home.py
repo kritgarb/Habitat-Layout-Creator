@@ -69,47 +69,47 @@ def render_home_page():
     glossary = {
         "NHV (Net Habitable Volume)": {
             "desc": "Volume Habitável Líquido - o espaço interior utilizável do habitat, excluindo equipamentos, paredes e áreas inacessíveis.",
-            "formula": "NHV = Volume Total  Fator de Usabilidade (tipicamente 0.7)",
-            "ref": "Fórmula NASA: NHV (m³/pessoa) = 6.67  ln(duração_dias) - 7.79"
+            "formula": "NHV = Volume Total × Fator de Usabilidade (tipicamente 0.7)",
+            "ref": "Fórmula NASA: NHV (m³/pessoa) = 6.67 × ln(duração_dias) - 7.79"
         },
         "Habitat Cilíndrico": {
-            "desc": "Formato circular otimizado para pressurização uniforme e eficiência estrutural em ambientes de baixa gravidade.",
-            "formula": "Volume = π  (diâmetro/2)²  altura",
+            "desc": "Formato circular otimizado para pressurização uniforme e eficiência estrutural em ambientes de baixa gravidade, como em órbitas.",
+            "formula": "Volume = π × (diâmetro/2)² × altura",
             "ref": "Baseado no design da ISS e TransHab da NASA"
         },
         "Habitat Retangular": {
             "desc": "Formato modular que facilita conexão entre módulos e maximiza área de piso utilizável.",
-            "formula": "Volume = comprimento  largura  altura",
+            "formula": "Volume = comprimento × largura × altura",
             "ref": "Usado em habitats de superfície lunar/marciana"
         },
         "Zonas Funcionais": {
             "desc": "Áreas designadas para atividades específicas da tripulação.",
-            "formula": "Área da Zona = m²/pessoa  número de tripulantes",
+            "formula": "Área da Zona = m²/pessoa × número de tripulantes",
             "ref": "6 zonas principais: Dormir, Higiene, Cozinha, Exercício, Armazenamento, Trabalho/Lazer"
         },
         "Estrutura Rígida": {
             "desc": "Construção de alumínio ou compósitos com alta resistência e proteção contra micrometeoritos.",
-            "formula": "Massa  150 kg/m³ de volume",
+            "formula": "Massa ≈ 150 kg/m³ de volume",
             "ref": "Exemplo: Módulos da Estação Espacial Internacional"
         },
         "Estrutura Inflável": {
             "desc": "Softgoods expansíveis que oferecem 3-4x mais volume com menor massa de lançamento.",
-            "formula": "Massa  40 kg/m³ de volume",
+            "formula": "Massa ≈ 40 kg/m³ de volume",
             "ref": "Exemplo: BEAM (Bigelow Expandable Activity Module) na ISS"
         },
         "Microgravidade (0g)": {
             "desc": "Ambiente orbital onde a gravidade é negligível. Tripulação pode usar paredes e teto.",
-            "formula": "Métrica principal: Volume (m³)",
+            "formula": "Métrica principal: Volume (m³) | Faixa: 10⁻⁶g a 10⁻¹g",
             "ref": "ISS, habitats de trânsito Terra-Marte"
         },
         "Gravidade Lunar (1/6g)": {
             "desc": "16.7% da gravidade terrestre. Requer área de piso funcional.",
-            "formula": "Métrica principal: Área horizontal (m²)",
+            "formula": "Métrica principal: Área horizontal (m²) | g ≈ 0.17g ou 1/6g",
             "ref": "Habitats de superfície lunar"
         },
         "Gravidade Marciana (3/8g)": {
             "desc": "37.5% da gravidade terrestre. Comportamento mais próximo da Terra.",
-            "formula": "Métrica principal: Área horizontal (m²)",
+            "formula": "Métrica principal: Área horizontal (m²) | g ≈ 0.38g",
             "ref": "Habitats de superfície marciana"
         },
         "Recursos de Missão": {

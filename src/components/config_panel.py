@@ -29,7 +29,7 @@ def render_config_panel():
         
     with col2:
         st.markdown("#### Parâmetros da Missão")
-        crew_size = st.slider("Tamanho da Tripulação", min_value=2, max_value=8, value=4, key="crew")
+        crew_size = st.slider("Tamanho da Tripulação", min_value=4, max_value=6, value=4, key="crew")
         mission_duration = st.number_input(
             "Duração da Missão (dias)", 
             min_value=1, 

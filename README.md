@@ -1,12 +1,10 @@
-# Habitat Layout Creator
+# AEGIS Habitat Layout Creator
 
-**NASA Space Apps Challenge 2025**
+Aplicação Streamlit criada para o **NASA Space Apps Challenge 2025**, oferecendo uma experiência moderna e interativa para projetar habitats espaciais de acordo com os padrões oficiais da NASA.
 
-Modern, interactive tool for designing and validating space habitat layouts with real NASA standards.
+## Referências Científicas
 
-## 📚 Scientific Foundation
-
-This application is based on official NASA technical documents and research:
+O projeto é fundamentado em documentação técnica e pesquisas oficiais da NASA:
 
 1. **Defining the Net Habitable Volume for Long Duration Exploration Missions** - Minimum volume requirements
 2. **Moon to Mars Architecture Definition Document** - Launch envelope and architecture requirements
@@ -19,206 +17,175 @@ This application is based on official NASA technical documents and research:
 9. **Multi-functionality in Space** - Multi-functional space optimization
 10. **Food Production on the Moon and in Remote Areas** - Food production and ECLSS integration
 
-📖 **Complete references documentation**: [`docs/REFERENCES.md`](docs/REFERENCES.md)
+Referências detalhadas: veja `docs_archive/TECHNICAL.md`
 
-## Features
+## Funcionalidades
 
-### Modern Interface
-- **Dark Theme**: Sleek, professional design optimized for focus
-- **Purple Gradient**: Distinctive brand identity
-- **Responsive Layout**: Clean metric cards and visualizations
-- **Professional Design**: Modern icons and symbols
-- **Interactive 3D**: Plotly-powered 3D habitat visualization
-- **2D Floor Plans**: Interactive Plotly 2D layouts with zone details
+### Interface Moderna
+- Tema escuro com gradiente roxo inspirado na identidade AEGIS
+- Fundo espacial estático com estrelas e nebulosas
+- Menu principal com botões responsivos e favicon personalizado
+- Logo da equipe e foto do time na página “Sobre”
+- Rodapé com logos da ENTERPRISE, TIC, NSA e NS
 
-### Core Functionality
-- ✓ Design cylindrical or rectangular habitats
-- ✓ Automatic volume, NHV, and floor area calculations
-- ✓ Allocation of functional zones (sleep, hygiene, kitchen, exercise, storage, work)
-- ✓ Real-time NASA standards validation (NHV ≥ 25 m³/person)
-- ✓ Interactive 3D visualization with orbit, zoom, and pan controls
-- ✓ 2D floor plan with hover details
-- ✓ Launch vehicle envelope verification (SLS/Starship)
-- ✓ JSON export with mission metadata
-- ✓ User-friendly Streamlit interface
+### Núcleo da Aplicação
+- Criação de habitats cilíndricos ou retangulares
+- Cálculo automático de volume, NHV e áreas úteis por zona
+- Configuração de parâmetros de missão (tripulação, duração, gravidade)
+- Validação em tempo real conforme diretrizes NASA HIDH
+- Visualizações interativas 2D (planta baixa) e 3D (Plotly)
+- Exportação de configuração completa em JSON
+- Métricas didáticas com explicações e status (aprovado/atenção)
 
-## Project Structure
+### Páginas Disponíveis
+- **Início**: visão geral, guia de uso e glossário resumido
+- **Layout 2D**: planta baixa interativa com métricas-chave
+- **Layout 3D**: modelo tridimensional navegável do habitat
+- **Métricas NASA**: dashboard detalhado com padrões e recomendações
+- **Documentação**: tutoriais, troubleshooting e referências adicionais
+- **Sobre**: missão do projeto, equipe AEGIS/ENTERPRISE e roadmap
+
+## Estrutura do Projeto
 
 ```
-nsa-2025/
-├── app.py                      # Main Streamlit application
-├── requirements.txt            # Python dependencies
-├── Dockerfile                  # Docker configuration
-├── docker-compose.yml          # Docker Compose setup
-├── README.md                   # This file
-├── LICENSE                     # MIT License
-├── src/                        # Source code (modular)
-│   ├── config/                 # Configuration files
-│   │   ├── constants.py        # NASA standards & zone config
-│   │   └── styles.py           # CSS styling
-│   ├── utils/                  # Utility functions
-│   │   ├── calculations.py     # Volume, NHV, area calculations
-│   │   └── validators.py       # NASA standards validation
-│   ├── visualizations/         # Plotly visualizations
-│   │   ├── layout_2d.py        # 2D floor plan
-│   │   └── layout_3d.py        # 3D habitat view
-│   └── components/             # Streamlit UI components
-│       ├── sidebar.py          # Configuration sidebar
-│       ├── metrics.py          # Metrics & validation display
-│       └── export.py           # Data export functionality
-├── data/                       # Export directory
-└── docs_archive/              # Archived documentation
+Habitat-Layout-Creator/
+├── app.py                     # Aplicação Streamlit multipáginas
+├── requirements.txt           # Dependências Python
+├── Dockerfile                 # Build Docker (opcional)
+├── docker-compose.yml         # Execução Docker local (opcional)
+├── README.md                  # Documentação principal
+├── LICENSE                    # Licença MIT
+├── data/
+│   └── example_layout.json    # Exemplo de configuração exportada
+├── docs_archive/              # Documentação legada
+├── src/
+│   ├── components/            # Componentes reutilizáveis (sidebar, métricas, exportação)
+│   ├── config/                # Estilos e constantes do projeto
+│   ├── pages/                 # Páginas Streamlit (Início, Layout 2D/3D, Métricas, Documentação, Sobre)
+│   ├── utils/                 # Funções de cálculo e validação NASA
+│   ├── visualizations/        # Renderizações 2D/3D com Plotly
+│   ├── logo/                  # Identidade visual AEGIS
+│   └── img/                   # Foto do grupo e logos de parceiros
+└── venv/                      # Ambiente virtual (opcional)
 ```
 
-## Tech Stack
+## Stack Tecnológico
 
-- **Python 3.11**: Core programming language
-- **Streamlit 1.28.0**: Web framework for rapid prototyping
-- **Plotly 5.5.0**: Interactive 3D and 2D visualizations
-- **NumPy 1.21.0**: Numerical computations and 3D mesh generation
-- **CairoSVG 2.7.1**: SVG manipulation (optional)
-- **Pillow 10.1.0**: Image processing (optional)
-- **Docker**: Containerization for deployment
+- **Python 3.11+** – linguagem principal
+- **Streamlit** – framework para construção rápida de dashboards interativos
+- **Plotly** – gráficos 2D/3D utilizados nas páginas de layout
+- **NumPy** – cálculos geométricos e métricas de habitabilidade
+- **CairoSVG & Pillow** – suporte a manipulação de SVG/PNG quando necessário
+- **Docker** – execução containerizada opcional
 
-## Quick Start
+## Guia Rápido
 
-### Local Installation
+### Ambiente Local
 
-### 1. Clone & Setup
+1. **Criar e ativar o ambiente virtual**
+   ```powershell
+   python -m venv venv
+   .\venv\Scripts\Activate.ps1
+   ```
 
-```powershell
-# Create virtual environment
-python -m venv venv
-.\venv\Scripts\Activate.ps1
-```
+2. **Instalar dependências**
+   ```powershell
+   pip install -r requirements.txt
+   ```
 
-### 2. Install Dependencies
+3. **Executar a aplicação**
+   ```powershell
+   streamlit run app.py
+   ```
 
-```powershell
-pip install -r requirements.txt
-```
+   Acesse em: **http://localhost:8501**
 
-### 3. Run Application
-
-```powershell
-streamlit run app.py
-```
-
-Access at: **http://localhost:8501**
-
-### Docker
-
-### Build Image
+### Via Docker (opcional)
 
 ```powershell
 docker build -t habitat-layout-creator .
-```
-
-### Run Container
-
-```powershell
 docker run -p 8501:8501 habitat-layout-creator
-```
-
-Or use Docker Compose:
-
-```powershell
+# ou
 docker-compose up
 ```
 
-## 🚀 Deploy to Google Cloud Run
+## Deploy em Nuvem
 
-### Quick Deploy
+### Streamlit Community Cloud (mais rápido)
+1. Faça fork ou torne este repositório público no GitHub.
+2. Acesse [share.streamlit.io](https://share.streamlit.io) e conecte-se com sua conta GitHub.
+3. Escolha o repositório, selecione a branch `main` e o arquivo `app.py`.
+4. Defina variáveis de ambiente se necessário (não há obrigatórias atualmente) e clique em **Deploy**.
 
-```powershell
-# Windows PowerShell
-.\deploy.ps1
+### Google Cloud Run (contenierizado)
+Pré-requisitos:
+- Google Cloud CLI instalado e autenticado (`gcloud auth login`).
+- Projeto com faturamento habilitado.
 
-# Linux/Mac Bash
-chmod +x deploy.sh
-./deploy.sh
-```
-
-### Prerequisites
-
-1. **Install Google Cloud CLI**: https://cloud.google.com/sdk/docs/install
-2. **Authenticate**:
-   ```bash
-   gcloud auth login
-   gcloud config set project oxesites-435903
-   ```
-3. **Enable Billing**: See [`BILLING_SETUP.md`](BILLING_SETUP.md) for details
-
-### Manual Deploy
-
+Passos principais:
 ```bash
-# 1. Build and push Docker image
-gcloud builds submit --tag southamerica-east1-docker.pkg.dev/oxesites-435903/habitat-repo/habitat:latest
+# 1. Build e push da imagem
+gcloud builds submit --tag gcr.io/SEU_PROJETO/habitat-layout-creator:latest
 
-# 2. Deploy to Cloud Run
-gcloud run deploy habitat \
-  --image southamerica-east1-docker.pkg.dev/oxesites-435903/habitat-repo/habitat:latest \
-  --platform managed \
-  --region southamerica-east1 \
-  --allow-unauthenticated \
-  --port 8501 \
-  --cpu 1 \
-  --memory 1Gi \
-  --min-instances 0 \
-  --max-instances 5 \
-  --concurrency 50 \
-  --set-env-vars MODE=prod
+# 2. Deploy no Cloud Run
+gcloud run deploy habitat-layout-creator \
+   --image gcr.io/SEU_PROJETO/habitat-layout-creator:latest \
+   --platform managed \
+   --region southamerica-east1 \
+   --allow-unauthenticated \
+   --port 8501
 ```
 
-📖 **Complete deploy guide**: [`DEPLOY.md`](DEPLOY.md)
+> **Observação:** Não conseguimos publicar diretamente a partir deste ambiente, mas os passos acima são suficientes para reproduzir o deploy em qualquer conta.
 
-## How to Use
+## Como Utilizar
 
-1. **Configure Habitat**: Select shape (Cylinder/Rectangular) and dimensions in sidebar
-2. **Set Mission Parameters**: Crew size, duration, and destination
-3. **Review Metrics**: Check volume, NHV, and floor area calculations
-4. **Validate Standards**: Ensure NASA requirements are met (green = pass)
-5. **Explore 3D/2D Views**: 
-   - **3D View**: Click + drag to orbit, scroll to zoom, double-click to reset
-   - **2D Floor Plan**: Hover over zones for details
-6. **Export Data**: Download JSON with complete habitat specifications
+1. **Configurar Habitat** – utilize o painel lateral para definir forma (cilíndrica ou retangular), dimensões e zonas funcionais.
+2. **Ajustar Parâmetros de Missão** – informe tripulação, duração, fator de uso e ambiente gravitacional.
+3. **Revisar Métricas** – acompanhe volume, NHV e área mínima em cartões coloridos e explicativos.
+4. **Validar Padrões** – indicadores verdes sinalizam conformidade com NASA HIDH; amarelo/vermelho destacam itens críticos.
+5. **Explorar Visualizações** – na aba Layout 2D veja planta baixa com detalhes por zona; em Layout 3D gire/zoome o habitat interativo.
+6. **Estudar Documentação** – a página Documentação reúne guias, glossário e troubleshooting.
+7. **Exportar Configuração** – baixe um JSON completo com parâmetros e métricas da missão.
 
-## NASA Standards Implemented
+## Padrões NASA Implementados
 
-- **NHV Minimum**: ≥ 25 m³ per person (Net Habitable Volume)
-- **Floor Area Minimum**: ≥ 10 m² per person
-- **Launch Vehicle Compatibility**: SLS (Ø ≤ 8.4m), Starship (Ø ≤ 9.0m)
-- **Functional Zones**: 6 zones with minimum area requirements
-- **Life Support**: Water calculation (2.5 L/day/person)
+- **NHV mínimo**: ≥ 25 m³ por pessoa (Net Habitable Volume)
+- **Área de piso mínima**: ≥ 10 m² por pessoa
+- **Envelope de lançamento**: SLS (Ø ≤ 8,4 m) e Starship (Ø ≤ 9,0 m)
+- **Zonas funcionais**: seis zonas com áreas mínimas recomendadas
+- **Suporte de vida**: cálculo estimado de água (2,5 L/dia/pessoa)
 
-## Code Architecture
+## Arquitetura de Código
 
-The project follows a **modular architecture** for maintainability:
+O projeto segue uma arquitetura modular para facilitar manutenção e evolução:
 
-- **`src/config/`**: Constants, NASA standards, styling
-- **`src/utils/`**: Pure functions for calculations and validation
-- **`src/visualizations/`**: Plotly 2D/3D rendering logic
-- **`src/components/`**: Streamlit UI components (sidebar, metrics, export)
-- **`app.py`**: Main orchestration and page layout
+- **`app.py`** – orquestra as páginas, aplica o CSS customizado e controla navegação
+- **`src/pages/`** – páginas independentes (Início, Layout 2D/3D, Métricas, Documentação, Sobre)
+- **`src/components/`** – componentes reutilizáveis (painel de configuração, métricas, exportação)
+- **`src/utils/`** – cálculos geométricos e validadores de requisitos NASA
+- **`src/config/`** – estilos, constantes e schema base
+- **`src/visualizations/`** – geração dos gráficos Plotly 2D/3D
+- **`src/logo/` & `src/img/`** – identidade visual, foto do time e logos de parceiros
 
-## Contributing
+## Contribuindo
 
-Contributions are welcome! Feel free to:
-- Report bugs via GitHub Issues
-- Suggest new features
-- Submit pull requests
-- Improve documentation
+Contribuições são bem-vindas! Você pode:
+- Abrir issues com bugs ou ideias
+- Enviar pull requests com melhorias ou correções
+- Sugerir novas métricas/padrões NASA
+- Aprimorar documentação e exemplos de uso
 
-## License
+## Licença
 
-MIT License - see [LICENSE](LICENSE) file for details.
+Licença MIT – veja o arquivo [LICENSE](LICENSE) para detalhes.
 
-## Acknowledgments
+## Agradecimentos
 
-- **NASA Space Apps Challenge 2025**
+- NASA Space Apps Challenge 2025
 - NASA Human Integration Design Standards (NASA-STD-3001)
 - ISS Habitat Design Experience
 
 ---
 
-**Made with ❤️ for ENTERPRISE ON NASA Space Apps Challenge 2025**
+Projeto desenvolvido pela equipe ENTERPRISE para o NASA Space Apps Challenge 2025.

@@ -42,7 +42,8 @@ def render_sidebar():
     
     # Parâmetros da missão
     st.sidebar.markdown("#### Parâmetros da Missão")
-    crew_size = st.sidebar.slider("Tamanho da Tripulação", min_value=2, max_value=8, value=4)
+    # Tripulação: mínimo 4, máximo 6 pessoas
+    crew_size = st.sidebar.slider("Tamanho da Tripulação", min_value=4, max_value=6, value=4)
     mission_duration = st.sidebar.number_input(
         "Duração da Missão (dias)", 
         min_value=1, 

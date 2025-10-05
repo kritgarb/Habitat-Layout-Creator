@@ -68,6 +68,15 @@ CUSTOM_CSS = """
         z-index: 2;
     }
     
+    /* Títulos da Sidebar em roxo */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] h4 {
+        color: #A68CFF !important;
+        font-weight: 600 !important;
+    }
+    
     [data-testid="stSidebar"]::before {
         content: '';
         position: absolute;

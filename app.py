@@ -39,7 +39,7 @@ st.markdown("""
 
 # Menu de Navegação Horizontal
 st.markdown("---")
-menu_col1, menu_col2, menu_col3, menu_col4, menu_col5, menu_col6 = st.columns(6)
+menu_col1, menu_col2, menu_col3, menu_col4, menu_col5, menu_col6, menu_col7 = st.columns(7)
 
 with menu_col1:
     if st.button("Início", width="stretch", type="primary" if st.session_state.page == 'Início' else "secondary"):
@@ -70,6 +70,27 @@ with menu_col6:
     if st.button("Sobre", width="stretch", type="primary" if st.session_state.page == 'Sobre' else "secondary"):
         st.session_state.page = 'Sobre'
         st.rerun()
+
+with menu_col7:
+    st.markdown("""
+    <a href='https://www.figma.com/proto/PkdgT9qSERxvKzIaCu8QRi/Pessoal?node-id=364-1098&t=X75kdhaIlOCyGrVk-0&scaling=contain&content-scaling=fixed&starting-point-node-id=364%3A1098' target='_blank' style='text-decoration: none;'>
+        <button style='
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            background-color: transparent;
+            color: rgb(250, 250, 250);
+            border: 1px solid rgb(77, 77, 77);
+            border-radius: 0.375rem;
+            font-family: "Source Sans Pro", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        ' onmouseover='this.style.borderColor="rgb(167, 130, 240)"' onmouseout='this.style.borderColor="rgb(77, 77, 77)"'>
+            Game Protótipo
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
 
 st.markdown("---")
 
