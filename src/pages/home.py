@@ -26,6 +26,118 @@ def render_home_page():
     </div>
     """, unsafe_allow_html=True)
     
+    # Seção ODS
+    st.markdown("---")
+    st.markdown("## Objetivos de Desenvolvimento Sustentável (ODS) da ONU")
+    
+    st.markdown("""
+    <p style='font-size: 1.1rem; line-height: 1.8; color: #E2E8F0; text-align: center; margin-bottom: 2rem;'>
+        O projeto AEGIS Habitat Creator se alinha com os Objetivos de Desenvolvimento Sustentável da ONU, 
+        contribuindo para um futuro mais sustentável tanto na Terra quanto no espaço.
+    </p>
+    """, unsafe_allow_html=True)
+    
+    # Cards dos ODS
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col1:
+        # Carregar e exibir SVG do ODS 4
+        svg_img = ""
+        try:
+            with open("src/selos/SDG-4- Educação de qualidade.svg", "r", encoding="utf-8") as f:
+                svg_content = f.read()
+            # Modificar o SVG para limitar tamanho
+            svg_img = svg_content.replace('<svg', '<svg width="80" height="80"')
+        except:
+            pass
+        
+        st.markdown(f"""
+        <div style='background: rgba(196, 32, 50, 0.1); padding: 1.5rem; border-radius: 10px; 
+                    border-left: 4px solid #C42032; height: 100%; min-height: 400px;'>
+            <div style="text-align: center; margin-bottom: 1rem;">{svg_img}</div>
+            <h4 style='color: #C42032; margin-top: 1rem;'>Educação de Qualidade</h4>
+            <p style='font-size: 0.95rem; line-height: 1.6;'>
+                Nossa ferramenta serve como <strong>recurso educacional</strong> para estudantes e profissionais 
+                aprenderem sobre design de habitats espaciais, engenharia aeroespacial e os desafios da 
+                exploração espacial através de uma interface interativa e baseada em padrões científicos reais.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        # Carregar e exibir SVG do ODS 9
+        svg_img = ""
+        try:
+            with open("src/selos/SDG-9-Indústria, inovação e infraestrutura.svg", "r", encoding="utf-8") as f:
+                svg_content = f.read()
+            # Modificar o SVG para limitar tamanho
+            svg_img = svg_content.replace('<svg', '<svg width="80" height="80"')
+        except:
+            pass
+        
+        st.markdown(f"""
+        <div style='background: rgba(253, 105, 37, 0.1); padding: 1.5rem; border-radius: 10px; 
+                    border-left: 4px solid #FD6925; height: 100%; min-height: 400px;'>
+            <div style="text-align: center; margin-bottom: 1rem;">{svg_img}</div>
+            <h4 style='color: #FD6925; margin-top: 1rem;'>Indústria, Inovação e Infraestrutura</h4>
+            <p style='font-size: 0.95rem; line-height: 1.6;'>
+                Promovemos <strong>inovação em infraestrutura espacial</strong> através de ferramentas de 
+                simulação e design que permitem o desenvolvimento de habitats seguros e eficientes. 
+                A visualização 3D impulsiona o avanço tecnológico.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        # Carregar e exibir SVG do ODS 11
+        svg_img = ""
+        try:
+            with open("src/selos/SDG-11 -  Cidades e comunidades sustentáveis.svg", "r", encoding="utf-8") as f:
+                svg_content = f.read()
+            # Modificar o SVG para limitar tamanho
+            svg_img = svg_content.replace('<svg', '<svg width="80" height="80"')
+        except:
+            pass
+        
+        st.markdown(f"""
+        <div style='background: rgba(253, 157, 36, 0.1); padding: 1.5rem; border-radius: 10px; 
+                    border-left: 4px solid #FD9D24; height: 100%; min-height: 400px;'>
+            <div style="text-align: center; margin-bottom: 1rem;">{svg_img}</div>
+            <h4 style='color: #FD9D24; margin-top: 1rem;'>Cidades e Comunidades Sustentáveis</h4>
+            <p style='font-size: 0.95rem; line-height: 1.6;'>
+                Desenvolvemos conceitos de <strong>comunidades sustentáveis no espaço</strong> através do 
+                planejamento otimizado de recursos, gestão eficiente de volume habitável e considerações 
+                de sustentabilidade a longo prazo para missões espaciais prolongadas.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col4:
+        # Carregar e exibir SVG do ODS 17
+        svg_img = ""
+        try:
+            with open("src/selos/SDG-17 Parcerias e meios de implementação.svg", "r", encoding="utf-8") as f:
+                svg_content = f.read()
+            # Modificar o SVG para limitar tamanho
+            svg_img = svg_content.replace('<svg', '<svg width="80" height="80"')
+        except:
+            pass
+        
+        st.markdown(f"""
+        <div style='background: rgba(25, 72, 106, 0.1); padding: 1.5rem; border-radius: 10px; 
+                    border-left: 4px solid #19486A; height: 100%; min-height: 400px;'>
+            <div style="text-align: center; margin-bottom: 1rem;">{svg_img}</div>
+            <h4 style='color: #19486A; margin-top: 1rem;'>Parcerias e Meios de Implementação</h4>
+            <p style='font-size: 0.95rem; line-height: 1.6;'>
+                Criado para o <strong>NASA Space Apps Challenge</strong>, este projeto exemplifica a 
+                colaboração global em desafios espaciais. A ferramenta open-source promove parcerias 
+                entre educadores, engenheiros e entusiastas do espaço em todo o mundo.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
     # Como usar
     st.markdown("## Como Usar")
     
