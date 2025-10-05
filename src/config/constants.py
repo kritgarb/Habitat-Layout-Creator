@@ -96,12 +96,12 @@ ZONE_COLORS = {
 
 # Nomes das zonas
 ZONE_NAMES = {
-    "sleep": "Sleep Quarters",
-    "hygiene": "Hygiene Module",
-    "kitchen": "Galley Station",
-    "exercise": "Exercise Bay",
-    "storage": "Storage Module",
-    "work_leisure": "Work & Recreation"
+    "sleep": "Quartos de Dormir",
+    "hygiene": "Módulo de Higiene",
+    "kitchen": "Cozinha",
+    "exercise": "Área de Exercícios",
+    "storage": "Armazenamento",
+    "work_leisure": "Trabalho e Lazer"
 }
 
 # Área mínima e volume por pessoa para cada zona (m² e m³)

@@ -40,12 +40,12 @@ def validate_nasa_standards(
     
     if nhv_per_person < min_nhv:
         issues.append(
-            f"⚠️ NHV per person ({nhv_per_person:.1f} m³) below minimum ({min_nhv} m³) for {mission_type} mission"
+            f"NHV per person ({nhv_per_person:.1f} m³) below minimum ({min_nhv} m³) for {mission_type} mission"
         )
     
     if floor_area_per_person < min_floor_area:
         issues.append(
-            f"⚠️ Floor area per person ({floor_area_per_person:.1f} m²) below minimum ({min_floor_area} m²)"
+            f"Floor area per person ({floor_area_per_person:.1f} m²) below minimum ({min_floor_area} m²)"
         )
     
     is_valid = len(issues) == 0
@@ -76,7 +76,7 @@ def validate_dimensions(
     MIN_CEILING = 2.1
     if ceiling_height < MIN_CEILING:
         issues.append(
-            f"🔴 CRITICAL: Ceiling height ({ceiling_height:.2f}m) below minimum ({MIN_CEILING}m)"
+            f"CRITICAL: Ceiling height ({ceiling_height:.2f}m) below minimum ({MIN_CEILING}m)"
         )
     
     # Largura mínima de corredor
@@ -84,7 +84,7 @@ def validate_dimensions(
         MIN_CORRIDOR = 0.8
         if corridor_width < MIN_CORRIDOR:
             issues.append(
-                f"⚠️ Corridor width ({corridor_width:.2f}m) below minimum ({MIN_CORRIDOR}m)"
+                f"Corridor width ({corridor_width:.2f}m) below minimum ({MIN_CORRIDOR}m)"
             )
     
     # Dimensões de porta
@@ -95,11 +95,11 @@ def validate_dimensions(
         
         if door_width < MIN_DOOR_WIDTH:
             issues.append(
-                f"⚠️ Door width ({door_width:.2f}m) below minimum ({MIN_DOOR_WIDTH}m)"
+                f"Door width ({door_width:.2f}m) below minimum ({MIN_DOOR_WIDTH}m)"
             )
         if door_height < MIN_DOOR_HEIGHT:
             issues.append(
-                f"⚠️ Door height ({door_height:.2f}m) below minimum ({MIN_DOOR_HEIGHT}m)"
+                f"Door height ({door_height:.2f}m) below minimum ({MIN_DOOR_HEIGHT}m)"
             )
     
     is_valid = len(issues) == 0
@@ -136,7 +136,7 @@ def validate_environmental_conditions(
         TEMP_MIN, TEMP_MAX = 18, 27
         if not (TEMP_MIN <= temperature <= TEMP_MAX):
             issues.append(
-                f"⚠️ Temperature ({temperature}°C) outside acceptable range ({TEMP_MIN}-{TEMP_MAX}°C)"
+                f"Temperature ({temperature}°C) outside acceptable range ({TEMP_MIN}-{TEMP_MAX}°C)"
             )
     
     # Umidade
@@ -144,7 +144,7 @@ def validate_environmental_conditions(
         HUM_MIN, HUM_MAX = 30, 70
         if not (HUM_MIN <= humidity <= HUM_MAX):
             issues.append(
-                f"⚠️ Humidity ({humidity}%) outside acceptable range ({HUM_MIN}-{HUM_MAX}%)"
+                f"Humidity ({humidity}%) outside acceptable range ({HUM_MIN}-{HUM_MAX}%)"
             )
     
     # CO₂
@@ -152,7 +152,7 @@ def validate_environmental_conditions(
         MAX_CO2 = 5.3
         if co2_level > MAX_CO2:
             issues.append(
-                f"🔴 CRITICAL: CO₂ level ({co2_level} mmHg) exceeds maximum ({MAX_CO2} mmHg)"
+                f"CRITICAL: CO₂ level ({co2_level} mmHg) exceeds maximum ({MAX_CO2} mmHg)"
             )
     
     # Ruído
@@ -160,7 +160,7 @@ def validate_environmental_conditions(
         MAX_NOISE = 60 if zone_type == "sleep" else 70
         if noise_level > MAX_NOISE:
             issues.append(
-                f"⚠️ Noise level ({noise_level} dB) exceeds maximum for {zone_type} area ({MAX_NOISE} dB)"
+                f"Noise level ({noise_level} dB) exceeds maximum for {zone_type} area ({MAX_NOISE} dB)"
             )
     
     is_valid = len(issues) == 0
@@ -185,7 +185,7 @@ def validate_zone_incompatibilities(zones: List[str], incompatible_zones: List[T
     for zone1, zone2 in incompatible_zones:
         if zone1 in zones and zone2 in zones:
             warnings.append(
-                f"⚠️ Incompatible zones present: {zone1} and {zone2} (should not be adjacent)"
+                f"Incompatible zones present: {zone1} and {zone2} (should not be adjacent)"
             )
     
     return warnings
@@ -251,9 +251,9 @@ def validate_privacy_requirements(crew_size: int, private_zones: int) -> Tuple[b
     is_adequate = privacy_index >= 100
     
     if is_adequate:
-        message = f"✅ Privacy adequate: {private_zones} private quarters for {crew_size} crew members"
+        message = f"Privacy adequate: {private_zones} private quarters for {crew_size} crew members"
     else:
-        message = f"⚠️ Privacy insufficient: {private_zones} private quarters for {crew_size} crew members (need {crew_size})"
+        message = f"Privacy insufficient: {private_zones} private quarters for {crew_size} crew members (need {crew_size})"
     
     return is_adequate, message
 

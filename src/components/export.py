@@ -14,21 +14,21 @@ def render_export(habitat_data: dict):
         habitat_data: Dicionário completo com todos os dados do habitat
     """
     st.markdown("---")
-    st.markdown("## Export Design")
+    st.markdown("## Exportar Design")
     
     col1, col2 = st.columns(2)
     
     with col1:
         json_data = json.dumps(habitat_data, indent=2, ensure_ascii=False)
         st.download_button(
-            label="Download JSON Data",
+            label="Baixar Dados JSON",
             data=json_data,
             file_name=f"habitat_layout_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json",
             mime="application/json"
         )
     
     with col2:
-        st.info("💡 Tip: Use browser screenshot tool to capture PNG of visualizations above!")
+        st.info("💡 Dica: Use a ferramenta de captura de tela do navegador para salvar as visualizações acima em PNG!")
 
 
 def create_habitat_data_dict(config: dict, total_volume: float, floor_area: float,

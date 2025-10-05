@@ -38,13 +38,26 @@ def create_3d_habitat_view(shape_type: str, dimensions: dict, zones: dict,
         paper_bgcolor='rgba(15, 20, 25, 0)',
         plot_bgcolor='rgba(15, 20, 25, 0)',
         height=600,
-        margin=dict(l=0, r=0, t=40, b=0),
+        margin=dict(l=0, r=0, t=80, b=0),
         title=dict(
-            text="<b>HABITAT 3D VIEW</b>",
-            font=dict(size=20, color="#A0AEC0"),
+            text=f"<b>HABITAT 3D VIEW</b> · {shape_type} Configuration · {len(zones)} Zones",
+            font=dict(size=18, color="#E2E8F0", family="Arial Black"),
             x=0.5,
             xanchor='center'
-        )
+        ),
+        legend=dict(
+            bgcolor='rgba(11, 15, 26, 0.9)',
+            bordercolor='#A68CFF',
+            borderwidth=2,
+            font=dict(color='#E2E8F0', size=11),
+            orientation='v',
+            x=1.02,
+            y=1,
+            xanchor='left',
+            yanchor='top',
+            title=dict(text="<b>Zones</b>", font=dict(size=13, color='#A68CFF'))
+        ),
+        showlegend=True
     )
     
     return fig
@@ -104,7 +117,8 @@ def _create_cylinder_3d(dimensions: dict, zones: dict, zone_colors: dict,
             mode='lines',
             line=dict(color=zone_colors[zone], width=5),
             name=zone_names[zone],
-            hovertext=f"{zone_names[zone]}<br>{area:.1f} m²"
+            hovertext=f"{zone_names[zone]}<br>{area:.1f} m²",
+            showlegend=True
         ))
         
         z_offset += zone_height
@@ -150,5 +164,34 @@ def _create_box_3d(dimensions: dict, zones: dict, zone_colors: dict,
         showscale=False,
         name="Habitat Structure"
     ))
+    
+    # Adicionar divisões horizontais para zonas
+    total_zone_area = sum(zones.values())
+    z_offset = 0
+    
+    for zone, area in zones.items():
+        proportion = area / total_zone_area
+        zone_height = height * proportion
+        
+        # Plano divisor horizontal para cada zona
+        z_plane = z_offset + zone_height
+        
+        # Criar retângulo de divisão
+        x_plane = [0, length, length, 0, 0]
+        y_plane = [0, 0, width, width, 0]
+        z_plane_list = [z_plane] * 5
+        
+        fig.add_trace(go.Scatter3d(
+            x=x_plane, 
+            y=y_plane, 
+            z=z_plane_list,
+            mode='lines',
+            line=dict(color=zone_colors[zone], width=5),
+            name=zone_names[zone],
+            hovertext=f"{zone_names[zone]}<br>{area:.1f} m²",
+            showlegend=True
+        ))
+        
+        z_offset += zone_height
     
     return fig

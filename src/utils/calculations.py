@@ -78,19 +78,20 @@ def calculate_nhv(total_volume: float, usable_factor: float = 0.7) -> float:
     return total_volume * usable_factor
 
 
-def allocate_zones(floor_area: float, crew_size: int, zone_min_area: dict) -> dict:
+def allocate_zones(floor_area: float, crew_size: int, zone_config: dict) -> dict:
     """
-    Aloca área de piso para cada zona funcional baseada no tamanho da tripulação.
+    Aloca área de piso para cada zona funcional baseada no tamanho da tripulação
+    e configurações customizadas.
     
     Args:
         floor_area: Área total de piso disponível (m²)
         crew_size: Número de tripulantes
-        zone_min_area: Dicionário com área mínima por pessoa para cada zona
+        zone_config: Dicionário com área por pessoa para cada zona selecionada
     
     Returns:
         Dicionário com área alocada para cada zona
     """
     zones = {}
-    for zone, min_area in zone_min_area.items():
-        zones[zone] = min_area * crew_size
+    for zone, area_per_person in zone_config.items():
+        zones[zone] = area_per_person * crew_size
     return zones

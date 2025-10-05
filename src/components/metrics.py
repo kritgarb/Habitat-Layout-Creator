@@ -23,31 +23,31 @@ def render_metrics(total_volume: float, floor_area: float, nhv: float,
         min_nhv: NHV mínimo NASA (m³)
         min_floor_area: Área mínima NASA (m²)
     """
-    st.markdown("## Habitat Metrics")
+    st.markdown("## Métricas do Habitat")
     
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        st.metric("Total Volume", f"{total_volume:.1f} m³")
-        st.metric("Floor Area", f"{floor_area:.1f} m²")
+        st.metric("Volume Total", f"{total_volume:.1f} m³")
+        st.metric("Área de Piso", f"{floor_area:.1f} m²")
     
     with col2:
         nhv_delta = "normal" if nhv_per_person >= min_nhv else "inverse"
         st.metric("NHV Total", f"{nhv:.1f} m³")
-        st.metric("NHV per Person", f"{nhv_per_person:.1f} m³", 
-                  delta=f"{nhv_per_person - min_nhv:.1f} vs min",
+        st.metric("NHV por Pessoa", f"{nhv_per_person:.1f} m³", 
+                  delta=f"{nhv_per_person - min_nhv:.1f} vs mín",
                   delta_color=nhv_delta)
     
     with col3:
         floor_delta = "normal" if floor_area_per_person >= min_floor_area else "inverse"
-        st.metric("Area per Person", f"{floor_area_per_person:.1f} m²",
-                  delta=f"{floor_area_per_person - min_floor_area:.1f} vs min",
+        st.metric("Área por Pessoa", f"{floor_area_per_person:.1f} m²",
+                  delta=f"{floor_area_per_person - min_floor_area:.1f} vs mín",
                   delta_color=floor_delta)
-        st.metric("Crew Size", f"{crew_size} persons")
+        st.metric("Tripulação", f"{crew_size} pessoas")
     
     with col4:
-        st.metric("Total Water Needed", f"{total_water:.0f} L")
-        st.metric("Mission Duration", f"{mission_duration} days")
+        st.metric("Água Total Necessária", f"{total_water:.0f} L")
+        st.metric("Duração da Missão", f"{mission_duration} dias")
 
 
 def render_validation(issues: list):
@@ -58,13 +58,13 @@ def render_validation(issues: list):
         issues: Lista de problemas encontrados (vazio se tudo OK)
     """
     st.markdown("---")
-    st.markdown("## ✓ NASA Standards Validation")
+    st.markdown("## Validação dos Padrões NASA")
     
     if issues:
         for issue in issues:
-            st.error(f"✗ {issue}")
+            st.error(f"{issue}")
     else:
-        st.success("✓ All critical NASA standards are met!")
+        st.success("Todos os padrões críticos da NASA foram atendidos!")
 
 
 def render_zones(zones: dict, floor_area: float, zone_colors: dict, zone_names: dict):
@@ -78,7 +78,7 @@ def render_zones(zones: dict, floor_area: float, zone_colors: dict, zone_names: 
         zone_names: Nomes das zonas
     """
     st.markdown("---")
-    st.markdown("## Functional Zones")
+    st.markdown("## Zonas Funcionais")
     
     cols = st.columns(3)
     for idx, (zone, area) in enumerate(zones.items()):
@@ -88,6 +88,6 @@ def render_zones(zones: dict, floor_area: float, zone_colors: dict, zone_names: 
             <div class='zone-card' style='border-left-color: {zone_colors[zone]};'>
                 <div style='color: {zone_colors[zone]}; font-weight: 700; font-size: 1.1rem;'>{zone_names[zone]}</div>
                 <div style='color: #E8EAED; font-size: 1.5rem; font-weight: 700; margin: 0.5rem 0;'>{area:.1f} m²</div>
-                <div style='color: #A0AEC0;'>{percentage:.1f}% of total floor</div>
+                <div style='color: #A0AEC0;'>{percentage:.1f}% do piso total</div>
             </div>
             """, unsafe_allow_html=True)

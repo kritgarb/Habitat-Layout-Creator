@@ -12,39 +12,39 @@ def render_sidebar():
     Returns:
         Dicionário com todas as configurações selecionadas
     """
-    st.sidebar.markdown("## Configuration")
+    st.sidebar.markdown("## Configuração")
     st.sidebar.markdown("---")
     
     # Forma do habitat
-    shape = st.sidebar.selectbox("Habitat Shape", ["Cylinder", "Rectangular"])
+    shape = st.sidebar.selectbox("Forma do Habitat", ["Cylinder", "Rectangular"])
     
     # Tipo de estrutura (Rígida ou Inflável)
-    st.sidebar.markdown("#### Structure Type")
+    st.sidebar.markdown("#### Tipo de Estrutura")
     structure_type = st.sidebar.radio(
-        "Select Structure",
+        "Selecione a Estrutura",
         ["rigid", "inflatable"],
         format_func=lambda x: HABITAT_TYPES[x]["description"],
         help="Estrutura rígida: volume limitado, alta proteção\nInflável: 3-4x maior volume, menor massa"
     )
     
     # Dimensões
-    st.sidebar.markdown("#### Dimensions (meters)")
+    st.sidebar.markdown("#### Dimensões (metros)")
     
     if shape == "Cylinder":
-        diameter = st.sidebar.number_input("Diameter", min_value=2.0, max_value=15.0, value=6.0, step=0.5)
-        height = st.sidebar.number_input("Height", min_value=2.0, max_value=20.0, value=10.0, step=0.5)
+        diameter = st.sidebar.number_input("Diâmetro", min_value=2.0, max_value=15.0, value=6.0, step=0.5)
+        height = st.sidebar.number_input("Altura", min_value=2.0, max_value=20.0, value=10.0, step=0.5)
         dimensions = {"diameter": diameter, "height": height, "length": None, "width": None}
     else:
-        length = st.sidebar.number_input("Length", min_value=2.0, max_value=20.0, value=10.0, step=0.5)
-        width = st.sidebar.number_input("Width", min_value=2.0, max_value=15.0, value=6.0, step=0.5)
-        height = st.sidebar.number_input("Height", min_value=2.0, max_value=20.0, value=4.0, step=0.5)
+        length = st.sidebar.number_input("Comprimento", min_value=2.0, max_value=20.0, value=10.0, step=0.5)
+        width = st.sidebar.number_input("Largura", min_value=2.0, max_value=15.0, value=6.0, step=0.5)
+        height = st.sidebar.number_input("Altura", min_value=2.0, max_value=20.0, value=4.0, step=0.5)
         dimensions = {"length": length, "width": width, "height": height, "diameter": width}
     
     # Parâmetros da missão
-    st.sidebar.markdown("#### Mission Parameters")
-    crew_size = st.sidebar.slider("Crew Size", min_value=2, max_value=8, value=4)
+    st.sidebar.markdown("#### Parâmetros da Missão")
+    crew_size = st.sidebar.slider("Tamanho da Tripulação", min_value=2, max_value=8, value=4)
     mission_duration = st.sidebar.number_input(
-        "Mission Duration (days)", 
+        "Duração da Missão (dias)", 
         min_value=1, 
         max_value=1000, 
         value=180,
@@ -52,28 +52,73 @@ def render_sidebar():
     )
     
     # Ambiente gravitacional
-    st.sidebar.markdown("#### Gravity Environment")
+    st.sidebar.markdown("#### Ambiente Gravitacional")
     gravity_env = st.sidebar.selectbox(
-        "Select Environment",
+        "Selecione o Ambiente",
         ["microgravity", "lunar", "mars"],
         format_func=lambda x: GRAVITY_ENVIRONMENTS[x]["description"],
         help="Afeta se volume ou área horizontal é priorizada"
     )
     
+    # Seleção de Zonas Funcionais
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("#### Zonas Funcionais")
+    st.sidebar.caption("Selecione zonas para incluir e customize as áreas por pessoa:")
+    
+    selected_zones = {}
+    zone_areas = {}
+    
+    # Importar constantes de zona
+    from ..config.constants import ZONE_MIN_AREA, ZONE_NAMES
+    
+    for zone_id, zone_name in ZONE_NAMES.items():
+        col1, col2 = st.sidebar.columns([3, 2])
+        
+        with col1:
+            # Checkbox para incluir/excluir zona
+            include_zone = st.checkbox(
+                zone_name,
+                value=True,  # Todas selecionadas por padrão
+                key=f"zone_{zone_id}"
+            )
+        
+        if include_zone:
+            with col2:
+                # Input de área por pessoa
+                area = st.number_input(
+                    "m²/person",
+                    min_value=0.5,
+                    max_value=20.0,
+                    value=ZONE_MIN_AREA[zone_id],
+                    step=0.5,
+                    key=f"area_{zone_id}",
+                    label_visibility="collapsed"
+                )
+                zone_areas[zone_id] = area
+            selected_zones[zone_id] = True
+    
+    # Mostrar resumo das zonas selecionadas
+    if zone_areas:
+        total_area_per_person = sum(zone_areas.values())
+        st.sidebar.success(f"{len(zone_areas)} zonas selecionadas · {total_area_per_person:.1f} m²/pessoa total")
+    else:
+        st.sidebar.warning("Nenhuma zona selecionada")
+    
     # Mostrar referências de NHV
-    st.sidebar.markdown("#### NHV Reference")
+    st.sidebar.markdown("---")
+    st.sidebar.markdown("#### Referência NHV")
     st.sidebar.info(f"""
-    **NASA NHV Guidelines:**
-    - 30 days: {NHV_REFERENCE[30]} m³/person
-    - 180 days: {NHV_REFERENCE[180]} m³/person
-    - 365 days: {NHV_REFERENCE[365]} m³/person
-    - 500 days: {NHV_REFERENCE[500]} m³/person
+    **Diretrizes NASA NHV:**
+    - 30 dias: {NHV_REFERENCE[30]} m³/pessoa
+    - 180 dias: {NHV_REFERENCE[180]} m³/pessoa
+    - 365 dias: {NHV_REFERENCE[365]} m³/pessoa
+    - 500 dias: {NHV_REFERENCE[500]} m³/pessoa
     """)
     
     # Configurações avançadas
-    st.sidebar.markdown("#### Advanced Settings")
+    st.sidebar.markdown("#### Configurações Avançadas")
     usable_factor = st.sidebar.slider(
-        "Usable Volume Factor", 
+        "Fator de Volume Utilizável", 
         min_value=0.5, 
         max_value=0.9, 
         value=0.7, 
@@ -83,8 +128,8 @@ def render_sidebar():
     
     # Modo de visualização
     st.sidebar.markdown("---")
-    st.sidebar.markdown("#### Visualization Mode")
-    view_mode = st.sidebar.radio("Select View", ["2D Floor Plan", "3D Habitat", "Both"], index=2)
+    st.sidebar.markdown("#### Modo de Visualização")
+    view_mode = st.sidebar.radio("Selecione a Vista", ["Planta 2D", "Habitat 3D", "Ambos"], index=2)
     
     return {
         "shape": shape,
@@ -94,5 +139,7 @@ def render_sidebar():
         "mission_duration": mission_duration,
         "gravity_env": gravity_env,
         "usable_factor": usable_factor,
-        "view_mode": view_mode
+        "view_mode": view_mode,
+        "selected_zones": selected_zones,
+        "zone_areas": zone_areas
     }
